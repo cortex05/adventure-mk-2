@@ -1,16 +1,13 @@
+from main_functions import launcher
 
 running = True
 
 while running:
-    print('Welcome! What would you like to do?')
-    print('1 - Start Game')
-    print('2 - Exit')
-    choice = input('')
+    launch = launcher()
 
-    if choice == '1':
+    if launch:
         print('Starting game...')
-    elif choice == '2':
+        # opening scroll
+    else:
         print('Goodbye!')
         running = False
-    else:
-        input('Invalid choice. Please try again. Press Enter.')
