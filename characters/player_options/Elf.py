@@ -1,5 +1,5 @@
 # ELF
-from Player import Player
+from characters.Player import Player
 import os
 
 

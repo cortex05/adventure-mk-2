@@ -1,5 +1,5 @@
 import os
-from Player import Player
+from characters.Player import Player
 
 
 class Dwarf(Player):

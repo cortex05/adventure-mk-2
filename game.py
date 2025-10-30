@@ -1,5 +1,6 @@
-from phases.start import  setPlayerName, introScroll
+from phases.start import  setPlayerName, introScroll, initialiationLoop
 
 def main():
 	name = setPlayerName()
-	introScroll(name)
+	player = initialiationLoop(name)
+	introScroll(player.name)
