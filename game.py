@@ -4,3 +4,4 @@ def main():
 	name = setPlayerName()
 	player = initialiationLoop(name)
 	introScroll(player.name)
+	
