@@ -80,12 +80,13 @@ def setPlayerName():
     if answer == 'y':
         print(f'Thank you {player_name}.')
         time.sleep(2)
+        os.system('cls')
         return player_name
     if answer == 'n':
         return setPlayerName()
 
 
-def introScroll(name: str):
+def introScroll(name: str, player: Player):
     introScrollText = [
         f'Hello {name}. this is the intro scroll.',
         'You are starting on an adventure.',
@@ -97,5 +98,6 @@ def introScroll(name: str):
     for text in introScrollText:
         print(f'{text} \n')
         time.sleep(2)
+    print(f"Potions: {len(player.inventory["consumables"]["potions"])}")
     input('Press any button to continue')
     os.system('cls')

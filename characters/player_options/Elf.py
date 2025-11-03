@@ -2,6 +2,8 @@
 from characters.Player import Player
 import os
 
+from items.health.potion import Potion
+
 
 class Elf(Player):
     player_class = "Elf"
@@ -19,5 +21,12 @@ class Elf(Player):
     def __init__(self, name):
         self.name = name
         os.system('cls')
+
+        i = 0
+        while i < 3:
+            new_potion = Potion()
+            self.inventory["consumables"]["potions"].append(new_potion)
+            i += 1
+
         input(
             f"\n Elf Selected! Quick and nimble is the way. Congrats {name}!\n Press any key to continue\n\n")

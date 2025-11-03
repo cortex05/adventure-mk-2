@@ -1,7 +1,9 @@
+import os
 from main_functions import launcher
 from game import main
 
 running = True
+os.system('cls')
 
 while running:
     launch = launcher()

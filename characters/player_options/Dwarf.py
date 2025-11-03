@@ -1,5 +1,6 @@
 import os
 from characters.Player import Player
+from items.health.potion import Potion
 
 
 class Dwarf(Player):
@@ -18,5 +19,12 @@ class Dwarf(Player):
     def __init__(self, name):
         self.name = name
         os.system('cls')
+
+        i = 0
+        while i < 3:
+             new_potion = Potion()
+             self.inventory["consumables"]["potions"].append(new_potion)
+             i += 1
+
         input(
             f"\n Dwarf Selected! Heavy hitter I see. Congrats {name}!\n Press any key to continue\n\n")
