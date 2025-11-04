@@ -4,6 +4,12 @@ import os
 
 from items.health.potion import Potion
 
+starting_main_weapon = {
+    "name": "Slender Blade",
+    "attack_boost": 5,
+    "id": "ELF_START",
+    "critical_chance": 0.7
+}
 
 class Elf(Player):
     player_class = "Elf"
@@ -22,6 +28,7 @@ class Elf(Player):
         self.name = name
         os.system('cls')
 
+        self.gear["weapons"]["main"] = starting_main_weapon
         i = 0
         while i < 3:
             new_potion = Potion()

@@ -2,6 +2,12 @@ import os
 from characters.Player import Player
 from items.health.potion import Potion
 
+starting_main_weapon = {
+    "name": "Blunt Axe",
+    "attack_boost": 15,
+    "id": "DWARF_START",
+    "critical_chance": 1.1
+}
 
 class Dwarf(Player):
     player_class = "Dwarf"
@@ -20,6 +26,7 @@ class Dwarf(Player):
         self.name = name
         os.system('cls')
 
+        self.gear["weapons"]["main"] = starting_main_weapon
         i = 0
         while i < 3:
              new_potion = Potion()

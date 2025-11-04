@@ -15,3 +15,28 @@ class Player:
         },
         "key_items": {}
     }
+    gear = {
+        "armor": {
+            "head": {
+                "name": "Cheap Helmet",
+                "id": "HEAD_CHEAP",
+                "defense_bonus": 5,
+                "part": "head"
+            },
+            "chest": {
+                "name": "Leather Chestplate",
+                "id": "LEATHER_CHESTPLATE",
+                "defense_bonus": 10,
+                "part": "chest"
+            },
+            "legs": {
+                "name": "Weathered Trousers",
+                "id": "HEAD_CHEAP",
+                "defense_bonus": 1,
+                "part": "legs"
+            }
+        },
+        "weapons": {
+            "main": None
+        }
+    }
