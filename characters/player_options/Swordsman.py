@@ -3,12 +3,7 @@ import os
 from characters.Player import Player
 from items.health.potion import Potion
 
-starting_main_weapon = {
-    "name": "Training Sword",
-    "attack_boost": 10,
-    "id": "SWORDSMAN_START",
-    "critical_chance": 1.0
-}
+from items.weapons.starting_weapons import swordsman_start
 
 class Swordsman(Player):
     player_class = "Swordsman"
@@ -27,7 +22,7 @@ class Swordsman(Player):
         self.name = name
         os.system('cls')
 
-        self.gear["weapons"]["main"] = starting_main_weapon
+        self.gear["weapons"]["main"] = swordsman_start
         i = 0
         while i < 3:
             new_potion = Potion()

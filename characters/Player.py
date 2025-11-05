@@ -8,6 +8,7 @@ class Player:
     num_health_potions = 4
     health_potion_heal_amount = 30
     health_potion_drop_chance = 50  # 50 Percent chance to drop a health potion
+    current_armor = 16
     # levelUpChance = 50 - Don't know about this...
     inventory = {
         "consumables": {

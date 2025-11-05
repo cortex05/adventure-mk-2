@@ -4,3 +4,5 @@ def main():
 	name = setPlayerName()
 	player = initialiationLoop(name)
 	introScroll(player.name, player)
+
+	# swamp_result = 
