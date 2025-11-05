@@ -1,4 +1,4 @@
-from Enemy import Enemy
+from characters.Enemy import Enemy
 
 
 class Sorcerer(Enemy):

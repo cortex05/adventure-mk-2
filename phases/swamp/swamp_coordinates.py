@@ -1,4 +1,4 @@
-swamp_grid = [
+swamp_grid = [ 
     [
         {
             'description': 'Can only go south\n',

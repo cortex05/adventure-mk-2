@@ -14,7 +14,7 @@ class Player:
         "consumables": {
             "potions": []
         },
-        "key_items": {}
+        "key_items": []
     }
     gear = {
         "armor": {
