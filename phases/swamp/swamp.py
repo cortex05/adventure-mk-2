@@ -5,7 +5,7 @@ from characters.Player import Player
 from directions import nav_options
 from phases.swamp import swamp_coordinates
 from utility.battle_functions import battle_launch
-from utility.nav_functions import navigation_options, reverse_step
+from utility.nav_functions import compass_display, navigation_options, reverse_step
 
 
 def swamp_loop(player: Player):
@@ -63,6 +63,7 @@ def swamp_loop(player: Player):
 			text_options = text_options + nav_options.nav_options[option]
 			choice_options.append(option)
 
+		text_options = text_options + compass_display(choice_options)
 		print(f'Options: {choice_options}')
 		choice = input(text_options)
 

@@ -1,3 +1,6 @@
+from typing import List
+
+
 def navigation_options(target: int, actual_options: list, moving_coords: list):
     choice = target - 1
     print(f'Modded :{choice}')
@@ -34,3 +37,15 @@ def reverse_step(last_command, moving_coords):
     elif last_command == 4:
         # Came east, move west
         moving_coords[1] = moving_coords[1] - 1
+
+def compass_display(options: List[int]):
+    one = '1' if 0 in options else ' '
+    two = '2' if 1 in options else ' '
+    three = '3' if 2 in options else ' '
+    four = '4' if 3 in options else ' '
+    holder = f'      {two}    \n' + f'      |     \n' + f' {one} ──   ── {four} \n' + f'      {'|'}     \n' + f'      {three}    \n'
+
+    return holder
+
+
+    
