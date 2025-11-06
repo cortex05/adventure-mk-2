@@ -8,7 +8,7 @@ swamp_grid = [
         }, {
             'description': '\n\nThis is the castle! You win!\n',
             'random_battle': False,
-            'options': [0, 2],
+            'options': [1, 2],
             'unlock_value': 'VICTORY'
         }, {
             'description': "HOLDER",
@@ -18,12 +18,12 @@ swamp_grid = [
         {
             'description': "Can only go north or east",
             'random_battle': False,
-            'options': [0, 1],
+            'options': [1, 3],
             'unlock_value': None
         }, {
             'description': 'To the north you see a castle, but the bridge to cross the moat is raised.\n You see a slot for a key, but you have none.\nTo the Northwest you see a shed, to the west you see something shiny. Where will you go?\n',
             'random_battle': True,
-            'options': [1, 3],
+            'options': [0, 3],
             'unlock_value': None,
             'block_value': 'CASTLE_GATE',
             'alt_pathway': {
@@ -36,7 +36,7 @@ swamp_grid = [
         }, {
             'description': "Monster and a dead end",
             'random_battle': False,
-            'options': [3],
+            'options': [0],
             'unlock_value': None
         }],
     [
@@ -46,7 +46,7 @@ swamp_grid = [
         }, {
             'description': 'You stand before a forest. The only way is through. What do you do?\n',
             'random_battle': False,
-            'options': [0],
+            'options': [1],
             'unlock_value': None
         }, {
             'description': "Null",
