@@ -2,8 +2,8 @@
 
 class Player:
     total_experience = 0
-    base_level = 1000
-    to_next_level = 1000
+    base_level = 10
+    to_next_level = 10
 
     num_health_potions = 4
     health_potion_heal_amount = 30

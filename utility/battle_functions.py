@@ -76,6 +76,12 @@ def battle_launch(player, unlock_value):
 
     if result == 'WIN':
         print('You won!\n\n')
+        
+        # Here we can add level up logic
+        player = level_up(player, enemy.base_experience_yield, enemy.exp_range)
+        print(f'To next level is: {player.to_next_level}')
+
+        
         print(f'Your health is {player.health}')
 
         if unlock_value != None:
@@ -94,3 +100,36 @@ def battle_launch(player, unlock_value):
     elif result == 'LOSE':
         return 'LOSE'
     
+def level_up(player: Player, exp_yield: int, exp_range: int): 
+    range = [
+        exp_yield - exp_range,
+        exp_yield,
+        exp_yield + exp_range
+    ]
+    yielded_amount = range[random.randint(1,3) -1]
+
+    exp_holder = player.to_next_level
+    spillover = yielded_amount - player.to_next_level
+
+    if spillover >= 0:
+        new_base_level = player.base_level + 10
+        player.to_next_level = new_base_level
+
+        print('You leveled up!\n')
+        # Adjust all attributes
+        player.base_health = player.base_health + 20
+        player.health = player.base_health
+        player.strength = player.strength
+        player.defense = player.defense
+        player.agility = player.agility
+
+        print(f'Your health is now {player.health}')
+
+        if player.to_next_level - spillover <= 0:
+            # need to figure out new
+            player.total_experience += exp_holder
+            return level_up(player, spillover, exp_range)
+        else:
+            player.total_experience += exp_yield
+            player.to_next_level -= spillover
+    return player

@@ -13,7 +13,7 @@ class Swordsman(Player):
     description = '''a well balanced fighter.'''
 
     health = 100
-    baseHealth = 100
+    base_health = 100
     strength = 30
     defense = 25
     agility = 20

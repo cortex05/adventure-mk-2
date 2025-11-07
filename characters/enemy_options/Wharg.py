@@ -7,4 +7,5 @@ class Wharg(Enemy):
     max_enemy_health = 20
     enemy_attack_damage = 30
     special_attack = "Bites"
-    experience_yield = 600
+    base_experience_yield = 10
+    exp_range = 2

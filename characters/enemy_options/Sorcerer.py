@@ -7,4 +7,5 @@ class Sorcerer(Enemy):
     max_enemy_health = 20
     enemy_attack_damage = 10
     special_attack = "Curses"
-    experience_yield = 1000
+    base_experience_yield = 20
+    exp_range = 3

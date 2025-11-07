@@ -7,4 +7,5 @@ class Dragon(Enemy):
     max_enemy_health = 40
     enemy_attack_damage = 100
     special_attack = "Scorches"
-    experience_yield = 3000
+    base_experience_yield = 50
+    exp_range = 10
