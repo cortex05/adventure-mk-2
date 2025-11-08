@@ -1,12 +1,14 @@
 import os
 import random
+from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg
 
 
-def random_enemy():
-    enemy_selector = random.randint(1, 4)
+def random_enemy(options: List[int]):
+    upper = len(options) - 1
+    enemy_selector = random.randint(options[0], options[upper])
     enemy = None
 
     if enemy_selector == 1:
@@ -68,8 +70,8 @@ def battle_loop(player: Player, enemy: Enemy):
             print('')
  
 
-def battle_launch(player, unlock_value):
-    enemy = random_enemy()
+def battle_launch(player, unlock_value, enemies):
+    enemy = random_enemy(enemies)
     print(f'{enemy.name_tense} appeared!\n')
 
     result, player = battle_loop(player, enemy) 
@@ -78,7 +80,15 @@ def battle_launch(player, unlock_value):
         print('You won!\n\n')
         
         # Here we can add level up logic
-        player = level_up(player, enemy.base_experience_yield, enemy.exp_range)
+        range = [
+            enemy.base_experience_yield - enemy.exp_range,
+            enemy.base_experience_yield,
+            enemy.base_experience_yield + enemy.exp_range
+        ]
+        yielded_amount = range[random.randint(1,3) -1]
+        print(f'Yield: {yielded_amount}')
+
+        player = level_up(player, yielded_amount)
         print(f'To next level is: {player.to_next_level}')
 
         
@@ -100,21 +110,16 @@ def battle_launch(player, unlock_value):
     elif result == 'LOSE':
         return 'LOSE'
     
-def level_up(player: Player, exp_yield: int, exp_range: int): 
-    range = [
-        exp_yield - exp_range,
-        exp_yield,
-        exp_yield + exp_range
-    ]
-    yielded_amount = range[random.randint(1,3) -1]
+def level_up(player: Player, exp_yield: int): 
+    # exp_holder = player.to_next_level
+    spillover = player.to_next_level - exp_yield
 
-    exp_holder = player.to_next_level
-    spillover = yielded_amount - player.to_next_level
-
-    if spillover >= 0:
-        new_base_level = player.base_level + 10
-        player.to_next_level = new_base_level
-
+    if spillover > 0:
+        player.to_next_level = spillover
+        player.total_experience += exp_yield
+        input("Inside spillover less than, should end")
+        return player
+    else:
         print('You leveled up!\n')
         # Adjust all attributes
         player.base_health = player.base_health + 20
@@ -125,11 +130,14 @@ def level_up(player: Player, exp_yield: int, exp_range: int):
 
         print(f'Your health is now {player.health}')
 
-        if player.to_next_level - spillover <= 0:
-            # need to figure out new
-            player.total_experience += exp_holder
-            return level_up(player, spillover, exp_range)
+        player.level += 1
+        player.total_experience += player.to_next_level
+        player.base_level += 10
+        player.to_next_level = player.base_level
+
+        if spillover == 0:
+            input("spillover 0 leveled up, should end")
+            return player
         else:
-            player.total_experience += exp_yield
-            player.to_next_level -= spillover
-    return player
+            input("spillover < 0, firing again")
+            return level_up(player, abs(spillover))

@@ -13,7 +13,7 @@ class Elf(Player):
     description = '''a well balanced fighter.'''
 
     health = 70
-    baseHealth = 70
+    base_health = 70
     strength = 18
     defense = 18
     agility = 40

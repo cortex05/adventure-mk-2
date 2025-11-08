@@ -41,7 +41,7 @@ def swamp_loop(player: Player):
 
 		# 3. Handle random battle
 		if location['random_battle']:
-			result = battle_launch(player, location['unlock_value'])
+			result = battle_launch(player, location['unlock_value'], [4])
 			if result == 'LOSE':
 				is_running: False
 				break
