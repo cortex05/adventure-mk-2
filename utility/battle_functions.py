@@ -117,7 +117,7 @@ def level_up(player: Player, exp_yield: int):
     if spillover > 0:
         player.to_next_level = spillover
         player.total_experience += exp_yield
-        input("Inside spillover less than, should end")
+        # input("Inside spillover less than, should end")
         return player
     else:
         print('You leveled up!\n')
@@ -136,8 +136,8 @@ def level_up(player: Player, exp_yield: int):
         player.to_next_level = player.base_level
 
         if spillover == 0:
-            input("spillover 0 leveled up, should end")
+            # input("spillover 0 leveled up, should end")
             return player
         else:
-            input("spillover < 0, firing again")
+            # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))

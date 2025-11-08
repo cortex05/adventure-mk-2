@@ -10,7 +10,7 @@ from utility.nav_functions import compass_display, navigation_options, reverse_s
 
 def swamp_loop(player: Player):
 	is_running = True
-	location_coords = [2, 1]
+	location_coords = [3, 2]
 	last_command = None
 
 	# unlock values
