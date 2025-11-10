@@ -48,7 +48,7 @@ swamp_grid = [
               'description': 'You now have a way to cross the bridge! Where will you go?\n',
               'random_battle': False,
               'options': [0, 1, 2, 3],
-              'first_unlock': True,
+              'first_unlock': 'CASTLE_KEY',
             }
         },{
             'description': "You wipe off your weapon. To the west is the moat entrance. To the north and south east are structures. Where will you go?",

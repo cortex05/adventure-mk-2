@@ -13,6 +13,7 @@ def swamp_loop(player: Player):
 	is_running = True
 	location_coords = [3, 2]
 	last_command = None
+	unlocked_values = []
 
 	# A loop to read a coordinate's description, options for movement
 	while is_running:
@@ -33,7 +34,7 @@ def swamp_loop(player: Player):
 			location = holder
 
 		# 2. Check if location is victory location 
-		if location['unlock_value'] == 'VICTORY':
+		if 'unlock_value' in location and location['unlock_value'] == 'VICTORY':
 			print(location['description'])
 			print('Thank you for playing!')
 			break
@@ -49,9 +50,12 @@ def swamp_loop(player: Player):
 				continue
 
 		# Special case for the button unlock?
-		if 'first_unlock' in location:
+
+		# function to unlock values
+		if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
 			print(location['alt_description'])
-			location['first_unlock'] = False
+			unlocked_values.append(location['first_unlock'])
+			print(f'Unlocked values: {unlocked_values}')
 		else:
 			print(location['description'])
 
