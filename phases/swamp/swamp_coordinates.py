@@ -95,10 +95,24 @@ swamp_grid = [
             'options': [0],
             'unlock_value': None
         },{
-            'description': "UNLOCK sword or new weapon here. You can only go back to the clearing.",
+            'description': "The chest is empty. Only makes sense to head back north",
             'random_battle': True,
             'options': [1],
-            'unlock_value': None
+            'block_value': 'NEW_WEAPON',
+            'unlock_value': {
+                'value': 'NEW_WEAPON',
+                'first_unlock': 'NEW_WEAPON',
+                'display': False
+            },
+            'alt_pathway': {
+              'alt_description': '',
+              'description': 'The shed only has the goblin you slayed. I guess you can only go back now.\n',
+              'random_battle': False,
+              'options': [1],
+              'first_unlock': 'NEW_WEAPON',
+              'block_value': 'NEW_WEAPON',
+              'unlock_value': None
+            }
         }
     ],
     [

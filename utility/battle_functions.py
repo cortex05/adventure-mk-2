@@ -143,3 +143,21 @@ def handle_unlock(unlock_dict: KeyItem, player: Player, unlocked_values: List[st
         player.inventory["key_items"].append('CASTLE_KEY')
         unlocked_values.append('KEY_SHED')
         # print(f'PLayer class: {player.player_class}')
+    if unlock_dict['value'] is 'NEW_WEAPON':
+        new_weapon = get_new_weapon(player)
+        print('You see a chest before you.')
+        print(f'You open it and see a {new_weapon}!')
+        print(f'You ditch your {player.gear['weapons']['main']['name']} and equip the {new_weapon}')
+        print('Now you\'re ready for the big games' )
+        player.inventory["key_items"].append('WEAPON_CERTIFICATE')
+        unlocked_values.append('NEW_WEAPON')
+
+def get_new_weapon(player: Player):
+    player_type = player.player_class
+
+    if player_type == 'Dwarf':
+        return 'dwarf axe'
+    elif player_type == 'Elf':
+        return 'Elf blade'
+    elif player_type == 'Swordsman':
+        return 'buster sword'
