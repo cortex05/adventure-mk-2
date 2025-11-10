@@ -1,12 +1,22 @@
 swamp_grid = [
     [
 		{
-            'description': 'Your only option is to head south. Towards a suspicious marsh...\n',
+            'description': 'Go back and find the entrance!\n',
             'random_battle': True,
             'options': [2],
+            'block_value': 'KEY_SHED',
             'unlock_value': {
-              'value': 'CASTLE_KEY',
-              'unlocked': False
+                'value': 'CASTLE_KEY',
+                'first_unlock': 'KEY_SHED',
+                'display': False
+            },
+            'alt_pathway': {
+              'alt_description': '',
+              'description': 'The shed only has the goblin you slayed. I guess you can only go back now.\n',
+              'random_battle': False,
+              'options': [2],
+              'first_unlock': 'KEY_SHED',
+              'unlock_value': None
             }
         },{
             'description': "HOLDER",
@@ -47,6 +57,7 @@ swamp_grid = [
               'alt_description': 'As you insert and twist your key into the slot, the earth rumbles \n You step back as the bridge comes crashing down. You now have a way to cross the bridge! What will you do?\n',
               'description': 'You now have a way to cross the bridge! Where will you go?\n',
               'random_battle': False,
+              'unlock_value': None,
               'options': [0, 1, 2, 3],
               'first_unlock': 'CASTLE_KEY',
             }

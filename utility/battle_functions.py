@@ -71,7 +71,7 @@ def battle_loop(player: Player, enemy: Enemy):
             print('')
  
 
-def battle_launch(player, unlock_value, enemies):
+def battle_launch(player, enemies):
     enemy = random_enemy(enemies)
     print(f'{enemy.name_tense} appeared!\n')
 
@@ -94,10 +94,6 @@ def battle_launch(player, unlock_value, enemies):
 
         
         print(f'Your health is {player.health}')
-
-        if unlock_value != None:
-            # Make function here to accept unlock value
-            handle_unlock(unlock_value, enemy, player)
 
         input('Press anything to continue')
         os.system('cls')
@@ -139,9 +135,11 @@ def level_up(player: Player, exp_yield: int):
             # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))
         
-def handle_unlock(unlock_dict: KeyItem, enemy: Enemy, player: Player):
+def handle_unlock(unlock_dict: KeyItem, player: Player, unlocked_values: List[str]):
+    # when you unlock something from a battle, you need to handle the location's first unlock here
     if unlock_dict['value'] is 'CASTLE_KEY':
-        print(f'The {enemy.name} was the guard to the castle gate!\n\n')
-        print(f'{enemy.name_tense} dropped a key to the drawbridge!\n')
-        print(f'Go back and find the entrance!\n')
-        player.inventory["key_items"].append(unlock_dict)
+        print('The Goblin was the guard to the castle gate!\n')
+        print('The goblin dropped a key to the drawbridge!\n')
+        player.inventory["key_items"].append('CASTLE_KEY')
+        unlocked_values.append('KEY_SHED')
+        # print(f'PLayer class: {player.player_class}')

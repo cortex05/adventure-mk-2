@@ -5,7 +5,7 @@ from characters.Player import Player
 from directions import nav_options
 from phases.swamp import swamp_coordinates
 from utilities import check_key_items_unlock
-from utility.battle_functions import battle_launch
+from utility.battle_functions import battle_launch, handle_unlock
 from utility.nav_functions import compass_display, navigation_options, reverse_step
 
 
@@ -25,15 +25,17 @@ def swamp_loop(player: Player):
 		holder = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]
 
 		if 'alt_pathway' in holder and holder['alt_pathway'] and len(player.inventory["key_items"]) > 0:
-            # condition check for if text has gone?
+			# condition check for if text has gone?
 			if check_key_items_unlock(player.inventory["key_items"], holder['block_value']) is True:
+				location = holder['alt_pathway']
+			elif check_key_items_unlock(unlocked_values, holder['block_value']) is True:
 				location = holder['alt_pathway']
 			else:
 				location = holder
 		else:
 			location = holder
 
-		# 2. Check if location is victory location 
+		# 2. Check if location is victory location
 		if 'unlock_value' in location and location['unlock_value'] == 'VICTORY':
 			print(location['description'])
 			print('Thank you for playing!')
@@ -41,7 +43,7 @@ def swamp_loop(player: Player):
 
 		# 3. Handle random battle
 		if location['random_battle']:
-			result = battle_launch(player, location['unlock_value'], [4])
+			result = battle_launch(player, [4])
 			if result == 'LOSE':
 				is_running: False
 				break
@@ -50,6 +52,8 @@ def swamp_loop(player: Player):
 				continue
 
 		# Special case for the button unlock?
+		if location['unlock_value'] != None:
+			handle_unlock(location['unlock_value'], player, unlocked_values)
 
 		# function to unlock values
 		if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
@@ -79,7 +83,7 @@ def swamp_loop(player: Player):
 
 		else:
 			print('Enter a valid option')
-            # Need validation for bad input to NOT do random encounter again.
+			# Need validation for bad input to NOT do random encounter again.
 			continue
 
 		last_command = navigation_options(int_choice, choice_options, location_coords)
