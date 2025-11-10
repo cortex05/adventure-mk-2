@@ -1,3 +1,5 @@
-class KeyItem():
-	def __init__(self, name):
-		self.name = name
+from typing import TypedDict
+
+class KeyItem(TypedDict):
+	value: str
+	unlocked: bool

@@ -4,6 +4,7 @@ from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg
+from items.KeyItems import KeyItem
 
 
 def random_enemy(options: List[int]):
@@ -95,10 +96,8 @@ def battle_launch(player, unlock_value, enemies):
         print(f'Your health is {player.health}')
 
         if unlock_value != None:
-            print(f'The {enemy.name} was the guard to the castle gate!\n\n')
-            print(f'{enemy.name_tense} dropped a key to the drawbridge!\n')
-            print(f'Go back and find the entrance!\n')
-            player.inventory["key_items"].append(unlock_value)
+            # Make function here to accept unlock value
+            handle_unlock(unlock_value, enemy, player)
 
         input('Press anything to continue')
         os.system('cls')
@@ -110,7 +109,7 @@ def battle_launch(player, unlock_value, enemies):
     elif result == 'LOSE':
         return 'LOSE'
     
-def level_up(player: Player, exp_yield: int): 
+def level_up(player: Player, exp_yield: int):
     # exp_holder = player.to_next_level
     spillover = player.to_next_level - exp_yield
 
@@ -128,8 +127,6 @@ def level_up(player: Player, exp_yield: int):
         player.defense = player.defense
         player.agility = player.agility
 
-        print(f'Your health is now {player.health}')
-
         player.level += 1
         player.total_experience += player.to_next_level
         player.base_level += 10
@@ -141,3 +138,10 @@ def level_up(player: Player, exp_yield: int):
         else:
             # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))
+        
+def handle_unlock(unlock_dict: KeyItem, enemy: Enemy, player: Player):
+    if unlock_dict['value'] is 'CASTLE_KEY':
+        print(f'The {enemy.name} was the guard to the castle gate!\n\n')
+        print(f'{enemy.name_tense} dropped a key to the drawbridge!\n')
+        print(f'Go back and find the entrance!\n')
+        player.inventory["key_items"].append(unlock_dict)

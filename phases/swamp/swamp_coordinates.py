@@ -4,7 +4,10 @@ swamp_grid = [
             'description': 'Your only option is to head south. Towards a suspicious marsh...\n',
             'random_battle': True,
             'options': [2],
-            'unlock_value': 'CASTLE_GATE'
+            'unlock_value': {
+              'value': 'CASTLE_KEY',
+              'unlocked': False
+            }
         },{
             'description': "HOLDER",
             'options': []
@@ -20,7 +23,7 @@ swamp_grid = [
             'description': 'HERE is where we have the potion dispenser. Figure it out\nYou\'ve got your potions set. You can only head south.\n',
             'random_battle': False,
             'options': [2],
-            'unlock_value': 'CASTLE_GATE'
+            'unlock_value': 'CASTLE_KEY'
         }
     ],
     [
@@ -39,13 +42,13 @@ swamp_grid = [
             'random_battle': False,
             'options': [0, 2, 3],
             'unlock_value': None,
-            'block_value': 'CASTLE_GATE',
+            'block_value': 'CASTLE_KEY',
             'alt_pathway': {
               'alt_description': 'As you insert and twist your key into the slot, the earth rumbles \n You step back as the bridge comes crashing down. You now have a way to cross the bridge! What will you do?\n',
               'description': 'You now have a way to cross the bridge! Where will you go?\n',
               'random_battle': False,
               'options': [0, 1, 2, 3],
-              'unlock_value': None,
+              'first_unlock': True,
             }
         },{
             'description': "You wipe off your weapon. To the west is the moat entrance. To the north and south east are structures. Where will you go?",

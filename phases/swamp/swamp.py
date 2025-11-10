@@ -4,6 +4,7 @@ import os
 from characters.Player import Player
 from directions import nav_options
 from phases.swamp import swamp_coordinates
+from utilities import check_key_items_unlock
 from utility.battle_functions import battle_launch
 from utility.nav_functions import compass_display, navigation_options, reverse_step
 
@@ -12,10 +13,6 @@ def swamp_loop(player: Player):
 	is_running = True
 	location_coords = [3, 2]
 	last_command = None
-
-	# unlock values
-	bridge_unlock = False
-	first_unlock = True
 
 	# A loop to read a coordinate's description, options for movement
 	while is_running:
@@ -26,12 +23,14 @@ def swamp_loop(player: Player):
 		# Step 1 get the location with the moving coordinates
 		holder = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]
 
-		if 'alt_pathway' in holder and holder['alt_pathway'] and player.inventory["key_items"] and 'CASTLE_GATE' in player.inventory["key_items"]:
+		if 'alt_pathway' in holder and holder['alt_pathway'] and len(player.inventory["key_items"]) > 0:
             # condition check for if text has gone?
-			location = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]['alt_pathway']
-			bridge_unlock = True
+			if check_key_items_unlock(player.inventory["key_items"], holder['block_value']) is True:
+				location = holder['alt_pathway']
+			else:
+				location = holder
 		else:
-			location = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]
+			location = holder
 
 		# 2. Check if location is victory location 
 		if location['unlock_value'] == 'VICTORY':
@@ -50,9 +49,9 @@ def swamp_loop(player: Player):
 				continue
 
 		# Special case for the button unlock?
-		if bridge_unlock and first_unlock:
+		if 'first_unlock' in location:
 			print(location['alt_description'])
-			first_unlock = False
+			location['first_unlock'] = False
 		else:
 			print(location['description'])
 
