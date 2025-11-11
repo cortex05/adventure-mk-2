@@ -7,7 +7,6 @@ swamp_grid = [
             'block_value': 'KEY_SHED',
             'unlock_value': {
                 'value': 'CASTLE_KEY',
-                'first_unlock': 'KEY_SHED',
                 'display': False
             },
             'alt_pathway': {
@@ -101,7 +100,6 @@ swamp_grid = [
             'block_value': 'NEW_WEAPON',
             'unlock_value': {
                 'value': 'NEW_WEAPON',
-                'first_unlock': 'NEW_WEAPON',
                 'display': False
             },
             'alt_pathway': {

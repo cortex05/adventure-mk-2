@@ -1,6 +1,5 @@
 from typing import TypedDict
 
-class KeyItem(TypedDict):
+class UnlockValue(TypedDict):
 	value: str
-	first_unlock: str
 	display: bool

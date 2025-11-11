@@ -1,7 +1,5 @@
 from typing import List
 
-from items.KeyItems import KeyItem
-
 
 def get_yes_no(prompt):
     while True:

@@ -4,7 +4,8 @@ from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg
-from items.KeyItems import KeyItem
+from items.UnlockValue import UnlockValue
+from items.key_items import castle_key
 
 
 def random_enemy(options: List[int]):
@@ -135,15 +136,15 @@ def level_up(player: Player, exp_yield: int):
             # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))
         
-def handle_unlock(unlock_dict: KeyItem, player: Player, unlocked_values: List[str]):
+def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: List[str]):
     # when you unlock something from a battle, you need to handle the location's first unlock here
     if unlock_dict['value'] is 'CASTLE_KEY':
         print('The Goblin was the guard to the castle gate!\n')
         print('The goblin dropped a key to the drawbridge!\n')
-        # player.inventory["key_items"].append('CASTLE_KEY')
+        player.inventory["key_items"].append(castle_key)
         unlocked_values.append('KEY_SHED')
         unlocked_values.append('CASTLE_KEY')
-        # print(f'PLayer class: {player.player_class}')
+        # print(f'PLayer key items: {player.inventory['key_items'][0].name}')
     if unlock_dict['value'] is 'NEW_WEAPON':
         new_weapon = get_new_weapon(player)
         print('You see a chest before you.')
