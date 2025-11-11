@@ -140,8 +140,9 @@ def handle_unlock(unlock_dict: KeyItem, player: Player, unlocked_values: List[st
     if unlock_dict['value'] is 'CASTLE_KEY':
         print('The Goblin was the guard to the castle gate!\n')
         print('The goblin dropped a key to the drawbridge!\n')
-        player.inventory["key_items"].append('CASTLE_KEY')
+        # player.inventory["key_items"].append('CASTLE_KEY')
         unlocked_values.append('KEY_SHED')
+        unlocked_values.append('CASTLE_KEY')
         # print(f'PLayer class: {player.player_class}')
     if unlock_dict['value'] is 'NEW_WEAPON':
         new_weapon = get_new_weapon(player)

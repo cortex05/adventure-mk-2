@@ -24,7 +24,7 @@ def swamp_loop(player: Player):
 		# Step 1 get the location with the moving coordinates
 		holder = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]
 
-		if 'alt_pathway' in holder and holder['alt_pathway'] and len(player.inventory["key_items"]) > 0:
+		if 'alt_pathway' in holder and holder['alt_pathway']:
 			# condition check for if text has gone?
 			if check_key_items_unlock(player.inventory["key_items"], holder['block_value']) is True:
 				location = holder['alt_pathway']
