@@ -6,6 +6,7 @@ from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key
+from items.weapons.swamp_upgrade import dwarf_swamp_weapon, elf_swamp_weapon, swordsman_swamp_weapon
 
 
 def random_enemy(options: List[int]):
@@ -146,20 +147,21 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         unlocked_values.append('CASTLE_KEY')
         # print(f'PLayer key items: {player.inventory['key_items'][0].name}')
     if unlock_dict['value'] is 'NEW_WEAPON':
+        old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_new_weapon(player)
         print('You see a chest before you.')
         print(f'You open it and see a {new_weapon}!')
-        print(f'You ditch your {player.gear['weapons']['main']['name']} and equip the {new_weapon}')
-        print('Now you\'re ready for the big games' )
-        player.inventory["key_items"].append('WEAPON_CERTIFICATE')
+        print(f'You ditch your {old_weapon} and equip the {new_weapon}')
+        print('Now you\'re ready for the big games')
         unlocked_values.append('NEW_WEAPON')
 
 def get_new_weapon(player: Player):
     player_type = player.player_class
 
     if player_type == 'Dwarf':
-        return 'dwarf axe'
+        player.gear["weapons"]["main"] = dwarf_swamp_weapon
     elif player_type == 'Elf':
-        return 'Elf blade'
+        player.gear["weapons"]["main"] = elf_swamp_weapon
     elif player_type == 'Swordsman':
-        return 'buster sword'
+        player.gear["weapons"]["main"] = swordsman_swamp_weapon
+    return player.gear["weapons"]["main"]['name']

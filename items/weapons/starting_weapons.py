@@ -1,3 +1,4 @@
+# starting weapons
 elf_start = {
     "name": "Slender Blade",
     "attack_boost": 5,
