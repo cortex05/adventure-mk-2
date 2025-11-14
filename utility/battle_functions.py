@@ -4,9 +4,11 @@ from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg
+from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key
 from items.weapons.swamp_upgrade import dwarf_swamp_weapon, elf_swamp_weapon, swordsman_swamp_weapon
+from utilities import get_yes_no
 
 
 def random_enemy(options: List[int]):
@@ -32,7 +34,7 @@ def battle_loop(player: Player, enemy: Enemy):
         print(f'What will {player.name} do?\n')
         # print(f'Coordinates: {swamp_coordinates.grid[0][0]}')
         selection = int(input(
-            '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Quit\n5 - Item\n'''))
+            '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Item\n5 - Quit\n'''))
 
         if selection == 1:
             damage_dealt = player.strength
@@ -71,9 +73,6 @@ def battle_loop(player: Player, enemy: Enemy):
             print('You retreat!')
             return "RETREAT", player
         elif selection == 4:
-            print('Bye\n')
-            break
-        elif selection == 5:
             # input(f'Potions: {player.inventory['consumables']["potions"]}\n')
             os.system('cls')
             print('Here are your items:\n\n')
@@ -93,15 +92,28 @@ def battle_loop(player: Player, enemy: Enemy):
                     print("Please enter a valid integer.")
 
             if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
-                print('Use a potion')
-                
+                print('Use item')
+                target_key = key_list[item_choice - 1]
+                target = player.inventory['consumables'][target_key]
                 # Use a potion
-                # if player.inventory['consumables']['potions']:
-                #     potion = player.inventory['consumables']['potions'].pop()
-                #     player.health += potion.healing_amount
-                #     print(f'You used a {potion.name} and healed for {potion.healing_amount} health!')
-                # else:
-                #     print('You have no potions to use!')
+                # print(f'You picked {target.name}\n')
+
+                os.system('cls')
+                print(f'You picked {target_key}\n')
+                print(f'It {target[0].description}\n')
+                answer = get_yes_no(f'Do you want to use it?')
+                if answer == 'y':
+                    use_item(player, target[0])
+                    player.inventory['consumables'][target_key].pop()
+                else:
+                    os.system('cls')
+                    continue
+
+                if len(target) == 0:
+                    del player.inventory['consumables'][target_key]
+                    print(f'You have no {target_key} left\n')
+                else:
+                    print(f'You have {len(player.inventory["consumables"][target_key])} {target_key} left\n')
                 input("Press enter to continue...")
                 os.system('cls')
                 continue
@@ -118,6 +130,9 @@ def battle_loop(player: Player, enemy: Enemy):
 
             input("\n\nClose?")
             os.system('cls')
+        elif selection == 5:
+            print('Bye\n')
+            break
         else:
             print('')
 
@@ -216,3 +231,17 @@ def get_new_weapon(player: Player):
     elif player_type == 'Swordsman':
         player.gear["weapons"]["main"] = swordsman_swamp_weapon
     return player.gear["weapons"]["main"]['name']
+
+def use_item(player: Player, item: Consumable):
+    if item.type == 'HEALTH':
+        health_difference = player.base_health - player.health
+        if item.heal_value > health_difference:
+            player.health = player.base_health
+            print(f'You healed for {health_difference} health!\nYour health is now {player.health}')
+        else:
+            player.health += item.heal_value
+            print(f'You healed for {item.heal_value} health!\nYour health is now {player.health}')
+        return
+
+        # player.health += item.heal_value
+        # print(f'You used a {item.name} and healed for {item.heal_value} health!')
