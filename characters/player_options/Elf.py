@@ -26,7 +26,10 @@ class Elf(Player):
         i = 0
         while i < 3:
             new_potion = Potion()
-            self.inventory["consumables"]["potions"].append(new_potion)
+            if "potions" in self.inventory["consumables"]:
+                self.inventory["consumables"]["potions"].append(new_potion)
+            else:
+                self.inventory["consumables"]["potions"] = [new_potion]
             i += 1
 
         input(

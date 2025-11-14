@@ -25,12 +25,14 @@ def random_enemy(options: List[int]):
 
     return enemy
 
+
 def battle_loop(player: Player, enemy: Enemy):
+    buff_effect = {}
     while True:
         print(f'What will {player.name} do?\n')
         # print(f'Coordinates: {swamp_coordinates.grid[0][0]}')
         selection = int(input(
-            '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Quit\n'''))
+            '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Quit\n5 - Item\n'''))
 
         if selection == 1:
             damage_dealt = player.strength
@@ -39,7 +41,8 @@ def battle_loop(player: Player, enemy: Enemy):
                 enemy.max_enemy_health = enemy.max_enemy_health - damage_dealt
 
                 enemy_damage = enemy.enemy_attack_damage
-                print(f'The {enemy.name} stands strong!\n\n The {enemy.name} attacks for {enemy_damage} damage!\n\n')
+                print(
+                    f'The {enemy.name} stands strong!\n\n The {enemy.name} attacks for {enemy_damage} damage!\n\n')
 
                 if player.health - enemy_damage > 0:
                     player.health = player.health - enemy_damage
@@ -59,42 +62,87 @@ def battle_loop(player: Player, enemy: Enemy):
         elif selection == 2:
             os.system('cls')
             print('Here are the stats:\n\n')
-            print(f'You:              {enemy.name}\n\nHealth: {player.health}       {enemy.max_enemy_health}')
+            print(
+                f'You:              {enemy.name}\n\nHealth: {player.health}       {enemy.max_enemy_health}')
             input("\n\nClose?")
             os.system('cls')
         elif selection == 3:
             os.system('cls')
             print('You retreat!')
-            return "RETREAT", player    
+            return "RETREAT", player
         elif selection == 4:
             print('Bye\n')
             break
+        elif selection == 5:
+            # input(f'Potions: {player.inventory['consumables']["potions"]}\n')
+            os.system('cls')
+            print('Here are your items:\n\n')
+            key_list = list(player.inventory['consumables'].keys())
+            for index, (key, value) in enumerate(player.inventory['consumables'].items()):
+                print(f'{index + 1}. {key}: {len(value)}')
+            print(f'{len(key_list) + 1}. Nothing')
+
+            print('What will you do?')
+            item_choice = None
+            
+            while True:
+                try:
+                    item_choice = int(input("Enter an integer: "))
+                    break
+                except ValueError:
+                    print("Please enter a valid integer.")
+
+            if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
+                print('Use a potion')
+                
+                # Use a potion
+                # if player.inventory['consumables']['potions']:
+                #     potion = player.inventory['consumables']['potions'].pop()
+                #     player.health += potion.healing_amount
+                #     print(f'You used a {potion.name} and healed for {potion.healing_amount} health!')
+                # else:
+                #     print('You have no potions to use!')
+                input("Press enter to continue...")
+                os.system('cls')
+                continue
+            elif item_choice == len(key_list) + 1:
+                print('No item')
+                input("Press enter to continue...")
+                os.system('cls')
+                continue
+            else:
+                print('Invalid choice')
+                input("Press enter to continue...")
+                os.system('cls')
+                continue
+
+            input("\n\nClose?")
+            os.system('cls')
         else:
             print('')
- 
+
 
 def battle_launch(player, enemies):
     enemy = random_enemy(enemies)
     print(f'{enemy.name_tense} appeared!\n')
 
-    result, player = battle_loop(player, enemy) 
+    result, player = battle_loop(player, enemy)
 
     if result == 'WIN':
         print('You won!\n\n')
-        
+
         # Here we can add level up logic
         range = [
             enemy.base_experience_yield - enemy.exp_range,
             enemy.base_experience_yield,
             enemy.base_experience_yield + enemy.exp_range
         ]
-        yielded_amount = range[random.randint(1,3) -1]
+        yielded_amount = range[random.randint(1,3) - 1]
         print(f'Yield: {yielded_amount}')
 
         player = level_up(player, yielded_amount)
         print(f'To next level is: {player.to_next_level}')
 
-        
         print(f'Your health is {player.health}')
 
         input('Press anything to continue')
@@ -106,7 +154,8 @@ def battle_launch(player, enemies):
         return 'RETREAT'
     elif result == 'LOSE':
         return 'LOSE'
-    
+
+
 def level_up(player: Player, exp_yield: int):
     # exp_holder = player.to_next_level
     spillover = player.to_next_level - exp_yield
@@ -136,7 +185,8 @@ def level_up(player: Player, exp_yield: int):
         else:
             # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))
-        
+
+
 def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: List[str]):
     # when you unlock something from a battle, you need to handle the location's first unlock here
     if unlock_dict['value'] is 'CASTLE_KEY':
@@ -154,6 +204,7 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print(f'You ditch your {old_weapon} and equip the {new_weapon}')
         print('Now you\'re ready for the big games')
         unlocked_values.append('NEW_WEAPON')
+
 
 def get_new_weapon(player: Player):
     player_type = player.player_class

@@ -32,7 +32,7 @@ swamp_grid = [
             'description': 'HERE is where we have the potion dispenser. Figure it out\nYou\'ve got your potions set. You can only head south.\n',
             'random_battle': False,
             'options': [2],
-            'unlock_value': 'CASTLE_KEY'
+            'unlock_value': None
         }
     ],
     [

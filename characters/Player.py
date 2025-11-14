@@ -13,7 +13,7 @@ class Player:
     # levelUpChance = 50 - Don't know about this...
     inventory = {
         "consumables": {
-            "potions": []
+            # "potions": []
         },
         "key_items": []
     }

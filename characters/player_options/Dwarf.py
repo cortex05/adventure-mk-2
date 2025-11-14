@@ -23,9 +23,12 @@ class Dwarf(Player):
         self.gear["weapons"]["main"] = dwarf_start
         i = 0
         while i < 3:
-             new_potion = Potion()
-             self.inventory["consumables"]["potions"].append(new_potion)
-             i += 1
+            new_potion = Potion()
+            if "potions" in self.inventory["consumables"]:
+                self.inventory["consumables"]["potions"].append(new_potion)
+            else:
+                self.inventory["consumables"]["potions"] = [new_potion]
+            i += 1
 
         input(
             f"\nDwarf Selected! Heavy hitter I see. Congrats {name}!\nPress any key to continue\n\n")
