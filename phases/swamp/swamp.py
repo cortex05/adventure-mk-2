@@ -6,6 +6,7 @@ from directions import nav_options
 from phases.swamp import swamp_coordinates
 from utilities import check_key_items_unlock
 from utility.battle_functions import battle_launch, handle_unlock
+from utility.dispenser_functions import handle_dispenser
 from utility.nav_functions import compass_display, navigation_options, reverse_step
 
 
@@ -32,6 +33,9 @@ def swamp_loop(player: Player):
 				location = holder['alt_pathway']
 			else:
 				location = holder
+		elif 'dispenser' in holder and holder['dispenser']:
+			handle_dispenser(player, holder['dispenser']['item_type'])
+			location = holder
 		else:
 			location = holder
 

@@ -29,10 +29,13 @@ swamp_grid = [
             'description': "HOLDER",
             'options': []
         },{
-            'description': 'HERE is where we have the potion dispenser. Figure it out\nYou\'ve got your potions set. You can only head south.\n',
+            'description': 'You\'ve got your potions filled up. You can only head south...\n',
             'random_battle': False,
             'options': [2],
-            'unlock_value': None
+            'unlock_value': None,
+            'dispenser': {
+              'item_type': 'potions'
+            }
         }
     ],
     [
