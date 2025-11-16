@@ -3,7 +3,7 @@ import random
 from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
-from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg
+from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg, Goblin
 from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key
@@ -24,6 +24,8 @@ def random_enemy(options: List[int]):
         enemy = Sorcerer.Sorcerer()
     elif enemy_selector == 4:
         enemy = Wharg.Wharg()
+    elif enemy_selector == 5:
+        enemy = Goblin.Goblin()
 
     return enemy
 
