@@ -1,5 +1,3 @@
-
-
 import os
 from characters.Player import Player
 from directions import nav_options

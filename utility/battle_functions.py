@@ -1,5 +1,6 @@
 import os
 import random
+import time
 from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
@@ -32,6 +33,7 @@ def random_enemy(options: List[int]):
 
 def battle_loop(player: Player, enemy: Enemy):
     buff_effect = {}
+    enemy_damage = enemy.enemy_attack_damage
     while True:
         print(f'What will {player.name} do?\n')
         # print(f'Coordinates: {swamp_coordinates.grid[0][0]}')
@@ -44,7 +46,6 @@ def battle_loop(player: Player, enemy: Enemy):
             if enemy.max_enemy_health - damage_dealt > 0:
                 enemy.max_enemy_health = enemy.max_enemy_health - damage_dealt
 
-                enemy_damage = enemy.enemy_attack_damage
                 print(
                     f'The {enemy.name} stands strong!\n\n The {enemy.name} attacks for {enemy_damage} damage!\n\n')
 
@@ -116,7 +117,21 @@ def battle_loop(player: Player, enemy: Enemy):
                     print(f'You have no {target_key} left\n')
                 else:
                     print(f'You have {len(player.inventory["consumables"][target_key])} {target_key} left\n')
-                input("Press enter to continue...")
+                
+                time.sleep(2)
+                print(
+                    f'The {enemy.name} attacks for {enemy_damage} damage!\n\n')
+
+                if player.health - enemy_damage > 0:
+                    player.health = player.health - enemy_damage
+                    # print('You stand strong.\n\n')
+                    print('You stand strong \n')
+                    time.sleep(2)
+                    os.system('cls')
+                else:
+                    print('You are defeated!')
+                    return 'LOSE', player
+
                 os.system('cls')
                 continue
             elif item_choice == len(key_list) + 1:
