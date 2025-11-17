@@ -1,4 +1,5 @@
 import os
+import time
 from characters.Player import Player
 from directions import nav_options
 from phases.swamp import swamp_coordinates
@@ -36,9 +37,10 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 
 		# 2. Check if location is victory location
 		if 'unlock_value' in location and location['unlock_value'] == 'VICTORY':
-			print(location['description'])
-			print('Thank you for playing!')
-			break
+			reverse_step(last_command, location_coords)
+			print('You\'re out of the Swamp! Now about this large moat...\n')
+			time.sleep(2)
+			return True
 
 		# 3. Handle random battle
 		if location['random_battle']:

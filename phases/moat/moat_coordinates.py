@@ -76,7 +76,7 @@ moat_grid = [
         'description': "You dust yourself off. West toward battle or east toward battle.",
         'random_battle': True,
         'enemy_options': [4],
-        'options': [3],
+        'options': [0,3],
         'unlock_value': None
     },{
         'description': "You dust yourself off. West toward shed, north toward castle, south toward swamp",
@@ -104,5 +104,23 @@ moat_grid = [
         'description': "HOLDER",
         'options': []
     }
+  ],[
+    {
+        'description': "HOLDER",
+        'options': []
+    },{
+        'description': "HOLDER",
+        'options': []
+    },{
+        'description': "HOLDER",
+        'options': [],
+        'unlock_value': 'BACK_TO_SWAMP'
+    },{
+      
+	},{
+        'description': "HOLDER",
+        'options': []
+    }
   ]
+
 ]

@@ -22,7 +22,7 @@ swamp_grid = [
             'description': "HOLDER",
             'options': []
         },{
-            'description': '\n\nThis is the castle! You win!\n',
+            'description': '\n\nThis is the entrance to the moat.\n',
             'random_battle': False,
             'options': [],
             'unlock_value': 'VICTORY'
