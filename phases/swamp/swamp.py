@@ -8,11 +8,8 @@ from utility.dispenser_functions import handle_dispenser
 from utility.nav_functions import compass_display, navigation_options, reverse_step
 
 
-def swamp_loop(player: Player):
-	is_running = True
-	location_coords = [3, 2]
+def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list[int], is_running: bool) -> bool:
 	last_command = None
-	unlocked_values = []
 
 	# A loop to read a coordinate's description, options for movement
 	while is_running:
