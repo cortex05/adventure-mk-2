@@ -54,7 +54,7 @@ swamp_grid = [
             'options': [0, 2, 3],
             'unlock_value': None
         },{
-            'description': 'To the north you see a castle, but the bridge to cross the moat is raised.\n You see a slot for a key, but you have none.\nTo the Northwest you see a shed, but west is your only way there.\nTo the south you see the forest you fought a Wharg in. Off to the east, you see various structures.\nWhat will you do?',
+            'description': 'To the north you see a castle, but the bridge to cross the moat is raised.\n You see a slot for a key, but you have none.\nTo the North by Northwest you see a shed, but west is your only way there.\nTo the south you see the  Wharg-ridden entrance. Off to the east, you see various structures.\nWhat will you do?',
             'random_battle': False,
             'options': [0, 2, 3],
             'unlock_value': None,
@@ -68,14 +68,14 @@ swamp_grid = [
               'first_unlock': 'CASTLE_KEY',
             }
         },{
-            'description': "You wipe off your weapon. To the west is the moat entrance. To the north and south east are structures. Where will you go?",
+            'description': "You wipe off your weapon. To the west is the moat entrance. To the Northeast and Southeast are structures. Where will you go?",
             'random_battle': True,
             'battle_chance': 2,
             'enemy_options': [4],
             'options': [0, 3],
             'unlock_value': None
         },{
-            'description': "Back west is the suspicious field and beyond is the moat. To the North you see a carriage. To the south, there appear to be a large chest...",
+            'description': "Back west is the suspicious field and beyond is the moat. To the North you see a carriage. To the south, there appears to be a large chest...",
             'random_battle': False,
             'options': [0, 1, 2],
             'unlock_value': None
@@ -83,7 +83,7 @@ swamp_grid = [
     ],
     [
 		{
-            'description': "The cave is a dead end. You can only go East towards the suspicious marsh...",
+            'description': "The cave is a dead end. You can only go East towards the long grass...",
             'random_battle': True,
             'battle_chance': 2,
             'enemy_options': [4],
@@ -104,7 +104,7 @@ swamp_grid = [
             'options': [1, 3],
             'unlock_value': None
         },{
-            'description': "The trees are a dead end. You can only go west to the clearing",
+            'description': "The trees are a dead end. You can only go west to the swamp entrance.",
             'random_battle': False,
             'options': [0],
             'unlock_value': None
@@ -112,7 +112,7 @@ swamp_grid = [
             'description': "The chest is empty. Only makes sense to head back north",
             'random_battle': True,
             'battle_chance': 1,
-            'enemy_options': [4],
+            'enemy_options': [5],
             'options': [1],
             'block_value': 'NEW_WEAPON',
             'unlock_value': {
@@ -138,7 +138,7 @@ swamp_grid = [
             'description': "HOLDER",
             'options': []
         },{
-            'description': 'You stand before a forest. The only way is through. What do you do?\n',
+            'description': 'You stand before a large swamp. Once you jump in, the only way out is through. What do you do?\n',
             'random_battle': False,
             'options': [1],
             'unlock_value': None
