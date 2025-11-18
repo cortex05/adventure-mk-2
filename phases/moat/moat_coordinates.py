@@ -25,12 +25,14 @@ moat_grid = [
     },{
         'description': "You dust yourself off. North or South.",
         'random_battle': True,
+        'battle_chance': 2,
         'enemy_options': [4],
         'options': [1, 2],
         'unlock_value': None
     },{
         'description': 'You got the armor!!\n',
         'random_battle': True,
+        'battle_chance': 1,
         'enemy_options': [5],
         'options': [2],
         'block_value': 'KEY_SHED',
@@ -69,18 +71,21 @@ moat_grid = [
     {
         'description': "Aaaaand it's a dead end. You can only go East towards where you were previously attacked...",
         'random_battle': True,
+        'battle_chance': 1,
         'enemy_options': [4],
         'options': [3],
         'unlock_value': None
     },{
         'description': "You dust yourself off. West toward battle or east toward battle.",
         'random_battle': True,
+        'battle_chance': 2,
         'enemy_options': [4],
         'options': [0,3],
         'unlock_value': None
     },{
         'description': "You dust yourself off. West toward shed, north toward castle, south toward swamp",
         'random_battle': True,
+        'battle_chance': 2,
         'enemy_options': [4],
         'options': [0,1,2],
         'unlock_value': None

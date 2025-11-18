@@ -3,6 +3,7 @@ swamp_grid = [
 		{
             'description': 'Go back and find the entrance!\n',
             'random_battle': True,
+            'battle_chance': 1,
             'enemy_options': [5],
             'options': [2],
             'block_value': 'KEY_SHED',
@@ -43,6 +44,7 @@ swamp_grid = [
     	{
             'description': "You dust yourself off. You see a shed to the north and the clearing to the east that you just came from.",
             'random_battle': True,
+            'battle_chance': 2,
             'enemy_options': [4],
             'options': [1, 3],
             'unlock_value': None
@@ -68,11 +70,12 @@ swamp_grid = [
         },{
             'description': "You wipe off your weapon. To the west is the moat entrance. To the north and south east are structures. Where will you go?",
             'random_battle': True,
+            'battle_chance': 2,
             'enemy_options': [4],
             'options': [0, 3],
             'unlock_value': None
         },{
-            'description': "Back west is field you were attcked in and beyond is the moat. To the North you see a carriage. To the south, there appear to be a large chest...",
+            'description': "Back west is the suspicious field and beyond is the moat. To the North you see a carriage. To the south, there appear to be a large chest...",
             'random_battle': False,
             'options': [0, 1, 2],
             'unlock_value': None
@@ -80,20 +83,23 @@ swamp_grid = [
     ],
     [
 		{
-            'description': "The cave is a dead end. You can only go East towards where you were previously attacked...",
+            'description': "The cave is a dead end. You can only go East towards the suspicious marsh...",
             'random_battle': True,
+            'battle_chance': 2,
             'enemy_options': [4],
             'options': [3],
             'unlock_value': None
         },{
             'description': "To the west is a mysterious cave. To the north is a clearing",
             'random_battle': True,
+            'battle_chance': 2,
             'enemy_options': [4],
             'options': [0, 1],
             'unlock_value': None
         },{
             'description': "To the north is a castle. To the east is a small batch of trees.",
             'random_battle': True,
+            'battle_chance': 2,
             'enemy_options': [4],
             'options': [1, 3],
             'unlock_value': None
@@ -105,6 +111,7 @@ swamp_grid = [
         },{
             'description': "The chest is empty. Only makes sense to head back north",
             'random_battle': True,
+            'battle_chance': 1,
             'enemy_options': [4],
             'options': [1],
             'block_value': 'NEW_WEAPON',

@@ -1,4 +1,5 @@
 import os
+import random
 import time
 from characters.Player import Player
 from directions import nav_options
@@ -44,13 +45,15 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 
 		# 3. Handle random battle
 		if location['random_battle']:
-			result = battle_launch(player, location['enemy_options'])
-			if result == 'LOSE':
-				is_running: False
-				break
-			elif result == 'RETREAT':
-				reverse_step(last_command, location_coords)
-				continue
+			fight_roll = random.randint(1, location['battle_chance'])
+			if fight_roll == location['battle_chance']:
+				result = battle_launch(player, location['enemy_options'])
+				if result == 'LOSE':
+					is_running = False
+					break
+				elif result == 'RETREAT':
+					reverse_step(last_command, location_coords)
+					continue
 
 		# Special case for the button unlock?
 		if location['unlock_value'] != None:
