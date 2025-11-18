@@ -15,7 +15,8 @@ moat_grid = [
         'description': "HOLDER",
         'options': []
     }
-  ],[
+  ],
+  [
     {
         'description': "HOLDER",
         'options': []
@@ -23,33 +24,34 @@ moat_grid = [
         'description': "HOLDER",
         'options': []
     },{
-        'description': "You dust yourself off. North or South.",
+        'description': "To the North is the castle entrance. To the South is the path to the swamp.",
         'random_battle': True,
         'battle_chance': 2,
         'enemy_options': [4],
         'options': [1, 2],
         'unlock_value': None
     },{
-        'description': 'You got the armor!!\n',
+        'description': 'Now that you got the armor, you might as well head back to the bridge.\n',
         'random_battle': True,
         'battle_chance': 1,
         'enemy_options': [5],
         'options': [2],
-        'block_value': 'KEY_SHED',
+        'block_value': 'LEVEL_TWO_ARMOR',
         'unlock_value': {
-            'value': 'CASTLE_KEY',
+            'value': 'LEVEL_TWO_ARMOR',
             'display': False
         },
         'alt_pathway': {
         	'alt_description': '',
-        	'description': 'BOSS FOR ARMOR.\n',
+        	'description': 'You already plundered the armor. You can only head back to the bridge.\n',
         	'random_battle': False,
             'options': [2],
-            'first_unlock': 'KEY_SHED',
+            'first_unlock': 'LEVEL_TWO_ARMOR',
             'unlock_value': None
         }
     }
-  ],[
+  ],
+  [
     {
         'description': "HOLDER",
         'options': []
@@ -57,33 +59,34 @@ moat_grid = [
         'description': "HOLDER",
         'options': []
     },{
-        'description': "North to battle, east to side path, south to battle",
+        'description': "The castle is just a little further north.\nTo the east is a perfectly placed series of small islands.\nSouth heads backtracks to the swamp.",
         'random_battle': False,
         'options': [1, 2, 3],
         'unlock_value': None
     },{
-        'description': "North to big battle and armor.",
+        'description': "You step onto a small island, to the north is another Island with a small building.\nBack West is the bridge to the swamp.",
         'random_battle': False,
         'options': [0,1],
         'unlock_value': None
     }
-  ],[
+  ],
+  [
     {
-        'description': "Aaaaand it's a dead end. You can only go East towards where you were previously attacked...",
+        'description': "Aaaaand it's a dead end. You can only go East over a treacherous path to the bridge.",
         'random_battle': True,
         'battle_chance': 1,
         'enemy_options': [4],
         'options': [3],
         'unlock_value': None
     },{
-        'description': "You dust yourself off. West toward battle or east toward battle.",
+        'description': "The shed is one trek to the West away.\nEast is back to the bridge.",
         'random_battle': True,
         'battle_chance': 2,
         'enemy_options': [4],
         'options': [0,3],
         'unlock_value': None
     },{
-        'description': "You dust yourself off. West toward shed, north toward castle, south toward swamp",
+        'description': "To the West, in the distance, is a shed.\nTo the North is a long path to the Castle.\nThe South leads back to the Northern Swamp Entrance.",
         'random_battle': True,
         'battle_chance': 2,
         'enemy_options': [4],
@@ -101,7 +104,7 @@ moat_grid = [
         'description': "HOLDER",
         'options': []
     },{
-        'description': 'You\'re on the moat. The only way is through... Or you can go back to the swamp.\n What do you do?\n',
+        'description': 'You\'re on the bridge to cross the moat. The only way is through... Or you can go back to the swamp.\n What do you do?\n',
         'random_battle': False,
         'options': [1,2],
         'unlock_value': None

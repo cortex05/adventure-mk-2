@@ -236,6 +236,13 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print(f'You ditch your {old_weapon} and equip the {new_weapon}')
         print('Now you\'re ready for the big games')
         unlocked_values.append('NEW_WEAPON')
+    if unlock_dict['value'] is 'LEVEL_TWO_ARMOR':
+        print('The Goblin was the guard to the castle gate!\n')
+        print('The goblin dropped a key to the drawbridge!\n')
+        # NEW ARMOR LOGIC HERE
+        player.inventory["key_items"].append(castle_key)
+        unlocked_values.append('LEVEL_TWO_ARMOR')
+
 
 
 def get_new_weapon(player: Player):
