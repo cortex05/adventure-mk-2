@@ -98,6 +98,3 @@ def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[
 			continue
 
 		last_command = navigation_options(int_choice, choice_options, location_coords)
-
-		# print("Welcome to the Moat")
-		# print("This is where you will face your first boss")

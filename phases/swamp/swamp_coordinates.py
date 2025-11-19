@@ -75,7 +75,7 @@ swamp_grid = [
             'options': [0, 3],
             'unlock_value': None
         },{
-            'description': "Back west is the suspicious field and beyond is the moat. To the North you see a carriage. To the south, there appears to be a large chest...",
+            'description': "Back west is the suspicious field and beyond is the moat entrance. To the North you see a carriage. To the south, there appears to be a large chest...",
             'random_battle': False,
             'options': [0, 1, 2],
             'unlock_value': None

@@ -96,7 +96,8 @@ moat_grid = [
         'description': "HOLDER",
         'options': []
     }
-  ],[
+  ],
+  [
     {
         'description': "HOLDER",
         'options': []
