@@ -27,14 +27,14 @@ moat_grid = [
         'description': "To the North is the castle entrance. To the South is the path to the swamp.",
         'random_battle': True,
         'battle_chance': 2,
-        'enemy_options': [4],
+        'enemy_options': [1,2],
         'options': [1, 2],
         'unlock_value': None
     },{
         'description': 'Now that you got the armor, you might as well head back to the bridge.\n',
         'random_battle': True,
         'battle_chance': 1,
-        'enemy_options': [5],
+        'enemy_options': [3],
         'options': [2],
         'block_value': 'LEVEL_TWO_ARMOR',
         'unlock_value': {
@@ -72,24 +72,24 @@ moat_grid = [
   ],
   [
     {
-        'description': "Aaaaand it's a dead end. You can only go East over a treacherous path to the bridge.",
+        'description': "Aaaaand it's a dead end. You can only go East over the broken structure to the bridge.",
         'random_battle': True,
         'battle_chance': 1,
-        'enemy_options': [4],
+        'enemy_options': [2],
         'options': [3],
         'unlock_value': None
     },{
         'description': "The shed is one trek to the West away.\nEast is back to the bridge.",
         'random_battle': True,
         'battle_chance': 2,
-        'enemy_options': [4],
+        'enemy_options': [2],
         'options': [0,3],
         'unlock_value': None
     },{
-        'description': "To the West, in the distance, is a shed.\nTo the North is a long path to the Castle.\nThe South leads back to the Northern Swamp Entrance.",
+        'description': "To the West, in the distance, is a shed on a broken structure.\nTo the North is a long path to the Castle.\nThe South leads back to the Northern Swamp Entrance.",
         'random_battle': True,
         'battle_chance': 2,
-        'enemy_options': [4],
+        'enemy_options': [1,2],
         'options': [0,1,2],
         'unlock_value': None
     },{

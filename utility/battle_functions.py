@@ -4,7 +4,7 @@ import time
 from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
-from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg, Goblin
+from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg, Goblin, Guard
 from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key
@@ -18,15 +18,17 @@ def random_enemy(options: List[int]):
     enemy = None
 
     if enemy_selector == 1:
-        enemy = Duke.Duke()
-    elif enemy_selector == 2:
-        enemy = Dragon.Dragon()
-    elif enemy_selector == 3:
-        enemy = Sorcerer.Sorcerer()
-    elif enemy_selector == 4:
         enemy = Wharg.Wharg()
-    elif enemy_selector == 5:
+    elif enemy_selector == 2:
         enemy = Goblin.Goblin()
+    elif enemy_selector == 3:
+        enemy = Duke.Duke()
+    elif enemy_selector == 4:
+        enemy = Guard.Guard()
+    elif enemy_selector == 5:
+        enemy = Sorcerer.Sorcerer() 
+    elif enemy_selector == 6:
+        enemy = Dragon.Dragon()
 
     return enemy
 
