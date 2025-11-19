@@ -31,22 +31,22 @@ moat_grid = [
         'options': [1, 2],
         'unlock_value': None
     },{
-        'description': 'Now that you got the armor, you might as well head back to the bridge.\n',
+        'description': 'Now that you got the new leg armor, you might as well head back to the bridge.\n',
         'random_battle': True,
         'battle_chance': 1,
         'enemy_options': [3],
         'options': [2],
-        'block_value': 'LEVEL_TWO_ARMOR',
+        'block_value': 'LEVEL_TWO_LEG_ARMOR',
         'unlock_value': {
-            'value': 'LEVEL_TWO_ARMOR',
+            'value': 'LEVEL_TWO_LEG_ARMOR',
             'display': False
         },
         'alt_pathway': {
         	'alt_description': '',
-        	'description': 'You already plundered the armor. You can only head back to the bridge.\n',
+        	'description': 'You already plundered the leg armor. You can only head back to the bridge.\n',
         	'random_battle': False,
             'options': [2],
-            'first_unlock': 'LEVEL_TWO_ARMOR',
+            'first_unlock': 'LEVEL_TWO_LEG_ARMOR',
             'unlock_value': None
         }
     }

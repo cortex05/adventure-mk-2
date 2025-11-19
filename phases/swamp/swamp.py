@@ -74,13 +74,21 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 			text_options = text_options + nav_options.nav_options[option]
 			choice_options.append(option)
 
-		text_options = text_options + compass_display(choice_options)
+		items_option = '5 - Check stats\n'
+		text_options = text_options + items_option + compass_display(choice_options)
 		print(f'Options: {choice_options}')
 		choice = input(text_options)
 
 		if choice:
 			if int(choice):
 				int_choice = int(choice)
+				if int_choice == 5:
+					os.system('cls')
+					print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\n')
+					input('Press any button to continue')
+					continue
+				elif int_choice in choice_options:
+					pass
 			else:
 				print('Enter a valid option')
 				continue

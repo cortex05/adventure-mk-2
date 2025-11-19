@@ -112,7 +112,7 @@ swamp_grid = [
             'description': "The chest is empty. Only makes sense to head back north",
             'random_battle': True,
             'battle_chance': 1,
-            'enemy_options': [1],
+            'enemy_options': [11],
             'options': [1],
             'block_value': 'NEW_WEAPON',
             'unlock_value': {
@@ -121,7 +121,7 @@ swamp_grid = [
             },
             'alt_pathway': {
               'alt_description': '',
-              'description': 'The shed only has the goblin you slayed. I guess you can only go back now.\n',
+              'description': 'The shed only has the Giant Wharg you slayed. I guess you can only go back now.\n',
               'random_battle': False,
               'options': [1],
               'first_unlock': 'NEW_WEAPON',

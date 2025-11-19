@@ -4,7 +4,8 @@ import time
 from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
-from characters.enemy_options import Duke, Dragon, Sorcerer, Wharg, Goblin, Guard
+from characters.enemy_options import Duke, Dragon, GiantWharg, Sorcerer, Wharg, Goblin, Guard
+from items.armor.armor import leg_armor
 from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key
@@ -29,6 +30,9 @@ def random_enemy(options: List[int]):
         enemy = Sorcerer.Sorcerer() 
     elif enemy_selector == 6:
         enemy = Dragon.Dragon()
+    #special cases
+    if enemy_selector == 11:
+        enemy = GiantWharg.GiantWharg()
 
     return enemy
 
@@ -238,12 +242,15 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print(f'You ditch your {old_weapon} and equip the {new_weapon}')
         print('Now you\'re ready for the big games')
         unlocked_values.append('NEW_WEAPON')
-    if unlock_dict['value'] is 'LEVEL_TWO_ARMOR':
-        print('The Goblin was the guard to the castle gate!\n')
-        print('The goblin dropped a key to the drawbridge!\n')
+    if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
+        print('The Duke was guarding Steel Leg armor!\n')
+        print('You put it on and are ready for bigger baddies!\n')
         # NEW ARMOR LOGIC HERE
-        player.inventory["key_items"].append(castle_key)
-        unlocked_values.append('LEVEL_TWO_ARMOR')
+        player.gear['armor']['legs'] = leg_armor
+        # print(f'Your leg armor is now {player.gear["armor"]["legs"].name}!')
+        # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
+        # print('You can now head back to the bridge.\n')
+        unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
 
 
 
