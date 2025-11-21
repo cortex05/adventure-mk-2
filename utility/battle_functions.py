@@ -8,14 +8,14 @@ from characters.enemy_options import Duke, Dragon, GiantWharg, Sorcerer, Wharg, 
 from items.armor.armor import leg_armor
 from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
-from items.key_items import castle_key
+from items.key_items import castle_key, stairs_key
 from items.weapons.swamp_upgrade import dwarf_swamp_weapon, elf_swamp_weapon, swordsman_swamp_weapon
 from utilities import get_yes_no
 
 
 def random_enemy(options: List[int]):
-    upper = len(options) - 1
-    enemy_selector = random.randint(options[0], options[upper])
+    # upper = len(options) - 1
+    enemy_selector = random.choice(options)
     enemy = None
 
     if enemy_selector == 1:
@@ -234,6 +234,12 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         unlocked_values.append('KEY_SHED')
         unlocked_values.append('CASTLE_KEY')
         # print(f'PLayer key items: {player.inventory['key_items'][0].name}')
+    if unlock_dict['value'] is 'STAIR_KEY':
+        print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you see a pedestal. And on it sits a golden, bejeweled key.\n')
+        print('This must be for getting upstairs!\n')
+        player.inventory["key_items"].append(stairs_key)
+        unlocked_values.append('STAIR_KEY')
+        unlocked_values.append('SECOND_STAIR_KEY')
     if unlock_dict['value'] is 'NEW_WEAPON':
         old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_new_weapon(player)
