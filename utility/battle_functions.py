@@ -5,11 +5,12 @@ from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, GiantWharg, Sorcerer, Wharg, Goblin, Guard
-from items.armor.armor import leg_armor
+from items.armor.armor import leg_armor, helmet_armor
 from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key, stairs_key
 from items.weapons.swamp_upgrade import dwarf_swamp_weapon, elf_swamp_weapon, swordsman_swamp_weapon
+from items.weapons.master_weapons import dwarf_master_weapon, elf_master_weapon, swordsman_master_weapon
 from utilities import get_yes_no
 
 
@@ -248,6 +249,13 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print(f'You ditch your {old_weapon} and equip the {new_weapon}')
         print('Now you\'re ready for the big games')
         unlocked_values.append('NEW_WEAPON')
+    if unlock_dict['value'] is 'MASTER_WEAPON':
+        old_weapon = player.gear['weapons']['main']['name']
+        new_weapon = get_master_weapon(player)
+        print('The blinding light is coming from a statue.')
+        print(f'You see in its outstretched hands is a {new_weapon}!')
+        print(f'You ditch your {old_weapon} and equip the {new_weapon}')
+        unlocked_values.append('MASTER_WEAPON')
     if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
         print('The Duke was guarding Steel Leg armor!\n')
         print('You put it on and are ready for bigger baddies!\n')
@@ -257,6 +265,15 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
+    if unlock_dict['value'] is 'LEVEL_TWO_HELMET_ARMOR':
+        print('The Sorcerer was guarding Steel Helmet armor!\n')
+        print('You dump your cheap helmet and put on the Steel one.\n')
+        # NEW ARMOR LOGIC HERE
+        player.gear['armor']['head'] = helmet_armor
+        # print(f'Your leg armor is now {player.gear["armor"]["legs"].name}!')
+        # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
+        # print('You can now head back to the bridge.\n')
+        unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
 
 
 
@@ -269,6 +286,17 @@ def get_new_weapon(player: Player):
         player.gear["weapons"]["main"] = elf_swamp_weapon
     elif player_type == 'Swordsman':
         player.gear["weapons"]["main"] = swordsman_swamp_weapon
+    return player.gear["weapons"]["main"]['name']
+
+def get_master_weapon(player: Player):
+    player_type = player.player_class
+
+    if player_type == 'Dwarf':
+        player.gear["weapons"]["main"] = dwarf_master_weapon
+    elif player_type == 'Elf':
+        player.gear["weapons"]["main"] = elf_master_weapon
+    elif player_type == 'Swordsman':
+        player.gear["weapons"]["main"] = swordsman_master_weapon
     return player.gear["weapons"]["main"]['name']
 
 def use_item(player: Player, item: Consumable):

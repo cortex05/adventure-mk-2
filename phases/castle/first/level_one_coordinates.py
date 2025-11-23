@@ -196,7 +196,7 @@ level_one_grid = [
                 'alt_description': '',
                 'description': 'You already picked up the helmet resting here.Go find a way upstairs.\n',
                 'random_battle': False,
-                'options': [3],
+                'options': [1],
                 'first_unlock': 'LEVEL_TWO_HELMET_ARMOR',
                 'block_value': 'LEVEL_TWO_HELMET_ARMOR',
                 'unlock_value': None
