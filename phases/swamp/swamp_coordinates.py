@@ -65,7 +65,7 @@ swamp_grid = [
               'random_battle': False,
               'unlock_value': None,
               'options': [0, 1, 2, 3],
-              'first_unlock': 'CASTLE_KEY',
+              'first_unlock': 'CASTLE_UNLOCK',
             }
         },{
             'description': "To the west is the moat entrance. To the Northeast and Southeast are structures. Where will you go?",

@@ -217,7 +217,7 @@ level_one_grid = [
         {
             'description': "West leads to a turn.\nNorth leads to another turn.\nEast leads to a long hallway with multiple enemies in the way...\n",
             'random_battle': False,
-            'options': [0, 1, 3],
+            'options': [0, 1, 2, 3],
             'unlock_value': None
         },
         {

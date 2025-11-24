@@ -46,7 +46,8 @@ def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[
 			continue
 		
 		if 'unlock_value' in location and location['unlock_value'] == 'VICTORY':
-			print('Moat finished\n')
+			reverse_step(last_command, location_coords)
+			print('You\re past the moat! You open the door and step into the castle...\n')
 			time.sleep(2)
 			return True
 		
