@@ -1,4 +1,4 @@
-level_one_grid = [
+level_two_grid = [
     [
         {
             'description': "HOLDER",
@@ -39,7 +39,7 @@ level_one_grid = [
         {
             'description': "West heads to the stairs downward.\nEast continues down a long Hallway.",
             'random_battle': False,
-            'options': [0, 4],
+            'options': [0, 3],
             'unlock_value': None
         },
         {
@@ -73,7 +73,7 @@ level_one_grid = [
         {
             'description': 'You\'ve got your super potions filled up.\nYou can head East towards a long trek downstairs.\nOr head South towards the Southern Hallway.',
             'random_battle': False,
-            'options': [0],
+            'options': [2,3],
             'unlock_value': None,
             'dispenser': {
                 'item_type': 'super_potions'
@@ -97,9 +97,9 @@ level_one_grid = [
             'unlock_value': None
         },
         {
-            'description': "You have the Tempered Chestplate.\nYou can head West towards a turn in the path.\nOr head North along the Eastern Hallway.",
+            'description': "You got some serious protection now.\nYou can head West towards a turn in the path.\nOr head North along the Eastern Hallway.",
             'random_battle': False,
-            'options': [1],
+            'options': [0,1],
             'block_value': 'LEVEL_TWO_CHEST_ARMOR',
             'unlock_value': {
                 'value': 'LEVEL_TWO_CHEST_ARMOR',
@@ -107,9 +107,9 @@ level_one_grid = [
             },
             'alt_pathway': {
                 'alt_description': '',
-                'description': 'You already picked up the Tempered Chestplate. resting here.\nYou can head West towards a turn in the path.\nOr head North along the Eastern Hallway.',
+                'description': 'The Chestplate pedestal is empty now. resting here.\nYou can head West towards a turn in the path.\nOr head North along the Eastern Hallway.',
                 'random_battle': False,
-                'options': [1],
+                'options': [0,1],
                 'first_unlock': 'LEVEL_TWO_CHEST_ARMOR',
                 'block_value': 'LEVEL_TWO_CHEST_ARMOR',
                 'unlock_value': None

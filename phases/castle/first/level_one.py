@@ -4,6 +4,7 @@ import time
 from characters.Player import Player
 from directions import nav_options
 from phases.castle.first import level_one_coordinates
+from phases.castle.second.level_two import level_two_loop
 from phases.moat import moat_coordinates
 from phases.moat.moat import moat_loop
 from phases.swamp.swamp import swamp_loop
@@ -13,8 +14,11 @@ from utility.dispenser_functions import handle_dispenser
 from utility.nav_functions import compass_display, navigation_options, reverse_step
 
 
-def castle_loop(player: Player, unlocked_values: list[int], location_coords: list[int], is_running: bool, moat_unlocked_values: list[int], moat_location_coords: list[int],swamp_unlocked_values: list[int], swamp_location_coords: list[int]) -> bool:
+def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[str], moat_location_coords: list[int],swamp_unlocked_values: list[str], swamp_location_coords: list[int]) -> bool:
 	last_command = None
+	unlocked_values = []
+	level_two_unlocked_values = []
+	location_coords = [3, 3]
 
 	# A loop to read a coordinate's description, options for movement
 	while is_running:
@@ -48,9 +52,19 @@ def castle_loop(player: Player, unlocked_values: list[int], location_coords: lis
 			continue
 		
 		if 'unlock_value' in location and location['unlock_value'] == 'GO_UPSTAIRS':
-			print('lower level finished\n')
+			print('You head up to the second floor of the Castle...\n')
 			time.sleep(2)
-			return True
+			entrance_side = 'WEST' if location_coords[1] < 4 else 'EAST'
+			level_two_result = level_two_loop(player, level_two_unlocked_values, entrance_side, is_running)
+
+			if level_two_result == 'WEST_STAIRS':
+				location_coords = [2, 0]
+			elif level_two_result == 'EAST_STAIRS':
+				location_coords = [2, 4]
+			elif level_two_result == 'DRAGON':
+				return True
+			last_command = None
+			continue
 		
 		# 3. Handle random battle
 		if location['random_battle']:

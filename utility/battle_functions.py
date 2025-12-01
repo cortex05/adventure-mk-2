@@ -5,7 +5,7 @@ from typing import List
 from characters.Enemy import Enemy
 from characters.Player import Player
 from characters.enemy_options import Duke, Dragon, GiantWharg, Sorcerer, Wharg, Goblin, Guard
-from items.armor.armor import leg_armor, helmet_armor
+from items.armor.armor import leg_armor, helmet_armor, chest_armor
 from items.Consumable import Consumable
 from items.UnlockValue import UnlockValue
 from items.key_items import castle_key, stairs_key
@@ -274,6 +274,17 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
+    if unlock_dict['value'] is 'LEVEL_TWO_CHEST_ARMOR':
+        print('What luck?\n')
+        print('You see an ornate Tempered Chestplate on a pedaestal before you.\n')
+        print('No guards, no Whargs and no Sorcerers.')
+        print('You dump your leather chestplate and strap on the tempered one.\n')
+        # NEW ARMOR LOGIC HERE
+        player.gear['armor']['chest'] = chest_armor
+        # print(f'Your leg armor is now {player.gear["armor"]["legs"].name}!')
+        # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
+        # print('You can now head back to the bridge.\n')
+        unlocked_values.append('LEVEL_TWO_CHEST_ARMOR')
 
 
 

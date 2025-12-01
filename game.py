@@ -17,8 +17,6 @@ def main():
 	moat_location_coords = [4, 2]
 
 	#castle
-	castle_unlocked_values = []
-	castle_location_coords = [3, 3]
 
 	is_running = True
 
@@ -35,10 +33,13 @@ def main():
 		time.sleep(2)
 		return
 	
-	castle_result = castle_loop(player, castle_unlocked_values, castle_location_coords, is_running, moat_unlocked_values, moat_location_coords, swamp_unlocked_values, swamp_location_coords)
+	castle_result = castle_loop(player, is_running, moat_unlocked_values, moat_location_coords, swamp_unlocked_values, swamp_location_coords)
 	if castle_result == False:
 		print('You have died in the castle. Game over.')
 		time.sleep(2)
 		return
+	else:
+		print('Ready for the Dragon!!!!!!!!!')
+		time.sleep(2)
 	
 	# Castle loop and check
