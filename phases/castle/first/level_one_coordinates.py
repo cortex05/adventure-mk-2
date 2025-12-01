@@ -51,7 +51,7 @@ level_one_grid = [
             },
             'alt_pathway': {
                 'alt_description': '',
-                'description': 'You already picked up the master weapon. And there\'s no way to turn off the light.\nGo find a way upstairs.\n',
+                'description': 'You already picked up your master weapon. And there\'s no way to turn off the light.\nGo find a way upstairs.\n',
                 'random_battle': False,
                 'options': [3],
                 'first_unlock': 'MASTER_WEAPON',
@@ -194,7 +194,7 @@ level_one_grid = [
             },
             'alt_pathway': {
                 'alt_description': '',
-                'description': 'You already picked up the helmet resting here.Go find a way upstairs.\n',
+                'description': 'You already picked up the helmet resting here. Go find a way upstairs.\n',
                 'random_battle': False,
                 'options': [1],
                 'first_unlock': 'LEVEL_TWO_HELMET_ARMOR',
