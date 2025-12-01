@@ -260,11 +260,11 @@ level_one_grid = [
             'options': []
         },
         {
-        'description': "HOLDER",
-        'options': [],
-        'unlock_value': 'BACK_TO_BRIDGE'
-    },
-	{
+            'description': "HOLDER",
+            'options': [],
+            'unlock_value': 'BACK_TO_BRIDGE'
+        },
+        {
             'description': "HOLDER",
             'options': []
         },
