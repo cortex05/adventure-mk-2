@@ -57,10 +57,10 @@ def dragon_warning(player: Player):
     good_armor = []
     maxed_out = 0
     for part in player.gear['armor'].values():
-        if part["level"] == 2:
-            good_armor.append(part["name"])
+        if part.level == 2:
+            good_armor.append(part.name)
 
-    print('To the North is a staiway up to an intense heat.\n')
+    print('To the North is a stariway up to an intense heat.\n')
     time.sleep(2)
     print('It must be the Dragon...\n')
     time.sleep(3)
@@ -80,8 +80,13 @@ def dragon_warning(player: Player):
         time.sleep(2)
     else:
         print(f'You have:')
-        for index, armor in good_armor:
-            if index + 1 == len(good_armor):
+        for index, armor in enumerate(good_armor):
+            if len(good_armor) == 1:
+                print(f'a {armor}.\n')
+                continue
+            elif index == 0:
+                print(f'a {armor}.\n')
+            elif index + 1 == len(good_armor):
                 print(f' and {armor}.\n')
             else: 
                 print(f'{ armor},')
@@ -107,6 +112,7 @@ def dragon_warning(player: Player):
         print('There\'s still time to get better gear...\n')
 
     time.sleep(2)
+    input('Press anything to continue.')
     os.system('cls')
     return
     

@@ -1,5 +1,8 @@
 # THE HERO CLASS
 
+from items.armor.ArmorItem import ArmorItem
+
+
 class Player:
     total_experience = 0
     base_level = 10
@@ -19,27 +22,9 @@ class Player:
     }
     gear = {
         "armor": {
-            "head": {
-                "name": "Cheap Helmet",
-                "id": "HEAD_CHEAP",
-                "defense_bonus": 5,
-                "part": "head",
-                'level': 1
-            },
-            "chest": {
-                "name": "Leather Chestplate",
-                "id": "LEATHER_CHESTPLATE",
-                "defense_bonus": 10,
-                "part": "chest",
-                'level': 1
-            },
-            "legs": {
-                "name": "Weathered Trousers",
-                "id": "HEAD_CHEAP",
-                "defense_bonus": 1,
-                "part": "legs",
-                'level': 1
-            }
+            "head": ArmorItem('Cheap Helmet', 'HEAD_CHEAP', 5, 'head', 1),
+            "chest":  ArmorItem('Leather Chestplate', 'LEATHER_CHESTPLATE', 10, 'chest', 1),
+            "legs": ArmorItem('Weathered Trousers', 'LEGS_WEATHERED', 1, 'legs', 1)
         },
         "weapons": {
             "main": None
