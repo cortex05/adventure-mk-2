@@ -61,7 +61,9 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 		else:
 			print(location['description'])
 
-		 # Get the options to display
+		# HANDLE WARNING CHECK HERE
+
+		# Get the options to display
 		text_options = ''
 		choice_options = []
 		for option in location["options"]:

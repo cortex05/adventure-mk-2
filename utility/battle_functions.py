@@ -42,10 +42,15 @@ def battle_loop(player: Player, enemy: Enemy):
     buff_effect = {}
     enemy_damage = enemy.enemy_attack_damage
     while True:
+        os.system('cls')
         print(f'What will {player.name} do?\n')
         # print(f'Coordinates: {swamp_coordinates.grid[0][0]}')
-        selection = int(input(
-            '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Item\n5 - Quit\n'''))
+        try:
+            selection = int(input(
+                '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Item\n5 - Quit\n'''))
+        except ValueError:
+            print("Please enter a number between 1 and 5.")
+            continue
 
         if selection == 1:
             damage_dealt = player.strength
