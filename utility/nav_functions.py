@@ -1,4 +1,8 @@
+import os
+import time
 from typing import List
+
+from characters.Player import Player
 
 
 def navigation_options(target: int, actual_options: list, moving_coords: list):
@@ -47,5 +51,62 @@ def compass_display(options: List[int]):
 
     return holder
 
+def dragon_warning(player: Player):
+    os.system('cls')
 
+    good_armor = []
+    maxed_out = 0
+    for part in player.gear['armor'].values():
+        if part["level"] == 2:
+            good_armor.append(part["name"])
+
+    print('To the North is a staiway up to an intense heat.\n')
+    time.sleep(2)
+    print('It must be the Dragon...\n')
+    time.sleep(3)
+    print('Are you ready for this?\n')
+    time.sleep(1)
+    
+    # Armor check
+    print('You check your armor.\n')
+    time.sleep(2)
+    if len(good_armor) == 0:
+        print('You are only wearing the most basic armor.')
+        print('Do you really want to take on a Dragon like this?\n')
+        time.sleep(2)
+    elif len(good_armor) == 3:
+        print('You have the best armor you can get.')
+        maxed_out += 1
+        time.sleep(2)
+    else:
+        print(f'You have:')
+        for index, armor in good_armor:
+            if index + 1 == len(good_armor):
+                print(f' and {armor}.\n')
+            else: 
+                print(f'{ armor},')
+        time.sleep(1)
+        print('Which is alright. But there\'s room for improvement.\n')
+        time.sleep(2)
+
+    # Weapon check
+    print(f'You check your {player.gear["weapons"]["main"]["name"]}.\n')
+    if player.gear["weapons"]["main"]['level'] < 3:
+        print('It works, but you could do better.\n')
+        time.sleep(2)
+    else:
+        print('This weapon is as good as it gets!\n')
+        maxed_out += 1
+    time.sleep(2)
+    
+    # final message
+    if maxed_out == 2:
+        print('You have the best gear you can get.\n')
+        print('You ready for this?\n')
+    else:
+        print('There\'s still time to get better gear...\n')
+
+    time.sleep(2)
+    os.system('cls')
+    return
     

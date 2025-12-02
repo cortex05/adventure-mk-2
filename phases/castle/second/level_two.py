@@ -6,7 +6,7 @@ from phases.castle.second import level_two_coordinates
 from utilities import check_key_items_unlock
 from utility.battle_functions import handle_unlock
 from utility.dispenser_functions import handle_dispenser
-from utility.nav_functions import compass_display, navigation_options, reverse_step
+from utility.nav_functions import compass_display, dragon_warning, navigation_options, reverse_step
 
 
 def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: str, is_running: bool) -> str:
@@ -59,9 +59,11 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 			unlocked_values.append(location['first_unlock'])
 			print(f'Unlocked values: {unlocked_values}')
 		else:
+			# HANDLE WARNING CHECK HERE
+			if 'warning_trigger' in location and location['warning_trigger'] is True:
+				dragon_warning(player)
 			print(location['description'])
 
-		# HANDLE WARNING CHECK HERE
 
 		# Get the options to display
 		text_options = ''

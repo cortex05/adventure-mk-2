@@ -3,19 +3,22 @@ elf_master_weapon = {
     "name": "Tempered Glaive",
     "attack_boost": 30,
     "id": "ELF_MASTER_WEAPON",
-    "critical_chance": 1.8
+    "critical_chance": 1.8,
+    "level": 3
 }
 
 dwarf_master_weapon = {
     "name": "Earth Splitter",
     "attack_boost": 50,
     "id": "DWARF_MASTER_WEAPON",
-    "critical_chance": 1.6
+    "critical_chance": 1.6,
+    "level": 3
 }
 
 swordsman_master_weapon = {
     "name": "Fusion Sword",
     "attack_boost": 35,
     "id": "SWORDSMAN_MASTER_WEAPON",
-    "critical_chance": 2
+    "critical_chance": 2,
+    "level": 3
 }

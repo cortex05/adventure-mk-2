@@ -50,6 +50,7 @@ def battle_loop(player: Player, enemy: Enemy):
                 '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Item\n5 - Quit\n'''))
         except ValueError:
             print("Please enter a number between 1 and 5.")
+            time.sleep(2)
             continue
 
         if selection == 1:
