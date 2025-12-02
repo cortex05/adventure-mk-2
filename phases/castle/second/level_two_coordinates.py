@@ -134,10 +134,10 @@ level_two_grid = [
             'unlock_value': None
         },
         {
-            'description': "West moves along the Southern Hallway.\nEast moves back towards a turn in the path.",
+            'description': "West moves along the Southern Hallway.\nEast moves back towards a turn in the path.\nNorth is past the point of no return.",
             'random_battle': False,
             'warning_trigger': True,
-            'options': [0, 3],
+            'options': [0, 1, 3],
             'unlock_value': None
         },
         {
