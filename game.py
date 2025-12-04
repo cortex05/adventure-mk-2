@@ -1,5 +1,6 @@
 import time
 from phases.castle.first.level_one import castle_loop
+from phases.final.final_battle import final_battle
 from phases.moat.moat import moat_loop
 from phases.start import  setPlayerName, introScroll, initialiationLoop
 from phases.swamp.swamp import swamp_loop
@@ -38,8 +39,13 @@ def main():
 		print('You have died in the castle. Game over.')
 		time.sleep(2)
 		return
+	
+	dragon_battle = final_battle(player)
+	if dragon_battle == True:
+		print('YOU WIN!!!')
+		
 	else:
-		print('Ready for the Dragon!!!!!!!!!')
-		time.sleep(2)
+		print('You were so close...')
+	time.sleep(2)
 	
 	# Castle loop and check

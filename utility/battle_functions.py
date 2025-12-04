@@ -154,12 +154,10 @@ def battle_loop(player: Player, enemy: Enemy):
                 continue
             else:
                 print('Invalid choice')
-                input("Press enter to continue...")
+                input("Press any key to continue.")
                 os.system('cls')
                 continue
 
-            input("\n\nClose?")
-            os.system('cls')
         elif selection == 5:
             print('Bye\n')
             break
