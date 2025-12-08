@@ -38,9 +38,10 @@ def random_enemy(options: List[int]):
     return enemy
 
 
-def battle_loop(player: Player, enemy: Enemy):
+def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
     buff_effect = {}
-    enemy_damage = enemy.enemy_attack_damage
+    defense_drain = player.defense - armor_bonus
+    enemy_damage = enemy.enemy_attack_damage - defense_drain
     while True:
         os.system('cls')
         print(f'What will {player.name} do?\n')
@@ -54,22 +55,36 @@ def battle_loop(player: Player, enemy: Enemy):
             continue
 
         if selection == 1:
-            damage_dealt = player.strength
-            print(f'{player.name} attacks for {damage_dealt}!\n\n')
-            if enemy.max_enemy_health - damage_dealt > 0:
-                enemy.max_enemy_health = enemy.max_enemy_health - damage_dealt
+            base_damage = player.strength + player.gear['weapons']['main']['attack_boost']
+            critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
+            player_damage  = base_damage * 2 if critical else base_damage
+
+            print(f'{player.name} attacks for {player_damage}!\n\n')
+            if critical == True:
+                time.sleep(1)
+                print("Critical hit!\n")
+            time.sleep(2)
+            if enemy.max_enemy_health - player_damage > 0:
+                enemy.max_enemy_health = enemy.max_enemy_health - player_damage
 
                 print(
-                    f'The {enemy.name} stands strong!\n\n The {enemy.name} attacks for {enemy_damage} damage!\n\n')
-
-                if player.health - enemy_damage > 0:
-                    player.health = player.health - enemy_damage
-                    # print('You stand strong.\n\n')
-                    input('You stand strong \n')
-                    os.system('cls')
+                    f'The {enemy.name} stands strong!\n')
+                print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
+                time.sleep(2)
+                
+                if random.randint(1, 100) <= player.agility:
+                    print('You dodged the attack!\n')
+                    time.sleep(2)
                 else:
-                    print('You are defeated!')
-                    return 'LOSE', player
+                    if player.health - enemy_damage > 0:
+                        player.health = player.health - enemy_damage
+                        # print('You stand strong.\n\n')
+                        input('You stand strong \n')
+                        os.system('cls')
+                    else:
+                        print('You are defeated!')
+                        return 'LOSE', player
+
             else:
                 os.system('cls')
                 print(f'The {enemy.name} is defeated!\n')
@@ -169,7 +184,9 @@ def battle_launch(player, enemies):
     enemy = random_enemy(enemies)
     print(f'{enemy.name_tense} appeared!\n')
 
-    result, player = battle_loop(player, enemy)
+    armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
+
+    result, player = battle_loop(player, enemy, armor_bonus)
 
     if result == 'WIN':
         print('You won!\n\n')
@@ -211,13 +228,9 @@ def level_up(player: Player, exp_yield: int):
     else:
         print('You leveled up!\n')
         # Adjust all attributes
-        player.base_health = player.base_health + 20
-        player.health = player.base_health
-        player.strength = player.strength
-        player.defense = player.defense
-        player.agility = player.agility
-
         player.level += 1
+        player = class_level_up(player)
+
         player.total_experience += player.to_next_level
         player.base_level += 10
         player.to_next_level = player.base_level
@@ -229,6 +242,34 @@ def level_up(player: Player, exp_yield: int):
             # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))
 
+def class_level_up(player: Player):
+    # Elf
+    if player.player_class == 'Elf':
+        player.base_health = player.base_health + 20
+        if player.level % 3 == 0:
+            player.defense = player.defense + 5
+            player.agility = player.agility + 10
+        if player.level % 2 == 0:
+            player.strength = player.strength + 4
+        
+        # Swordsman
+    elif player.player_class == 'Swordsman':
+        player.base_health = player.base_health + 15
+        if player.level % 2 == 0:
+            player.defense = player.defense + 5
+            player.agility = player.agility + 3
+            player.strength = player.strength + 7
+        
+        #Dwarf
+    elif player.player_class == 'Dwarf':
+        player.base_health = player.base_health + 10
+        if player.level % 2 == 0:
+            player.defense = player.defense + 8
+            player.agility = player.agility + 3
+            player.strength = player.strength + 10
+
+    player.health = player.base_health
+    return player
 
 def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: List[str]):
     # when you unlock something from a battle, you need to handle the location's first unlock here

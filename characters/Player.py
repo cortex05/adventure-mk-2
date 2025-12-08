@@ -22,9 +22,9 @@ class Player:
     }
     gear = {
         "armor": {
-            "head": ArmorItem('Cheap Helmet', 'HEAD_CHEAP', 5, 'head', 1),
+            "head": ArmorItem('Cheap Helmet', 'HEAD_CHEAP', 3, 'head', 1),
             "chest":  ArmorItem('Leather Chestplate', 'LEATHER_CHESTPLATE', 10, 'chest', 1),
-            "legs": ArmorItem('Weathered Trousers', 'LEGS_WEATHERED', 1, 'legs', 1)
+            "legs": ArmorItem('Weathered Trousers', 'LEGS_WEATHERED', 7, 'legs', 1)
         },
         "weapons": {
             "main": None
