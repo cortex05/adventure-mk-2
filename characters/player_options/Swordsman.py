@@ -12,8 +12,8 @@ class Swordsman(Player):
     heavy_attack = "Thrust"
     description = '''a well balanced fighter.'''
 
-    health = 100
-    base_health = 100
+    health = 105
+    base_health = 105
     strength = 30
     defense = 25
     agility = 20

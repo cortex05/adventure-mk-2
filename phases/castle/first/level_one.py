@@ -73,7 +73,7 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 				result = battle_launch(player, location['enemy_options'])
 				if result == 'LOSE':
 					is_running = False
-					break
+					return False
 				elif result == 'RETREAT':
 					reverse_step(last_command, location_coords)
 					continue

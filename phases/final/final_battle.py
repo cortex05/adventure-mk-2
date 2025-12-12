@@ -55,6 +55,7 @@ def final_battle(player: Player):
 					os.system('cls')
 				else:
 					print('You are defeated!')
+					time.sleep(2)
 					return False
 			else:
 				os.system('cls')

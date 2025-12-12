@@ -58,7 +58,7 @@ def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[
 				result = battle_launch(player, location['enemy_options'])
 				if result == 'LOSE':
 					is_running = False
-					break
+					return False
 				elif result == 'RETREAT':
 					reverse_step(last_command, location_coords)
 					continue

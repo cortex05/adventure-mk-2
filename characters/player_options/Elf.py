@@ -12,8 +12,8 @@ class Elf(Player):
     heavy_attack = "Drop Kick"
     description = '''a well balanced fighter.'''
 
-    health = 70
-    base_health = 70
+    health = 90
+    base_health = 90
     strength = 18
     defense = 18
     agility = 40
