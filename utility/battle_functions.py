@@ -40,8 +40,10 @@ def random_enemy(options: List[int]):
 
 def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
     buff_effect = {}
-    defense_drain = player.defense - armor_bonus
+    defense_drain = player.defense + armor_bonus
     enemy_damage = enemy.enemy_attack_damage - defense_drain
+    if enemy_damage <= 0:
+        enemy_damage = 0
     while True:
         os.system('cls')
         print(f'What will {player.name} do?\n')
@@ -186,6 +188,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
 def battle_launch(player, enemies):
     enemy = random_enemy(enemies)
     print(f'{enemy.name_tense} appeared!\n')
+    time.sleep(2)
 
     armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
 

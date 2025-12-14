@@ -28,6 +28,8 @@ def final_battle(player: Player):
 		print('What will you do?\n\n')
 
 		enemy_damage = dragon.enemy_attack_damage
+		if enemy_damage <= 0:
+			enemy_damage = 0
 		try:
 			selection = int(input(
                 '''1 - Attack!\n2 - Check stats\n3 - Item\n4 - Quit\n'''))
@@ -41,8 +43,8 @@ def final_battle(player: Player):
 			print(f'{player.name} attacks for {damage_dealt}!\n\n')
 			time.sleep(2)
 
-			if dragon.max_enemy_health - damage_dealt > 0:
-				dragon.max_enemy_health = dragon.max_enemy_health - damage_dealt
+			if dragon.enemy_health - damage_dealt > 0:
+				dragon.enemy_health = dragon.enemy_health - damage_dealt
 				print(
                     f'The {dragon.name} stands strong!\n\n The {dragon.name} attacks for {enemy_damage} damage!\n\n')
 				time.sleep(2)
@@ -65,8 +67,16 @@ def final_battle(player: Player):
 		elif selection == 2:
 			os.system('cls')
 			print('Here are the stats:\n\n')
+
+			space_length = len(str(player.health)) + len(str(player.base_health))
+			empty_space = 12 - space_length
+			
 			print(
-                f'You:              {dragon.name}\n\nHealth: {player.health}       {dragon.max_enemy_health}')
+                f'          | You          | {dragon.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {dragon.enemy_health}/{dragon.max_enemy_health}')
+            
+
+			# print(
+            #     f'You:              {dragon.name}\n\nHealth: {player.health}       {dragon.max_enemy_health}')
 			input("\n\nClose?")
 			os.system('cls')
 		elif selection == 3:
