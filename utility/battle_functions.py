@@ -64,8 +64,8 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 time.sleep(1)
                 print("Critical hit!\n")
             time.sleep(2)
-            if enemy.max_enemy_health - player_damage > 0:
-                enemy.max_enemy_health = enemy.max_enemy_health - player_damage
+            if enemy.enemy_health - player_damage > 0:
+                enemy.enemy_health = enemy.enemy_health - player_damage
 
                 print(
                     f'The {enemy.name} stands strong!\n')
@@ -95,8 +95,11 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
         elif selection == 2:
             os.system('cls')
             print('Here are the stats:\n\n')
+            space_length = len(str(player.health)) + len(str(player.base_health))
+            empty_space = 12 - space_length
+
             print(
-                f'You:              {enemy.name}\n\nHealth: {player.health}       {enemy.max_enemy_health}')
+                f'          | You          | {enemy.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {enemy.enemy_health}/{enemy.max_enemy_health}')
             input("\n\nClose?")
             os.system('cls')
         elif selection == 3:

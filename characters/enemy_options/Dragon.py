@@ -4,6 +4,7 @@ from characters.Enemy import Enemy
 class Dragon(Enemy):
     name = "Dragon"
     name_tense = "A Dragon"
+    enemy_health = 10
     max_enemy_health = 10
     enemy_attack_damage = 100
     special_attack = "Scorches"
