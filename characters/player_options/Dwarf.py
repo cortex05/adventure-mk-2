@@ -15,6 +15,7 @@ class Dwarf(Player):
     strength = 50
     defense = 30
     agility = 15
+    agility_bonus = 1
 
     def __init__(self, name):
         self.name = name

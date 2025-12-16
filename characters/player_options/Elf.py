@@ -17,6 +17,7 @@ class Elf(Player):
     strength = 18
     defense = 18
     agility = 40
+    agility_bonus = 3
 
     def __init__(self, name):
         self.name = name

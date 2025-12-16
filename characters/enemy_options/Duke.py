@@ -7,6 +7,7 @@ class Duke(Enemy):
     enemy_health = 60
     max_enemy_health = 60
     enemy_attack_damage = 20
+    attack_variable = 5
     special_attack = "Tortures"
     base_experience_yield = 30
     exp_range = 5

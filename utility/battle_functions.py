@@ -40,8 +40,9 @@ def random_enemy(options: List[int]):
 
 def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
     buff_effect = {}
-    defense_drain = player.defense + armor_bonus
-    enemy_damage = enemy.enemy_attack_damage - defense_drain
+    agility = random.randint(player.agility_bonus - 1, player.agility_bonus)
+    defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
+    enemy_damage = enemy.enemy_attack_damage - defense_drain + random.randint(1, enemy.attack_variable)
     if enemy_damage <= 0:
         enemy_damage = 0
     while True:
@@ -71,6 +72,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
 
                 print(
                     f'The {enemy.name} stands strong!\n')
+                print(f'Agility random roll: {agility}\n')
                 print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
                 time.sleep(2)
                 
