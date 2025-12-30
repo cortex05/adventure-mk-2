@@ -8,7 +8,7 @@ class Dwarf(Player):
     standard_attack = "Slash"
     special_attack = "Earth shaker"
     heavy_attack = "Guillotine"
-    description = '''a well balanced fighter.'''
+    description = 'A Dwarf is a tank.\n\nNot very agile, but they can eat whatever hits they take and dish it out in kind.\nThey will crush enemies at first, but the tougher ones might be an issue...\n\n'
 
     health = 120
     base_health = 120

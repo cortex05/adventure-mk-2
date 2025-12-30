@@ -10,15 +10,15 @@ from characters.player_options.Swordsman import Swordsman
 descriptions = [
     {
         "name": "Elf",
-        "description": '''a woodland sprite who moves fast and uses magic.'''
+        "description": Elf.description
     },
     {
         "name": "Dwarf",
-        "description": '''a sturdy, slow-moving tank.'''
+        "description": Dwarf.description
     },
     {
         "name": "Swordsman",
-        "description": '''a well balanced fighter.'''
+        "description": Swordsman.description
     },
 ]
 
@@ -33,7 +33,7 @@ def initialiationLoop(name: str) -> Player:
             if character_choice in [1, 2, 3]:
                 proto_selection = descriptions[character_choice - 1]
                 os.system('cls')
-                selection = input(f"""You choose {proto_selection['name']}.\n{proto_selection['name']} is {proto_selection['description']}.\nDo you wish this to be your character? Y/N 
+                selection = input(f"""You choose {proto_selection['name']}.\n{proto_selection['description']}\nDo you wish this to be your character? Y/N 
 """)
                 if selection.strip().lower() == 'y':
                     if character_choice == 1:

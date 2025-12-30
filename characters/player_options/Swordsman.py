@@ -10,7 +10,7 @@ class Swordsman(Player):
     standard_attack = "Slash"
     special_attack = "Overhead Smash"
     heavy_attack = "Thrust"
-    description = '''a well balanced fighter.'''
+    description = 'A well balanced class.\n\nA Swordsman has solid strength and modest agility.\nGood for beginners.\n\n'
 
     health = 105
     base_health = 105

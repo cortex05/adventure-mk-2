@@ -10,7 +10,7 @@ class Elf(Player):
     standard_attack = "Swipes"
     special_attack = "Precision Arrow"
     heavy_attack = "Drop Kick"
-    description = '''a well balanced fighter.'''
+    description = 'An Elf is quick and nimble.\n\nThey will dodge attacks and land critical hits more often than others.\nThe downside is they are a bit frail and do the least base damage.\nYou will struggle at first, but a veteran Elf is a force to be reckoned with.\n\nRecommended for advanced players.'
 
     health = 90
     base_health = 90
