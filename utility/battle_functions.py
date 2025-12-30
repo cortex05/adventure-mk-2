@@ -94,7 +94,6 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 print(f'The {enemy.name} is defeated!\n')
                 # print(f'Coordinates: {swamp_coordinates.grid[0][1]}')
 
-                # LLevel up here? YES
                 return "WIN", player
         elif selection == 2:
             os.system('cls')
@@ -227,6 +226,10 @@ def battle_launch(player, enemies):
 def level_up(player: Player, exp_yield: int):
     # exp_holder = player.to_next_level
     spillover = player.to_next_level - exp_yield
+
+    if player.level == 15:
+        print('You have reached the maximum level!\n')
+        return player
 
     if spillover > 0:
         player.to_next_level = spillover
