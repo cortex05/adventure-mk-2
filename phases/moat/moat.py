@@ -83,8 +83,8 @@ def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[
 			choice_options.append(option)
 
 		items_option = '5 - Check items\n'
-		exit_option = '6 - Check stats\n\n'
-		text_options = text_options + items_option + exit_option + compass_display(choice_options)
+		stats_option = '6 - Check stats\n\n'
+		text_options = text_options + items_option + stats_option + compass_display(choice_options)
 		print(f'Options: {choice_options}')
 		choice = input(text_options)
 
