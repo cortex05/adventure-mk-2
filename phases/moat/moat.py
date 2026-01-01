@@ -8,7 +8,7 @@ from phases.swamp.swamp import swamp_loop
 from utilities import check_key_items_unlock
 from utility.battle_functions import battle_launch, handle_unlock
 from utility.dispenser_functions import handle_dispenser
-from utility.nav_functions import compass_display, navigation_options, reverse_step
+from utility.nav_functions import compass_display, navigation_options, reverse_step, use_item_nav
 
 
 def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[int], is_running: bool, swamp_unlocked_values: list[int], swamp_location_coords: list[int]) -> bool:
@@ -82,8 +82,9 @@ def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[
 			text_options = text_options + nav_options.nav_options[option]
 			choice_options.append(option)
 
-		items_option = '5 - Check stats\n'
-		text_options = text_options + items_option + compass_display(choice_options)
+		items_option = '5 - Check items\n'
+		exit_option = '6 - Check stats\n\n'
+		text_options = text_options + items_option + exit_option + compass_display(choice_options)
 		print(f'Options: {choice_options}')
 		choice = input(text_options)
 
@@ -91,6 +92,9 @@ def moat_loop(player: Player, unlocked_values: list[int], location_coords: list[
 			if int(choice):
 				int_choice = int(choice)
 				if int_choice == 5:
+					use_item_nav(player)
+					continue
+				if int_choice == 6:
 					os.system('cls')
 					print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\n')
 					input('Press any button to continue')
