@@ -4,11 +4,10 @@ import time
 from characters.Player import Player
 from directions import nav_options
 from phases.swamp import swamp_coordinates
-from utilities import check_key_items_unlock
-from utility.battle_functions import battle_launch, handle_unlock
+from utilities import check_key_items_unlock, get_yes_no
+from utility.battle_functions import battle_launch, handle_unlock, use_item
 from utility.dispenser_functions import handle_dispenser
 from utility.nav_functions import compass_display, navigation_options, reverse_step
-
 
 def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list[int], is_running: bool) -> bool:
 	last_command = None
@@ -74,10 +73,11 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 			text_options = text_options + nav_options.nav_options[option]
 			choice_options.append(option)
 
-		items_option = '5 - Check stats\n'
+		items_option = '5 - Check items\n'
+		exit_option = '6 - Exit\n'
 		# inventory_option = '6 - Check inventory\n'
 		# exit_option = '7 - Exit\n'
-		text_options = text_options + items_option + compass_display(choice_options)
+		text_options = text_options + items_option + exit_option + compass_display(choice_options)
 		print(f'Options: {choice_options}')
 		choice = input(text_options)
 
@@ -85,6 +85,66 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 			if int(choice):
 				int_choice = int(choice)
 				if int_choice == 5:
+					# Start
+					os.system('cls')
+					print('Here are your items:\n')
+            
+					key_list = list(player.inventory['consumables'].keys())
+					for index, (key, value) in enumerate(player.inventory['consumables'].items()):
+						print(f'{index + 1}. {key} - {len(value)}')
+
+					print(f'{len(key_list) + 1}. Nothing')
+					print('What will you do?')
+					item_choice = None
+
+					while True:
+						try:
+							item_choice = int(input("Enter an integer: "))
+							break
+						except ValueError:
+							print("Please enter a valid integer.")
+							
+					if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
+						print('Use item')
+						target_key = key_list[item_choice - 1]
+						target = player.inventory['consumables'][target_key]
+						# Use a potion
+						# # print(f'You picked {target.name}\n')
+						
+						os.system('cls')
+						print(f'You picked {target_key}\n')
+						print(f'It {target[0].description}\n')
+						
+						answer = get_yes_no(f'Do you want to use it?')
+						if answer == 'y':
+							use_item(player, target[0])
+							player.inventory['consumables'][target_key].pop()
+						else:
+							os.system('cls')
+							continue
+						
+						if len(target) == 0:
+							del player.inventory['consumables'][target_key]
+							print(f'You have no {target_key} left\n')
+						else:
+							print(f'You have {len(player.inventory["consumables"][target_key])} {target_key} left\n')
+							
+						time.sleep(2)
+						os.system('cls')
+						continue
+
+					elif item_choice == len(key_list) + 1:
+						print('No item')
+						input("Press enter to continue...")
+						os.system('cls')
+						continue
+					else:
+						print('Invalid choice')
+						input("Press any key to continue.")
+						os.system('cls')
+						continue
+					#End
+				if int_choice == 6:
 					os.system('cls')
 					print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\n')
 					input('Press any button to continue')
