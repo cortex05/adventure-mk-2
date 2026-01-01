@@ -124,7 +124,7 @@ def use_item_nav(player: Player):
     
     key_list = list(player.inventory['consumables'].keys())
     for index, (key, value) in enumerate(player.inventory['consumables'].items()):
-        print(f'{index + 1}. {key} - {len(value)}')
+        print(f'{index + 1}. {key.capitlize()} - {len(value)}')
 
     print(f'{len(key_list) + 1}. Nothing')
     print('What will you do?')
@@ -177,3 +177,31 @@ def use_item_nav(player: Player):
         input("Press any key to continue.")
         os.system('cls')
         return
+
+def show_stats(player: Player):
+    # stats
+    print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\nAgility: {player.agility}\n\n')
+
+    # Key items
+    key_items = player.inventory['key_items']
+    print(f'Your Special items:')
+    if len(key_items) > 0:
+        for item in player.inventory['key_items']:
+            print(f'- {item.name}')
+    else:
+        print('No key items yet...')
+
+    # Armor
+    head = player.gear["armor"]["head"]
+    chest = player.gear["armor"]["chest"]
+    legs = player.gear["armor"]["legs"]
+    print(f'\nYour Armor:\n')
+    
+    print(f'Head: {head.name}\nDefense bonus: {head.defense_bonus}\n')
+    print('--------------------\n')
+    print(f'Chest: {chest.name}\nDefense bonus: {chest.defense_bonus}\n')
+    print('--------------------\n')
+    print(f'Chest: {legs.name}\nDefense bonus: {legs.defense_bonus}\n')
+
+    input('Press any button to continue')
+    return

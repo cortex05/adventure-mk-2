@@ -11,7 +11,7 @@ from phases.swamp.swamp import swamp_loop
 from utilities import check_key_items_unlock
 from utility.battle_functions import battle_launch, handle_unlock
 from utility.dispenser_functions import handle_dispenser
-from utility.nav_functions import compass_display, navigation_options, reverse_step, use_item_nav
+from utility.nav_functions import compass_display, navigation_options, reverse_step, show_stats, use_item_nav
 
 
 def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[str], moat_location_coords: list[int],swamp_unlocked_values: list[str], swamp_location_coords: list[int]) -> bool:
@@ -111,8 +111,7 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 					continue
 				if int_choice == 6:
 					os.system('cls')
-					print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\n')
-					input('Press any button to continue')
+					show_stats(player)
 					continue
 				elif int_choice in choice_options:
 					pass

@@ -7,7 +7,7 @@ from phases.swamp import swamp_coordinates
 from utilities import check_key_items_unlock, get_yes_no
 from utility.battle_functions import battle_launch, handle_unlock, use_item
 from utility.dispenser_functions import handle_dispenser
-from utility.nav_functions import compass_display, navigation_options, reverse_step, use_item_nav
+from utility.nav_functions import compass_display, navigation_options, reverse_step, show_stats, use_item_nav
 
 def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list[int], is_running: bool) -> bool:
 	last_command = None
@@ -87,8 +87,7 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 					continue
 				if int_choice == 6:
 					os.system('cls')
-					print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\n')
-					input('Press any button to continue')
+					show_stats(player)
 					continue
 				elif int_choice in choice_options:
 					pass

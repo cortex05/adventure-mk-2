@@ -6,7 +6,7 @@ from phases.castle.second import level_two_coordinates
 from utilities import check_key_items_unlock
 from utility.battle_functions import handle_unlock
 from utility.dispenser_functions import handle_dispenser
-from utility.nav_functions import compass_display, dragon_warning, navigation_options, reverse_step, use_item_nav
+from utility.nav_functions import compass_display, dragon_warning, navigation_options, reverse_step, show_stats, use_item_nav
 
 
 def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: str, is_running: bool) -> str:
@@ -86,8 +86,7 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 					continue
 				if int_choice == 6:
 					os.system('cls')
-					print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\n')
-					input('Press any button to continue')
+					show_stats(player)
 					continue
 				elif int_choice in choice_options:
 					pass

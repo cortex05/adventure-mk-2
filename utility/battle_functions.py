@@ -112,7 +112,6 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             print('You retreat!')
             return "RETREAT", player
         elif selection == 4:
-            # input(f'Potions: {player.inventory['consumables']["potions"]}\n')
             os.system('cls')
             print('Here are your items:\n\n')
             key_list = list(player.inventory['consumables'].keys())
@@ -138,7 +137,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 # print(f'You picked {target.name}\n')
 
                 os.system('cls')
-                print(f'You picked {target_key}\n')
+                print(f'You picked {target[0].item_name}\n')
                 print(f'It {target[0].description}\n')
                 answer = get_yes_no(f'Do you want to use it?')
                 if answer == 'y':
