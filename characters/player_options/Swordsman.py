@@ -33,4 +33,4 @@ class Swordsman(Player):
                 self.inventory["consumables"]["potions"] = [new_potion]
             i += 1
         input(
-            f"\nSwordsman Selected! Hack and slash it is. Congrats {name}!\nPress any key to continue\n\n")
+            f"Swordsman Selected! Hack and slash it is. Congrats {name}!\nPress any key to continue ")

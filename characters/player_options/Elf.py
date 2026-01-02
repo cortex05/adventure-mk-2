@@ -34,4 +34,4 @@ class Elf(Player):
             i += 1
 
         input(
-            f"\nElf Selected! Quick and nimble is the way. Congrats {name}!\nPress any key to continue\n\n")
+            f"Elf Selected! Quick and nimble is the way. Congrats {name}!\nPress any key to continue ")

@@ -33,7 +33,7 @@ def initialiationLoop(name: str) -> Player:
             if character_choice in [1, 2, 3]:
                 proto_selection = descriptions[character_choice - 1]
                 os.system('cls')
-                selection = input(f"""You choose {proto_selection['name']}.\n{proto_selection['description']}\nDo you wish this to be your character? Y/N 
+                selection = input(f"""You choose {proto_selection['name']}.\n{proto_selection['description']}\nDo you wish this to be your character? (Y/N): 
 """)
                 if selection.strip().lower() == 'y':
                     if character_choice == 1:
@@ -77,7 +77,7 @@ def setPlayerName():
     os.system('cls')
     answer = get_yes_no(f'{player_name}. Is that correct?')
     if answer == 'y':
-        print(f'Thank you {player_name}.')
+        print(f'\nThank you {player_name}.')
         time.sleep(2)
         os.system('cls')
         return player_name

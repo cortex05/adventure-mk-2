@@ -2,7 +2,7 @@ import os
 
 def launcher():
     os.system('cls')
-    print('Welcome! What would you like to do?')
+    print('Welcome! What would you like to do?\n')
     print('1 - Start Game')
     print('2 - Exit')
     choice = input('')

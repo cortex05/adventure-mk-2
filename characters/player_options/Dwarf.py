@@ -32,4 +32,4 @@ class Dwarf(Player):
             i += 1
 
         input(
-            f"\nDwarf Selected! Heavy hitter I see. Congrats {name}!\nPress any key to continue\n\n")
+            f"Dwarf Selected! Heavy hitter I see. Congrats {name}!\nPress any key to continue ")
