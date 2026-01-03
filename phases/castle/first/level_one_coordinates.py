@@ -4,7 +4,7 @@ level_one_grid = [
             'description': 'You pick up the key and turn back towards the corridor you came from.\n',
             'random_battle': True,
             'battle_chance': 1,
-            'enemy_options': [4],
+            'enemy_options': [5],
             'options': [3],
             'block_value': 'STAIR_KEY',
             'unlock_value': {
@@ -42,7 +42,7 @@ level_one_grid = [
             'description': "You have the best weapon you can get.\nGo find your way upstairs.",
             'random_battle': True,
             'battle_chance': 1,
-            'enemy_options': [4],
+            'enemy_options': [6],
             'options': [3],
             'block_value': 'MASTER_WEAPON',
             'unlock_value': {

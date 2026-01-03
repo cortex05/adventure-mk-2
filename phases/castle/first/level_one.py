@@ -23,8 +23,8 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 	# A loop to read a coordinate's description, options for movement
 	while is_running:
 		os.system('cls')
-		print(f'Last command: {last_command}')
-		print(f'Moving coords: {location_coords}')
+		# print(f'Last command: {last_command}')
+		# print(f'Moving coords: {location_coords}')
 
 		holder = level_one_coordinates.level_one_grid[location_coords[0]][location_coords[1]]
 
@@ -100,7 +100,7 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 		items_option = '5 - Check items\n'
 		stats_option = '6 - Check stats\n\n'
 		text_options = text_options + items_option + stats_option + compass_display(choice_options)
-		print(f'Options: {choice_options}')
+		# print(f'Options: {choice_options}')
 		choice = input(text_options)
 
 		if choice:

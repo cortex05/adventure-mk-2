@@ -4,6 +4,7 @@ from characters.Player import Player
 from characters.enemy_options import Dragon
 from utilities import get_yes_no
 from utility.battle_functions import use_item
+from utility.texts import press_any_to_continue
 
 
 def final_battle(player: Player):
@@ -51,8 +52,8 @@ def final_battle(player: Player):
 
 				if player.health - enemy_damage > 0:
 					player.health = player.health - enemy_damage
-                    # print('You stand strong.\n\n')
 					input('You stand strong \n')
+					input(press_any_to_continue)
 					time.sleep(2)
 					os.system('cls')
 				else:
@@ -126,8 +127,8 @@ def final_battle(player: Player):
 				
 				if player.health - enemy_damage > 0:
 					player.health = player.health - enemy_damage
-                    # print('You stand strong.\n\n')
 					print('You stand strong \n')
+					input(press_any_to_continue)
 					time.sleep(2)
 					os.system('cls')
 				else:
@@ -138,12 +139,12 @@ def final_battle(player: Player):
 				continue
 			elif item_choice == len(key_list) + 1:
 				print('No item')
-				input("Press enter to continue...")
+				input(press_any_to_continue)
 				os.system('cls')
 				continue
 			else:
 				print('Invalid choice')
-				input("Press enter to continue...")
+				input(press_any_to_continue)
 				os.system('cls')
 				continue
 

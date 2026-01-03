@@ -85,8 +85,8 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 else:
                     if player.health - enemy_damage > 0:
                         player.health = player.health - enemy_damage
-                        # print('You stand strong.\n\n')
                         input('You stand strong \n')
+                        input(press_any_to_continue)
                         os.system('cls')
                     else:
                         print('You are defeated!')
@@ -160,8 +160,8 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
 
                 if player.health - enemy_damage > 0:
                     player.health = player.health - enemy_damage
-                    # print('You stand strong.\n\n')
                     print('You stand strong \n')
+                    input(press_any_to_continue)
                     time.sleep(2)
                     os.system('cls')
                 else:
@@ -172,7 +172,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 continue
             elif item_choice == len(key_list) + 1:
                 print('No item')
-                input("Press enter to continue...")
+                input(press_any_to_continue)
                 os.system('cls')
                 continue
             else:

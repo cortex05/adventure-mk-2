@@ -27,7 +27,7 @@ def navigation_options(target: int, actual_options: list, moving_coords: list):
             moving_coords[1] = moving_coords[1] + 1
         return target
     else:
-        input("Please pick a valid option. Press enter to continue")
+        input(f"Please pick a valid option. {press_any_to_continue}")
 
 
 def reverse_step(last_command, moving_coords):
@@ -127,8 +127,8 @@ def use_item_nav(player: Player):
     for index, (key, value) in enumerate(player.inventory['consumables'].items()):
         print(f'{index + 1}. {key.capitalize()} - {len(value)}')
 
-    print(f'{len(key_list) + 1}. Nothing')
-    print('What will you do?')
+    print(f'{len(key_list) + 1}. Nothing\n')
+    print('Select an item to inspect or \"Nothing\" to go back.')
     item_choice = None
 
     while True:
@@ -170,7 +170,7 @@ def use_item_nav(player: Player):
 
     elif item_choice == len(key_list) + 1:
         print('No item')
-        input("Press enter to continue...")
+        input(press_any_to_continue)
         os.system('cls')
         return
     else:
