@@ -6,6 +6,7 @@ from characters.Player import Player
 from characters.player_options.Elf import Elf
 from characters.player_options.Dwarf import Dwarf
 from characters.player_options.Swordsman import Swordsman
+from utility.texts import press_any_to_continue
 
 descriptions = [
     {
@@ -99,5 +100,5 @@ def introScroll(name: str, player: Player):
         time.sleep(2)
     print(f"Potions: {len(player.inventory["consumables"]["potions"])}")
     print(f"Weapon: {player.gear["weapons"]["main"]["name"]}")
-    input('Press any button to continue')
+    input(press_any_to_continue)
     os.system('cls')

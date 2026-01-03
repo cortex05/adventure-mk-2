@@ -1,6 +1,7 @@
 import os
 from characters.Player import Player
 from items.health.potion import Potion
+from utility.texts import press_any_to_continue
 from items.weapons.starting_weapons import dwarf_start
 
 class Dwarf(Player):
@@ -32,4 +33,4 @@ class Dwarf(Player):
             i += 1
 
         input(
-            f"Dwarf Selected! Heavy hitter I see. Congrats {name}!\nPress any key to continue ")
+            f"Dwarf Selected! Heavy hitter I see. Congrats {name}!\n{press_any_to_continue}")

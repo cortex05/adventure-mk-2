@@ -5,6 +5,7 @@ from typing import List
 from characters.Player import Player
 from utilities import get_yes_no
 from utility.battle_functions import use_item
+from utility.texts import press_any_to_continue
 
 
 def navigation_options(target: int, actual_options: list, moving_coords: list):
@@ -114,7 +115,7 @@ def dragon_warning(player: Player):
         print('There\'s still time to get better gear...\n')
 
     time.sleep(2)
-    input('Press anything to continue.')
+    input(press_any_to_continue)
     os.system('cls')
     return
     
@@ -174,7 +175,7 @@ def use_item_nav(player: Player):
         return
     else:
         print('Invalid choice')
-        input("Press any key to continue.")
+        input(press_any_to_continue)
         os.system('cls')
         return
 
@@ -203,5 +204,5 @@ def show_stats(player: Player):
     print('--------------------\n')
     print(f'Chest: {legs.name}\nDefense bonus: {legs.defense_bonus}\n')
 
-    input('Press any button to continue')
+    input(press_any_to_continue)
     return

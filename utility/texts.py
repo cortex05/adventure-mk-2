@@ -1,0 +1,1 @@
+press_any_to_continue = 'Press any key to continue ↴ '

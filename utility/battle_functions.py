@@ -12,6 +12,7 @@ from items.key_items import castle_key, stairs_key
 from items.weapons.swamp_upgrade import dwarf_swamp_weapon, elf_swamp_weapon, swordsman_swamp_weapon
 from items.weapons.master_weapons import dwarf_master_weapon, elf_master_weapon, swordsman_master_weapon
 from utilities import get_yes_no
+from utility.texts import press_any_to_continue
 
 
 def random_enemy(options: List[int]):
@@ -176,7 +177,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 continue
             else:
                 print('Invalid choice')
-                input("Press any key to continue.")
+                input(press_any_to_continue)
                 os.system('cls')
                 continue
 
@@ -213,7 +214,7 @@ def battle_launch(player, enemies):
 
         print(f'Your health is {player.health}')
 
-        input('Press anything to continue')
+        input(press_any_to_continue)
         os.system('cls')
         return 'WIN'
     elif result == 'RETREAT':

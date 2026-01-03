@@ -4,6 +4,7 @@ import os
 
 from items.health.potion import Potion
 from items.weapons.starting_weapons import elf_start
+from utility.texts import press_any_to_continue
 
 class Elf(Player):
     player_class = "Elf"
@@ -34,4 +35,4 @@ class Elf(Player):
             i += 1
 
         input(
-            f"Elf Selected! Quick and nimble is the way. Congrats {name}!\nPress any key to continue ")
+            f"Elf Selected! Quick and nimble is the way. Congrats {name}!\n{press_any_to_continue}")

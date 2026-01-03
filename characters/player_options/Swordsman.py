@@ -2,6 +2,7 @@
 import os
 from characters.Player import Player
 from items.health.potion import Potion
+from utility.texts import press_any_to_continue
 
 from items.weapons.starting_weapons import swordsman_start
 
@@ -33,4 +34,4 @@ class Swordsman(Player):
                 self.inventory["consumables"]["potions"] = [new_potion]
             i += 1
         input(
-            f"Swordsman Selected! Hack and slash it is. Congrats {name}!\nPress any key to continue ")
+            f"Swordsman Selected! Hack and slash it is. Congrats {name}!\n{press_any_to_continue}")
