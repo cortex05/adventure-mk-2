@@ -15,8 +15,8 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 	# A loop to read a coordinate's description, options for movement
 	while is_running:
 		os.system('cls')
-		print(f'Last command: {last_command}')
-		print(f'Moving coords: {location_coords}')
+		# print(f'Last command: {last_command}')
+		# print(f'Moving coords: {location_coords}')
 
 		# Step 1 get the location with the moving coordinates
 		holder = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]
@@ -76,7 +76,7 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 		items_option = '5 - Check items\n'
 		stats_option = '6 - Check stats\n\n'
 		text_options = text_options + items_option + stats_option + compass_display(choice_options)
-		print(f'Options: {choice_options}')
+		# print(f'Options: {choice_options}')
 		choice = input(text_options)
 
 		if choice:

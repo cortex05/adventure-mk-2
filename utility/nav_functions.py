@@ -125,7 +125,7 @@ def use_item_nav(player: Player):
     
     key_list = list(player.inventory['consumables'].keys())
     for index, (key, value) in enumerate(player.inventory['consumables'].items()):
-        print(f'{index + 1}. {key.capitlize()} - {len(value)}')
+        print(f'{index + 1}. {key.capitalize()} - {len(value)}')
 
     print(f'{len(key_list) + 1}. Nothing')
     print('What will you do?')
