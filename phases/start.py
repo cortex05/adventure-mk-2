@@ -98,7 +98,5 @@ def introScroll(name: str, player: Player):
     for text in introScrollText:
         print(f'{text} \n')
         time.sleep(2)
-    print(f"Potions: {len(player.inventory["consumables"]["potions"])}")
-    print(f"Weapon: {player.gear["weapons"]["main"]["name"]}")
     input(press_any_to_continue)
     os.system('cls')
