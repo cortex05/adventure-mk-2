@@ -181,7 +181,12 @@ def use_item_nav(player: Player):
 
 def show_stats(player: Player):
     # stats
-    print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\nAgility: {player.agility}\n\n')
+    print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\nAgility: {player.agility}\n')
+
+    # Defense
+    armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
+    defense_drain = player.defense + armor_bonus + ((player.agility // 10) * player.agility)
+    print(f'Your total defense bonus is: {defense_drain}\n')
 
     # Key items
     key_items = player.inventory['key_items']

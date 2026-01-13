@@ -65,6 +65,7 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 			print(f'Unlocked values: {unlocked_values}')
 		else:
 			print(location['description'])
+			# print('\n')
 
 		 # Get the options to display
 		text_options = ''

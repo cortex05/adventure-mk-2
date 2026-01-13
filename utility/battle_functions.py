@@ -65,7 +65,8 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
             player_damage  = base_damage * 2 if critical else base_damage
 
-            print(f'{player.name} attacks for {player_damage}!\n\n')
+            os.system('cls')
+            print(f'{player.name} attacks for {player_damage}!\n')
             if critical == True:
                 time.sleep(1)
                 print("Critical hit!\n")
@@ -73,8 +74,9 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             if enemy.enemy_health - player_damage > 0:
                 enemy.enemy_health = enemy.enemy_health - player_damage
 
-                print(
-                    f'The {enemy.name} stands strong!\n')
+                input(
+                    f'The {enemy.name} stands strong!\n{press_any_to_continue}')
+                os.system('cls')
                 print(f'Agility random roll: {agility}\n')
                 print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
                 time.sleep(2)
@@ -85,7 +87,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 else:
                     if player.health - enemy_damage > 0:
                         player.health = player.health - enemy_damage
-                        input('You stand strong \n')
+                        print('You stand strong \n')
                         input(press_any_to_continue)
                         os.system('cls')
                     else:
