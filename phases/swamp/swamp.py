@@ -60,11 +60,15 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 
 		# function to unlock values
 		if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
-			print(location['alt_description'])
+			for item in location['alt_description']:
+				print(item)
+				time.sleep(1)
 			unlocked_values.append(location['first_unlock'])
-			print(f'Unlocked values: {unlocked_values}')
+			# print(f'Unlocked values: {unlocked_values}')
 		else:
-			print(location['description'])
+			for item in location['description']:
+				print(item)
+				time.sleep(1)
 			# print('\n')
 
 		 # Get the options to display
