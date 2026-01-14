@@ -84,11 +84,14 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 
 		# function to unlock values
 		if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
-			print(location['alt_description'])
+			for item in location['alt_description']:
+				print(item)
+				# time.sleep(1)
 			unlocked_values.append(location['first_unlock'])
-			print(f'Unlocked values: {unlocked_values}')
+			# print(f'Unlocked values: {unlocked_values}')
 		else:
-			print(location['description'])
+			for item in location['description']:
+				print(item)
 
 		 # Get the options to display
 		text_options = ''

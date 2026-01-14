@@ -1,4 +1,5 @@
 import os
+from random import random
 import time
 from characters.Player import Player
 from characters.enemy_options import Dragon
@@ -40,7 +41,10 @@ def final_battle(player: Player):
 			continue
 		
 		if selection == 1:
-			damage_dealt = player.strength
+			base_damage = player.strength + player.gear['weapons']['main']['attack_boost']
+			critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
+			damage_dealt  = base_damage * 2 if critical else base_damage
+
 			print(f'{player.name} attacks for {damage_dealt}!\n\n')
 			time.sleep(2)
 
