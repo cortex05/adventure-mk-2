@@ -290,34 +290,46 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
     # when you unlock something from a battle, you need to handle the location's first unlock here
     if unlock_dict['value'] is 'CASTLE_KEY':
         print('The Goblin was the guard to the castle gate!\n')
+        time.sleep(1)
         print('The goblin dropped a key to the drawbridge!\n')
         player.inventory["key_items"].append(castle_key)
         unlocked_values.append('KEY_SHED')
         unlocked_values.append('CASTLE_KEY')
+        time.sleep(1)
         # print(f'PLayer key items: {player.inventory['key_items'][0].name}')
     if unlock_dict['value'] is 'STAIR_KEY':
         print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you see a pedestal. And on it sits a golden, bejeweled key.\n')
+        time.sleep(1)
         print('This must be for getting upstairs!\n')
         player.inventory["key_items"].append(stairs_key)
         unlocked_values.append('STAIR_KEY')
         unlocked_values.append('SECOND_STAIR_KEY')
+        time.sleep(1)
     if unlock_dict['value'] is 'NEW_WEAPON':
         old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_new_weapon(player)
         print('You see a chest before you.')
+        time.sleep(1)
         print(f'You open it and see a {new_weapon}!')
+        time.sleep(1)
         print(f'You ditch your {old_weapon} and equip the {new_weapon}')
+        time.sleep(1)
         print('Now you\'re ready for the big games')
         unlocked_values.append('NEW_WEAPON')
+        time.sleep(1)
     if unlock_dict['value'] is 'MASTER_WEAPON':
         old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_master_weapon(player)
         print('The blinding light is coming from a statue.')
+        time.sleep(1)
         print(f'You see in its outstretched hands is a {new_weapon}!')
+        time.sleep(1)
         print(f'You ditch your {old_weapon} and equip the {new_weapon}')
         unlocked_values.append('MASTER_WEAPON')
+        time.sleep(1)
     if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
         print('The Duke was guarding Steel Leg armor!\n')
+        time.sleep(1)
         print('You put it on and are ready for bigger baddies!\n')
         # NEW ARMOR LOGIC HERE
         player.gear['armor']['legs'] = leg_armor
@@ -325,8 +337,10 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
+        time.sleep(1)
     if unlock_dict['value'] is 'LEVEL_TWO_HELMET_ARMOR':
         print('The Sorcerer was guarding Steel Helmet armor!\n')
+        time.sleep(1)
         print('You dump your cheap helmet and put on the Steel one.\n')
         # NEW ARMOR LOGIC HERE
         player.gear['armor']['head'] = helmet_armor
@@ -334,10 +348,14 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
+        time.sleep(1)
     if unlock_dict['value'] is 'LEVEL_TWO_CHEST_ARMOR':
         print('What luck?\n')
+        time.sleep(1)
         print('You see an ornate Tempered Chestplate on a pedaestal before you.\n')
+        time.sleep(1)
         print('No guards, no Whargs and no Sorcerers.')
+        time.sleep(1)
         print('You dump your leather chestplate and strap on the tempered one.\n')
         # NEW ARMOR LOGIC HERE
         player.gear['armor']['chest'] = chest_armor
@@ -345,6 +363,7 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_CHEST_ARMOR')
+        time.sleep(1)
 
 
 
