@@ -308,23 +308,23 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
     if unlock_dict['value'] is 'NEW_WEAPON':
         old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_new_weapon(player)
-        print('You see a chest before you.')
+        print('You see a chest before you.\n')
         time.sleep(1)
-        print(f'You open it and see a {new_weapon}!')
+        print(f'You open it and see a {new_weapon}!\n')
         time.sleep(1)
-        print(f'You ditch your {old_weapon} and equip the {new_weapon}')
+        print(f'You ditch your {old_weapon} and equip the {new_weapon}\n')
         time.sleep(1)
-        print('Now you\'re ready for the big games')
+        print('Now you\'re ready for the big games\n')
         unlocked_values.append('NEW_WEAPON')
         time.sleep(1)
     if unlock_dict['value'] is 'MASTER_WEAPON':
         old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_master_weapon(player)
-        print('The blinding light is coming from a statue.')
+        print('The blinding light is coming from a statue.\n')
         time.sleep(1)
-        print(f'You see in its outstretched hands is a {new_weapon}!')
+        print(f'You see in its outstretched hands is a {new_weapon}!\n')
         time.sleep(1)
-        print(f'You ditch your {old_weapon} and equip the {new_weapon}')
+        print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
         unlocked_values.append('MASTER_WEAPON')
         time.sleep(1)
     if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
@@ -354,7 +354,7 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         time.sleep(1)
         print('You see an ornate Tempered Chestplate on a pedaestal before you.\n')
         time.sleep(1)
-        print('No guards, no Whargs and no Sorcerers.')
+        print('No guards, no Whargs and no Sorcerers.\n')
         time.sleep(1)
         print('You dump your leather chestplate and strap on the tempered one.\n')
         # NEW ARMOR LOGIC HERE
