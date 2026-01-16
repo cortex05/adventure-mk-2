@@ -7,7 +7,7 @@ class GiantWharg(Enemy):
     enemy_health = 300
     max_enemy_health = 300
     enemy_attack_damage = 60
-    attack_variable = 20
+    attack_variable = 10
     special_attack = "Bites"
     base_experience_yield = 15
     exp_range = 1

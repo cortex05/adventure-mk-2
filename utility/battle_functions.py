@@ -47,7 +47,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
     defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
     enemy_damage = enemy.enemy_attack_damage - defense_drain + random.randint(1, enemy.attack_variable)
     if enemy_damage <= 0:
-        enemy_damage = 0
+        enemy_damage = random.randint(1, enemy.attack_variable)
     while True:
         os.system('cls')
         print(f'What will {player.name} do?\n')

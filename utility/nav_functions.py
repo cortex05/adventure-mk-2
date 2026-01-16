@@ -25,7 +25,7 @@ def navigation_options(target: int, actual_options: list, moving_coords: list):
         elif target == 4:
             # East
             moving_coords[1] = moving_coords[1] + 1
-        return target
+        return target, True
     else:
         input(f"Please pick a valid option. {press_any_to_continue}")
 
@@ -181,7 +181,10 @@ def use_item_nav(player: Player):
 
 def show_stats(player: Player):
     # stats
-    print(f'Your stats:\nHealth: {player.health}\nAttack: {player.strength}\nDefense: {player.defense}\nAgility: {player.agility}\n')
+    print(f'Your stats:\nHealth: {player.health}/{player.base_health}\nAttack: {player.strength}\nDefense: {player.defense}\nAgility: {player.agility}\n')
+
+    # Level
+    print(f'Level: {player.level}\n')
 
     # Defense
     armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
@@ -203,11 +206,12 @@ def show_stats(player: Player):
     legs = player.gear["armor"]["legs"]
     print(f'\nYour Armor:\n')
     
-    print(f'Head: {head.name}\nDefense bonus: {head.defense_bonus}\n')
-    print('--------------------\n')
-    print(f'Chest: {chest.name}\nDefense bonus: {chest.defense_bonus}\n')
-    print('--------------------\n')
+    print(f'Head: {head.name}\nDefense bonus: {head.defense_bonus}')
+    print('--------------------')
+    print(f'Chest: {chest.name}\nDefense bonus: {chest.defense_bonus}')
+    print('--------------------')
     print(f'Chest: {legs.name}\nDefense bonus: {legs.defense_bonus}\n')
 
     input(press_any_to_continue)
+    os.system('cls')
     return

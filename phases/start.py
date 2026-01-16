@@ -88,7 +88,7 @@ def setPlayerName():
 
 def introScroll(name: str, player: Player):
     introScrollText = [
-        f'Hello {name}. this is the intro scroll.',
+        f'Hello {name}. This is the intro scroll.',
         'You are starting on an adventure.',
         'You have to fight through a swamp, cross a moat and enter a castle.',
         'After that, you must find the princess somewhere in the castle.',

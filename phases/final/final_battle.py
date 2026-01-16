@@ -24,14 +24,19 @@ def final_battle(player: Player):
 
 	battle = True
 	dragon = Dragon.Dragon()
+	armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
+
+	
 	while battle:
 		# Have options for different descriptions based on health.
 		print('The dragon stands before you.\n')
 		print('What will you do?\n\n')
-
-		enemy_damage = dragon.enemy_attack_damage
+		agility = random.randint(player.agility_bonus - 1, player.agility_bonus)
+		defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
+		
+		enemy_damage = dragon.enemy_attack_damage - defense_drain + random.randint(1, dragon.attack_variable)
 		if enemy_damage <= 0:
-			enemy_damage = 0
+			enemy_damage = random.randint(1, dragon.attack_variable)
 		try:
 			selection = int(input(
                 '''1 - Attack!\n2 - Check stats\n3 - Item\n4 - Quit\n'''))
@@ -50,8 +55,7 @@ def final_battle(player: Player):
 
 			if dragon.enemy_health - damage_dealt > 0:
 				dragon.enemy_health = dragon.enemy_health - damage_dealt
-				print(
-                    f'The {dragon.name} stands strong!\n\n The {dragon.name} attacks for {enemy_damage} damage!\n\n')
+				print(f'The {dragon.name} stands strong!\n\n The {dragon.name} attacks for {enemy_damage} damage!\n\n')
 				time.sleep(2)
 
 				if player.health - enemy_damage > 0:
