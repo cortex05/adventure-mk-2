@@ -49,54 +49,56 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 			time.sleep(2)
 			return 'DRAGON'
 		
-		# Special case for the button unlock?
-		if location['unlock_value'] != None:
-			handle_unlock(location['unlock_value'], player, unlocked_values)
+		break_loop = False
+		while break_loop is False:
+		
+			# Special case for the button unlock?
+			if location['unlock_value'] != None:
+				handle_unlock(location['unlock_value'], player, unlocked_values)
 
-		# function to unlock values
-		if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
-			print(location['alt_description'])
-			unlocked_values.append(location['first_unlock'])
-			print(f'Unlocked values: {unlocked_values}')
-		else:
-			# HANDLE WARNING CHECK HERE
-			if 'warning_trigger' in location and location['warning_trigger'] is True:
-				dragon_warning(player)
-			print(location['description'])
+			# function to unlock values
+			if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
+				print(location['alt_description'])
+				unlocked_values.append(location['first_unlock'])
+				print(f'Unlocked values: {unlocked_values}')
+			else:
+				# HANDLE WARNING CHECK HERE
+				if 'warning_trigger' in location and location['warning_trigger'] is True:
+					dragon_warning(player)
+				print(location['description'])
 
+			# Get the options to display
+			text_options = ''
+			choice_options = []
+			for option in location["options"]:
+				text_options = text_options + nav_options.nav_options[option]
+				choice_options.append(option)
 
-		# Get the options to display
-		text_options = ''
-		choice_options = []
-		for option in location["options"]:
-			text_options = text_options + nav_options.nav_options[option]
-			choice_options.append(option)
+			items_option = '5 - Check items\n'
+			stats_option = '6 - Check stats\n\n'
+			text_options = text_options + items_option + stats_option + compass_display(choice_options)
+			# print(f'Options: {choice_options}')
+			choice = input(text_options)
 
-		items_option = '5 - Check items\n'
-		stats_option = '6 - Check stats\n\n'
-		text_options = text_options + items_option + stats_option + compass_display(choice_options)
-		# print(f'Options: {choice_options}')
-		choice = input(text_options)
-
-		if choice:
-			if int(choice):
-				int_choice = int(choice)
-				if int_choice == 5:
-					use_item_nav(player)
+			if choice:
+				if int(choice):
+					int_choice = int(choice)
+					if int_choice == 5:
+						use_item_nav(player)
+						continue
+					if int_choice == 6:
+						os.system('cls')
+						show_stats(player)
+						continue
+					elif int_choice in choice_options:
+						pass
+				else:
+					print('Enter a valid option')
 					continue
-				if int_choice == 6:
-					os.system('cls')
-					show_stats(player)
-					continue
-				elif int_choice in choice_options:
-					pass
+
 			else:
 				print('Enter a valid option')
+				# Need validation for bad input to NOT do random encounter again.
 				continue
 
-		else:
-			print('Enter a valid option')
-			# Need validation for bad input to NOT do random encounter again.
-			continue
-
-		last_command = navigation_options(int_choice, choice_options, location_coords)
+			last_command, break_loop = navigation_options(int_choice, choice_options, location_coords)

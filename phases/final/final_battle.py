@@ -1,5 +1,5 @@
 import os
-from random import random
+import random
 import time
 from characters.Player import Player
 from characters.enemy_options import Dragon
@@ -60,9 +60,9 @@ def final_battle(player: Player):
 
 				if player.health - enemy_damage > 0:
 					player.health = player.health - enemy_damage
-					input('You stand strong \n')
+					print('You stand strong \n')
 					input(press_any_to_continue)
-					time.sleep(2)
+					# time.sleep(2)
 					os.system('cls')
 				else:
 					print('You are defeated!')

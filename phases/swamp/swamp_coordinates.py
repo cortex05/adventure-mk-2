@@ -36,7 +36,7 @@ swamp_grid = [
             'options': [2],
             'unlock_value': None,
             'dispenser': {
-              'item_type': 'potions'
+              'item_type': 'potions' 
             }
         }
     ],

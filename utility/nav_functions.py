@@ -74,7 +74,7 @@ def dragon_warning(player: Player):
     print('You check your armor.\n')
     time.sleep(2)
     if len(good_armor) == 0:
-        print('You are only wearing the most basic armor.')
+        print('You are only wearing the most basic armor.\n')
         print('Do you really want to take on a Dragon like this?\n')
         time.sleep(2)
     elif len(good_armor) == 3:

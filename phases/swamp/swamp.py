@@ -54,13 +54,12 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 					reverse_step(last_command, location_coords)
 					continue
 	
-		break_loop = False
-
-		while break_loop is False:
-			# Special case for the button unlock?
+		# Special case for the button unlock?
 			if location['unlock_value'] != None:
 				handle_unlock(location['unlock_value'], player, unlocked_values)
-
+		
+		break_loop = False
+		while break_loop is False:
 			# function to unlock values
 			if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
 				for item in location['alt_description']:

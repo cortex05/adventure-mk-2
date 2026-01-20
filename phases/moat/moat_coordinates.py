@@ -86,13 +86,14 @@ moat_grid = [
         'description': [
           'Aaaaand it\'s a dead end.\n',
           'You can only go East over the broken structure to the bridge.\n',
-          'What will you do?\n'
+          'What will you do?\n' 
           ],
-        'random_battle': True,
-        'battle_chance': 1,
-        'enemy_options': [2],
+        'random_battle': False,
         'options': [3],
-        'unlock_value': None
+        'unlock_value': None,
+        'dispenser': {
+            'item_type': 'potions_two' 
+        }
     },{
         'description': [
           'The shed is one trek to the West away.\n',
