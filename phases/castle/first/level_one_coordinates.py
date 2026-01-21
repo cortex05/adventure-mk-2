@@ -15,7 +15,7 @@ level_one_grid = [
             },
             'alt_pathway': {
                 'alt_description': '',
-                'description': 'You already picked up the stair key. Go find some a stairway up.\n',
+                'description': ['You already picked up the stair key. Go find some a stairway up.\n'],
                 'random_battle': False,
                 'options': [3],
                 'first_unlock': 'STAIR_KEY',
@@ -64,7 +64,7 @@ level_one_grid = [
             },
             'alt_pathway': {
                 'alt_description': '',
-                'description': 'You already picked up your master weapon. And there\'s no way to turn off the light.\nGo find a way upstairs.\n',
+                'description': ['You already picked up your master weapon. And there\'s no way to turn off the light.\nGo find a way upstairs.\n'],
                 'random_battle': False,
                 'options': [3],
                 'first_unlock': 'MASTER_WEAPON',

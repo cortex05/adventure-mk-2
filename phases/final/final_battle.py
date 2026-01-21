@@ -31,7 +31,7 @@ def final_battle(player: Player):
 		# Have options for different descriptions based on health.
 		print('The dragon stands before you.\n')
 		print('What will you do?\n\n')
-		agility = random.randint(player.agility_bonus - 1, player.agility_bonus)
+		agility = random.randint(1, player.agility_bonus)
 		defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
 		
 		enemy_damage = dragon.enemy_attack_damage - defense_drain + random.randint(1, dragon.attack_variable)
@@ -58,16 +58,20 @@ def final_battle(player: Player):
 				print(f'The {dragon.name} stands strong!\n\n The {dragon.name} attacks for {enemy_damage} damage!\n\n')
 				time.sleep(2)
 
-				if player.health - enemy_damage > 0:
-					player.health = player.health - enemy_damage
-					print('You stand strong \n')
-					input(press_any_to_continue)
-					# time.sleep(2)
-					os.system('cls')
-				else:
-					print('You are defeated!')
+				if random.randint(1, 100) <= player.agility:
+					print('You dodged the attack!\n')
 					time.sleep(2)
-					return False
+				else:
+					if player.health - enemy_damage > 0:
+						player.health = player.health - enemy_damage
+						print('You stand strong \n')
+						input(press_any_to_continue)
+						# time.sleep(2)
+						os.system('cls')
+					else:
+						print('You are defeated!')
+						time.sleep(2)
+						return False
 			else:
 				os.system('cls')
 				print(f'The Dragon is defeated!\n')

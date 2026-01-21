@@ -42,8 +42,8 @@ def random_enemy(options: List[int]):
 
 
 def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
-    buff_effect = {}
-    agility = random.randint(player.agility_bonus - 1, player.agility_bonus)
+    buff_effect = {} 
+    agility = random.randint(1, player.agility_bonus)
     defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
     
     while True:

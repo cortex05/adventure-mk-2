@@ -78,7 +78,7 @@ def dragon_warning(player: Player):
         print('Do you really want to take on a Dragon like this?\n')
         time.sleep(2)
     elif len(good_armor) == 3:
-        print('You have the best armor you can get.')
+        print('You have the best armor you can get.\n')
         maxed_out += 1
         time.sleep(2)
     else:
