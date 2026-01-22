@@ -19,6 +19,7 @@ class Swordsman(Player):
     defense = 25
     agility = 20
     agility_bonus = 2
+    attack_variable = 7
 
     def __init__(self, name):
         self.name = name

@@ -11,3 +11,5 @@ class Duke(Enemy):
     special_attack = "Tortures"
     base_experience_yield = 30
     exp_range = 5
+    dodge_chance = 8
+    keen = 15

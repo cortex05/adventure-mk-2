@@ -11,3 +11,5 @@ class GiantWharg(Enemy):
     special_attack = "Bites"
     base_experience_yield = 15
     exp_range = 1
+    dodge_chance = 10
+    keen = 10

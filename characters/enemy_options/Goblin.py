@@ -11,3 +11,5 @@ class Goblin(Enemy):
     special_attack = "Slices"
     base_experience_yield = 10
     exp_range = 5
+    dodge_chance = 10
+    keen = 5

@@ -11,3 +11,5 @@ class Guard(Enemy):
     special_attack = "Lunges"
     base_experience_yield = 40
     exp_range = 3
+    dodge_chance = 8
+    keen = 5

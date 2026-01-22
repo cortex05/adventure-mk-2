@@ -11,3 +11,5 @@ class Dragon(Enemy):
     special_attack = "Scorches"
     base_experience_yield = 50
     exp_range = 10
+    dodge_chance = 20
+    keen = 10

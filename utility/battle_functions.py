@@ -62,45 +62,55 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             continue
 
         if selection == 1:
-            base_damage = player.strength + player.gear['weapons']['main']['attack_boost']
+            base_damage = player.strength + player.gear['weapons']['main']['attack_boost'] + random.randint(1, player.attack_variable)
             critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
             player_damage  = base_damage * 2 if critical else base_damage
 
             os.system('cls')
             print(f'{player.name} attacks for {player_damage}!\n')
-            if critical == True:
-                time.sleep(1)
-                print("Critical hit!\n")
-            time.sleep(2)
-            if enemy.enemy_health - player_damage > 0:
-                enemy.enemy_health = enemy.enemy_health - player_damage
+            time.sleep(1)
 
-                input(
-                    f'The {enemy.name} stands strong!\n{press_any_to_continue}')
+            if random.randint(1, enemy.dodge_chance - player.agility_bonus) <= 1:
+                print(f'{enemy.name} dodged the attack!\n')
+                input(press_any_to_continue)
                 os.system('cls')
-                print(f'Agility random roll: {agility}\n')
-                print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
-                time.sleep(2)
-                
-                if random.randint(1, 100) <= player.agility:
-                    print('You dodged the attack!\n')
-                    time.sleep(2)
-                else:
-                    if player.health - enemy_damage > 0:
-                        player.health = player.health - enemy_damage
-                        print('You stand strong \n')
-                        input(press_any_to_continue)
-                        os.system('cls')
-                    else:
-                        print('You are defeated!')
-                        return 'LOSE', player
-
             else:
-                os.system('cls')
-                print(f'The {enemy.name} is defeated!\n')
-                # print(f'Coordinates: {swamp_coordinates.grid[0][1]}')
+                if critical == True:
+                    print("Critical hit!\n")
+                    input(press_any_to_continue)
+                    os.system('cls')
+                
+                if enemy.enemy_health - player_damage > 0:
+                    enemy.enemy_health = enemy.enemy_health - player_damage
+                    # time.sleep(1)
+                    input(
+                        f'The {enemy.name} stands strong!\n{press_any_to_continue}')
+            
+                    os.system('cls')
+                else:
+                    os.system('cls')
+                    print(f'The {enemy.name} is defeated!\n')
+                    input(press_any_to_continue)
+                    os.system('cls')
 
-                return "WIN", player
+                    return "WIN", player
+            print(f'Agility random roll: {agility}\n')
+            print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
+            time.sleep(1)
+            
+            if random.randint(1, 100) <= player.agility - enemy.keen:
+                print('You dodged the attack!\n')
+                input(press_any_to_continue)
+                os.system('cls')
+            else:
+                if player.health - enemy_damage > 0:
+                    player.health = player.health - enemy_damage
+                    print('You stand strong \n')
+                    input(press_any_to_continue)
+                    os.system('cls')
+                else:
+                    print('You are defeated!')
+                    return 'LOSE', player
         elif selection == 2:
             os.system('cls')
             print('Here are the stats:\n\n')
@@ -158,6 +168,8 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                     print(f'You have {len(player.inventory["consumables"][target_key])} {target_key} left\n')
                 
                 time.sleep(2)
+                input(press_any_to_continue)
+                os.system('cls')
                 print(
                     f'The {enemy.name} attacks for {enemy_damage} damage!\n\n')
 
