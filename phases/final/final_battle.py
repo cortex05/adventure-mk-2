@@ -29,6 +29,7 @@ def final_battle(player: Player):
 	
 	while battle:
 		# Have options for different descriptions based on health.
+		os.system('cls')
 		print('The dragon stands before you.\n')
 		print('What will you do?\n\n')
 		agility = random.randint(1, player.agility_bonus)
@@ -46,37 +47,53 @@ def final_battle(player: Player):
 			continue
 		
 		if selection == 1:
-			base_damage = player.strength + player.gear['weapons']['main']['attack_boost']
+			base_damage = player.strength + player.gear['weapons']['main']['attack_boost'] + random.randint(1, player.attack_variable)
 			critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
 			damage_dealt  = base_damage * 2 if critical else base_damage
 
+			os.system('cls')
 			print(f'{player.name} attacks for {damage_dealt}!\n\n')
-			time.sleep(2)
+			time.sleep(1)
 
-			if dragon.enemy_health - damage_dealt > 0:
-				dragon.enemy_health = dragon.enemy_health - damage_dealt
-				print(f'The {dragon.name} stands strong!\n\n The {dragon.name} attacks for {enemy_damage} damage!\n\n')
-				time.sleep(2)
-
-				if random.randint(1, 100) <= player.agility:
-					print('You dodged the attack!\n')
-					time.sleep(2)
-				else:
-					if player.health - enemy_damage > 0:
-						player.health = player.health - enemy_damage
-						print('You stand strong \n')
-						input(press_any_to_continue)
-						# time.sleep(2)
-						os.system('cls')
-					else:
-						print('You are defeated!')
-						time.sleep(2)
-						return False
-			else:
+			if random.randint(1, dragon.dodge_chance - player.agility_bonus) <= 1:
+				print(f'{dragon.name} dodged the attack!\n')
+				input(press_any_to_continue)
 				os.system('cls')
-				print(f'The Dragon is defeated!\n')
-				time.sleep(2)
-				return True
+			else:
+				if critical == True:
+					print("Critical hit!\n")
+					input(press_any_to_continue)
+					os.system('cls')
+				
+				if dragon.enemy_health - damage_dealt > 0:
+					dragon.enemy_health = dragon.enemy_health - damage_dealt
+					print(f'The {dragon.name} stands strong!\n\n')
+					time.sleep(1)
+					os.system('cls')
+				else:
+					os.system('cls')
+					print(f'The Dragon is defeated!\n')
+					time.sleep(2)
+					return True
+			# base level
+			print(f'The {dragon.name} attacks for {enemy_damage} damage!\n\n')
+			time.sleep(1)
+
+			if random.randint(1, 100) <= player.agility - dragon.keen:
+				print('You dodged the attack!\n')
+				input(press_any_to_continue)
+				os.system('cls')
+			else:
+				if player.health - enemy_damage > 0:
+					player.health = player.health - enemy_damage
+					print('You stand strong \n')
+					input(press_any_to_continue)
+					# time.sleep(2)
+					os.system('cls')
+				else:
+					print('You are defeated!')
+					time.sleep(1)
+					return False
 		elif selection == 2:
 			os.system('cls')
 			print('Here are the stats:\n\n')

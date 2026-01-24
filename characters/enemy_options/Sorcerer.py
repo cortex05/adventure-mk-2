@@ -6,10 +6,10 @@ class Sorcerer(Enemy):
     name_tense = "A Sorcerer"
     enemy_health = 300
     max_enemy_health = 300
-    enemy_attack_damage = 85
+    enemy_attack_damage = 70
     attack_variable = 25
     special_attack = "Curses"
     base_experience_yield = 40
     exp_range = 5
-    dodge_chance = 4
+    dodge_chance = 3
     keen = 20

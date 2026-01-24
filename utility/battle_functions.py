@@ -70,7 +70,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             print(f'{player.name} attacks for {player_damage}!\n')
             time.sleep(1)
 
-            if random.randint(1, enemy.dodge_chance - player.agility_bonus) <= 1:
+            if random.randint(1, enemy.dodge_chance + player.agility_bonus) <= 1:
                 print(f'{enemy.name} dodged the attack!\n')
                 input(press_any_to_continue)
                 os.system('cls')
@@ -130,7 +130,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             print('Here are your items:\n\n')
             key_list = list(player.inventory['consumables'].keys())
             for index, (key, value) in enumerate(player.inventory['consumables'].items()):
-                print(f'{index + 1}. {key}: {len(value)}')
+                print(f'{index + 1}. {key.capitalize()}: {len(value)}')
             print(f'{len(key_list) + 1}. Nothing')
 
             print('What will you do?')
@@ -352,7 +352,7 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
         time.sleep(1)
     if unlock_dict['value'] is 'LEVEL_TWO_HELMET_ARMOR':
-        print('The Sorcerer was guarding Steel Helmet armor!\n')
+        print('The Guard was guarding Steel Helmet armor!\n')
         time.sleep(1)
         print('You dump your cheap helmet and put on the Steel one.\n')
         # NEW ARMOR LOGIC HERE
