@@ -121,22 +121,27 @@ def dragon_warning(player: Player):
     
 def use_item_nav(player: Player):
     os.system('cls')
-    print('Here are your items:\n')
-    
-    key_list = list(player.inventory['consumables'].keys())
-    for index, (key, value) in enumerate(player.inventory['consumables'].items()):
-        print(f'{index + 1}. {key.capitalize()} - {len(value)}')
-
-    print(f'{len(key_list) + 1}. Nothing\n')
-    print('Select an item to inspect or \"Nothing\" to go back.')
     item_choice = None
 
     while True:
+        os.system('cls')
+        print('Here are your items:\n')
+        key_list = list(player.inventory['consumables'].keys())
+        for index, (key, value) in enumerate(player.inventory['consumables'].items()):
+            print(f'{index + 1}. {key.capitalize()}: {len(value)}')
+        print(f'{len(key_list) + 1}. Nothing')
+
         try:
-            item_choice = int(input("Enter an integer: "))
+            item_choice = int(input("\nEnter an integer: "))
+            if item_choice > len(key_list) + 1:
+                print("Please enter a valid choice.")
+                time.sleep(2)
+                continue
             break
         except ValueError:
-            print("Please enter a valid integer.")
+            print("Please enter an integer.")
+            time.sleep(2)
+            continue
 							
     if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
         print('Use item')
@@ -169,8 +174,6 @@ def use_item_nav(player: Player):
         return
 
     elif item_choice == len(key_list) + 1:
-        print('No item')
-        input(press_any_to_continue)
         os.system('cls')
         return
     else:

@@ -127,21 +127,27 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             return "RETREAT", player
         elif selection == 4:
             os.system('cls')
-            print('Here are your items:\n\n')
-            key_list = list(player.inventory['consumables'].keys())
-            for index, (key, value) in enumerate(player.inventory['consumables'].items()):
-                print(f'{index + 1}. {key.capitalize()}: {len(value)}')
-            print(f'{len(key_list) + 1}. Nothing')
-
-            print('What will you do?')
             item_choice = None
             
             while True:
+                os.system('cls')
+                print('Here are your items:\n')
+                key_list = list(player.inventory['consumables'].keys())
+                for index, (key, value) in enumerate(player.inventory['consumables'].items()):
+                    print(f'{index + 1}. {key.capitalize()}: {len(value)}')
+                print(f'{len(key_list) + 1}. Nothing')
+
                 try:
-                    item_choice = int(input("Enter an integer: "))
+                    item_choice = int(input("\nEnter an integer: "))
+                    if item_choice > len(key_list) + 1:
+                        print("Please enter a valid choice.")
+                        time.sleep(2)
+                        continue
                     break
                 except ValueError:
-                    print("Please enter a valid integer.")
+                    print("Please enter an integer.")
+                    time.sleep(2)
+                    continue
 
             if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
                 print('Use item')
@@ -186,8 +192,6 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 os.system('cls')
                 continue
             elif item_choice == len(key_list) + 1:
-                print('No item')
-                input(press_any_to_continue)
                 os.system('cls')
                 continue
             else:
