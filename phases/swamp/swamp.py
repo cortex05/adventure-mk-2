@@ -12,17 +12,16 @@ from utility.nav_functions import compass_display, navigation_options, reverse_s
 def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list[int], is_running: bool) -> bool:
 	last_command = None
 
-	# A loop to read a coordinate's description, options for movement
 	while is_running:
 		os.system('cls')
 		# print(f'Last command: {last_command}')
 		# print(f'Moving coords: {location_coords}')
 
-		# Step 1 get the location with the moving coordinates
+		# 1 get the location with the moving coordinates
 		holder = swamp_coordinates.swamp_grid[location_coords[0]][location_coords[1]]
 
+		# 2. Check for alt pathways / dispensers
 		if 'alt_pathway' in holder and holder['alt_pathway']:
-			# condition check for if text has gone?
 			if check_key_items_unlock(player.inventory["key_items"], holder['block_value']) is True:
 				location = holder['alt_pathway']
 			elif check_key_items_unlock(unlocked_values, holder['block_value']) is True:
@@ -35,14 +34,14 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 		else:
 			location = holder
 
-		# 2. Check if location is victory location
+		# 3. Check if location is victory location
 		if 'unlock_value' in location and location['unlock_value'] == 'VICTORY':
 			reverse_step(last_command, location_coords)
 			print('You\'re out of the Swamp! Now about this large moat...\n')
 			time.sleep(2)
 			return True
 
-		# 3. Handle random battle
+		# 4. Handle random battle
 		if location['random_battle']:
 			fight_roll = random.randint(1, location['battle_chance'])
 			if fight_roll == location['battle_chance']:
@@ -58,23 +57,21 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 			if location['unlock_value'] != None:
 				handle_unlock(location['unlock_value'], player, unlocked_values)
 		
+		# 5 Selection loop
 		break_loop = False
 		while break_loop is False:
-			# function to unlock values
 			if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
 				for item in location['alt_description']:
 					print(item)
-					# time.sleep(1)
+					time.sleep(1)
 				unlocked_values.append(location['first_unlock'])
 				# print(f'Unlocked values: {unlocked_values}')
 			else:
 				for item in location['description']:
 					print(item)
-					# time.sleep(1)
-				# print('\n')
+					time.sleep(1)
 
-		 		# Get the options to display
-		
+		 	# Get the options to display
 			text_options = ''
 			choice_options = []
 			for option in location["options"]:
@@ -105,7 +102,6 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 
 			else:
 				print('Enter a valid option')
-				# Need validation for bad input to NOT do random encounter again.
 				continue
 
 			last_command, break_loop = navigation_options(int_choice, choice_options, location_coords)

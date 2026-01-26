@@ -16,7 +16,6 @@ from utility.texts import press_any_to_continue
 
 
 def random_enemy(options: List[int]):
-    # upper = len(options) - 1
     enemy_selector = random.choice(options)
     enemy = None
 
@@ -82,7 +81,7 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 
                 if enemy.enemy_health - player_damage > 0:
                     enemy.enemy_health = enemy.enemy_health - player_damage
-                    # time.sleep(1)
+                    time.sleep(1)
                     input(
                         f'The {enemy.name} stands strong!\n{press_any_to_continue}')
             
@@ -94,7 +93,6 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                     os.system('cls')
 
                     return "WIN", player
-            print(f'Agility random roll: {agility}\n')
             print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
             time.sleep(1)
             
@@ -154,10 +152,8 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 print('Use item')
                 target_key = key_list[item_choice - 1]
                 target = player.inventory['consumables'][target_key]
-                # Use a potion
-                # print(f'You picked {target.name}\n')
-
                 os.system('cls')
+
                 print(f'You picked {target[0].item_name}\n')
                 print(f'It {target[0].description}\n')
                 answer = get_yes_no(f'Do you want to use it?')
@@ -238,7 +234,6 @@ def battle_launch(player, enemies):
         os.system('cls')
         return 'WIN'
     elif result == 'RETREAT':
-        # if they retreat,
         print("in the retreat")
         return 'RETREAT'
     elif result == 'LOSE':
@@ -246,7 +241,6 @@ def battle_launch(player, enemies):
 
 
 def level_up(player: Player, exp_yield: int):
-    # exp_holder = player.to_next_level
     spillover = player.to_next_level - exp_yield
 
     if player.level == 15:
@@ -256,7 +250,7 @@ def level_up(player: Player, exp_yield: int):
     if spillover > 0:
         player.to_next_level = spillover
         player.total_experience += exp_yield
-        # input("Inside spillover less than, should end")
+
         return player
     else:
         print('You leveled up!\n')
@@ -269,10 +263,8 @@ def level_up(player: Player, exp_yield: int):
         player.to_next_level = player.base_level
 
         if spillover == 0:
-            # input("spillover 0 leveled up, should end")
             return player
         else:
-            # input("spillover < 0, firing again")
             return level_up(player, abs(spillover))
 
 def class_level_up(player: Player):
@@ -305,7 +297,6 @@ def class_level_up(player: Player):
     return player
 
 def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: List[str]):
-    # when you unlock something from a battle, you need to handle the location's first unlock here
     if unlock_dict['value'] is 'CASTLE_KEY':
         print('The Goblin was the guard to the castle gate!\n')
         time.sleep(1)
@@ -316,7 +307,6 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         time.sleep(1)
         print(press_any_to_continue)
         os.system('cls')
-        # print(f'PLayer key items: {player.inventory['key_items'][0].name}')
     if unlock_dict['value'] is 'STAIR_KEY':
         print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you look up and see a pedestal.\n')
         print(f'On it sits a golden, bejeweled key.\n')
@@ -356,11 +346,8 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print('The Duke was guarding Steel Leg armor!\n')
         time.sleep(1)
         print('You put it on and are ready for bigger baddies!\n')
-        # NEW ARMOR LOGIC HERE
+
         player.gear['armor']['legs'] = leg_armor
-        # print(f'Your leg armor is now {player.gear["armor"]["legs"].name}!')
-        # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
-        # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
         time.sleep(1)
         print(press_any_to_continue)
@@ -369,11 +356,8 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print('The Guard was guarding Steel Helmet armor!\n')
         time.sleep(1)
         print('You dump your cheap helmet and put on the Steel one.\n')
-        # NEW ARMOR LOGIC HERE
         player.gear['armor']['head'] = helmet_armor
-        # print(f'Your leg armor is now {player.gear["armor"]["legs"].name}!')
-        # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
-        # print('You can now head back to the bridge.\n')
+        
         unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
         time.sleep(1)
         print(press_any_to_continue)
@@ -386,11 +370,9 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print('No guards, no Whargs and no Sorcerers.\n')
         time.sleep(1)
         print('You dump your leather chestplate and strap on the tempered one.\n')
-        # NEW ARMOR LOGIC HERE
+
         player.gear['armor']['chest'] = chest_armor
-        # print(f'Your leg armor is now {player.gear["armor"]["legs"].name}!')
-        # print(f'Your defense is now {player.current_armor + player.gear["armor"]["legs"].defense_bonus}!')
-        # print('You can now head back to the bridge.\n')
+
         unlocked_values.append('LEVEL_TWO_CHEST_ARMOR')
         time.sleep(1)
         print(press_any_to_continue)
@@ -430,6 +412,3 @@ def use_item(player: Player, item: Consumable):
             player.health += item.heal_value
             print(f'You healed for {item.heal_value} health!\nYour health is now {player.health}')
         return
-
-        # player.health += item.heal_value
-        # print(f'You used a {item.name} and healed for {item.heal_value} health!')

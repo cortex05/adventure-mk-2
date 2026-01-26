@@ -28,7 +28,6 @@ def final_battle(player: Player):
 
 	
 	while battle:
-		# Have options for different descriptions based on health.
 		os.system('cls')
 		print('The dragon stands before you.\n')
 		print('What will you do?\n')
@@ -75,7 +74,6 @@ def final_battle(player: Player):
 					print(f'The Dragon is defeated!\n')
 					time.sleep(2)
 					return True
-			# base level
 			print(f'The {dragon.name} attacks for {enemy_damage} damage!\n\n')
 			time.sleep(1)
 
@@ -88,7 +86,6 @@ def final_battle(player: Player):
 					player.health = player.health - enemy_damage
 					print('You stand strong.\n')
 					input(press_any_to_continue)
-					# time.sleep(2)
 					os.system('cls')
 				else:
 					print('You are defeated!')
@@ -104,9 +101,6 @@ def final_battle(player: Player):
 			print(
                 f'          | You          | {dragon.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {dragon.enemy_health}/{dragon.max_enemy_health}')
             
-
-			# print(
-            #     f'You:              {dragon.name}\n\nHealth: {player.health}       {dragon.max_enemy_health}')
 			input(f"\n{press_any_to_continue}")
 			os.system('cls')
 		elif selection == 3:

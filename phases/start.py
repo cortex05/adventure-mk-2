@@ -67,10 +67,6 @@ def initialiationLoop(name: str) -> Player:
             os.system('cls')
         continue
 
-    # Should never reach here
-    return None
-
-
 def setPlayerName():
     os.system('cls')
     player_name = input('Please enter your name:\n')

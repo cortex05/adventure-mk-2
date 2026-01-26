@@ -1,4 +1,3 @@
-# swordsman
 import os
 from characters.Player import Player
 from items.health.potion import Potion

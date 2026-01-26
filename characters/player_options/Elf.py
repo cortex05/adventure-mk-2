@@ -1,4 +1,3 @@
-# ELF
 from characters.Player import Player
 import os
 

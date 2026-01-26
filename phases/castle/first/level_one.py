@@ -26,10 +26,11 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 		# print(f'Last command: {last_command}')
 		# print(f'Moving coords: {location_coords}')
 
+		# 1. tentative location
 		holder = level_one_coordinates.level_one_grid[location_coords[0]][location_coords[1]]
 
+		# 2. Check for alt pathways / dispensers
 		if 'alt_pathway' in holder and holder['alt_pathway']:
-			# condition check for if text has gone?
 			if check_key_items_unlock(player.inventory["key_items"], holder['block_value']) is True:
 				location = holder['alt_pathway']
 			elif check_key_items_unlock(unlocked_values, holder['block_value']) is True:
@@ -42,6 +43,7 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 		else:
 			location = holder
 
+		# 3. Unlock values
 		if 'unlock_value' in location and location['unlock_value'] == 'BACK_TO_BRIDGE':
 			reverse_step(last_command, location_coords)
 			print('You head back to the bridge\n')
@@ -66,7 +68,7 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 			last_command = None
 			continue
 		
-		# 3. Handle random battle
+		# 4. Handle random battle
 		if location['random_battle']:
 			fight_roll = random.randint(1, location['battle_chance'])
 			if fight_roll == location['battle_chance']:
@@ -78,17 +80,17 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 					reverse_step(last_command, location_coords)
 					continue
 
-		# Special case for the button unlock?
 			if location['unlock_value'] != None:
 				handle_unlock(location['unlock_value'], player, unlocked_values)
 		
+		# 5 Selection loop
 		break_loop = False
 		while break_loop is False:
 			# function to unlock values
 			if 'first_unlock' in location and location['first_unlock'] not in unlocked_values:
 				for item in location['alt_description']:
 					print(item)
-					# time.sleep(1)
+					time.sleep(1)
 				unlocked_values.append(location['first_unlock'])
 				# print(f'Unlocked values: {unlocked_values}')
 			else:
@@ -126,7 +128,6 @@ def castle_loop(player: Player,  is_running: bool, moat_unlocked_values: list[st
 
 			else:
 				print('Enter a valid option')
-				# Need validation for bad input to NOT do random encounter again.
 				continue
 
 			last_command, break_loop = navigation_options(int_choice, choice_options, location_coords)

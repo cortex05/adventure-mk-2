@@ -19,8 +19,10 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 		# print(f'Last command: {last_command}')
 		# print(f'Moving coords: {location_coords}')
 
+		# 1. tentative location
 		holder = level_two_coordinates.level_two_grid[location_coords[0]][location_coords[1]]
 
+		# 2. Check for alt pathways / dispensers
 		if 'alt_pathway' in holder and holder['alt_pathway']:
 			# condition check for if text has gone?
 			if check_key_items_unlock(player.inventory["key_items"], holder['block_value']) is True:
@@ -35,6 +37,7 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 		else:
 			location = holder
 
+		# 3. Unlock values
 		if 'unlock_value' in location and location['unlock_value'] == 'TO_WEST_STAIRS_ENTRANCE':
 			print('You head downstairs\n')
 			time.sleep(2)
@@ -49,10 +52,9 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 			time.sleep(2)
 			return 'DRAGON'
 		
+		# 4 Selection loop
 		break_loop = False
 		while break_loop is False:
-		
-			# Special case for the button unlock?
 			if location['unlock_value'] != None:
 				handle_unlock(location['unlock_value'], player, unlocked_values)
 
@@ -62,7 +64,6 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 				unlocked_values.append(location['first_unlock'])
 				print(f'Unlocked values: {unlocked_values}')
 			else:
-				# HANDLE WARNING CHECK HERE
 				if 'warning_trigger' in location and location['warning_trigger'] is True:
 					dragon_warning(player)
 				print(location['description'])
@@ -98,7 +99,6 @@ def level_two_loop(player: Player, unlocked_values: list[str], entrance_side: st
 
 			else:
 				print('Enter a valid option')
-				# Need validation for bad input to NOT do random encounter again.
 				continue
 
 			last_command, break_loop = navigation_options(int_choice, choice_options, location_coords)

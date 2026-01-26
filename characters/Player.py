@@ -1,7 +1,4 @@
-# THE HERO CLASS
-
 from items.armor.ArmorItem import ArmorItem
-
 
 class Player:
     total_experience = 0
@@ -10,13 +7,11 @@ class Player:
     level = 1
 
     health_potion_heal_amount = 30
-    health_potion_drop_chance = 50  # 50 Percent chance to drop a health potion
+    health_potion_drop_chance = 50
     current_armor = 16
-    # levelUpChance = 50 - Don't know about this...
     inventory = {
         "consumables": {
-            # "potions": [],
-            # "super_potions": []
+
         },
         "key_items": []
     }

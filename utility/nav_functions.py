@@ -150,15 +150,12 @@ def use_item_nav(player: Player):
         print('Use item')
         target_key = key_list[item_choice - 1]
         target = player.inventory['consumables'][target_key]
-		# Use a potion
-		# # print(f'You picked {target.name}\n')
 						
         os.system('cls')
         print(f'You picked {target[0].item_name}\n')
         print(f'It is {target[0].description}\n')
 						
         answer = get_yes_no(f'Health: {player.health}/{player.base_health}\nDo you want to use it?')
-        # print(f'Health: {player.health}/{player.max_health}\n')
         if answer == 'y':
             use_item(player, target[0])
             player.inventory['consumables'][target_key].pop()
