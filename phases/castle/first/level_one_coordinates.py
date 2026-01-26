@@ -162,7 +162,7 @@ level_one_grid = [
             'block_value': 'STAIR_KEY',
             'alt_pathway': {
                 'alt_description': [
-                  'You insert your jeweled key and step back\n',
+                  'You insert your jeweled key and step back.\n',
                   'The iron gate lowers, revealing the stairs to the next level!\n'
                 ],
                 'description': [
@@ -225,7 +225,7 @@ level_one_grid = [
             'block_value': 'SECOND_STAIR_KEY',
             'alt_pathway': {
                 'alt_description': [
-                  'You insert your jeweled key and step back\n',
+                  'You insert your jeweled key and step back.\n',
                   'The iron gate lowers, revealing the stairs to the next level!\n'
                   'What will you do?\n'
                   ],
@@ -339,7 +339,7 @@ level_one_grid = [
         {
             'description': [
               'You\'ve got your super potions filled up.\n',
-              'You can only head back through the Hallway onslaught\n'
+              'You can only head back through the Hallway onslaught.\n'
               ],
             'random_battle': False,
             'options': [0],

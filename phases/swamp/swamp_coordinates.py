@@ -67,8 +67,8 @@ swamp_grid = [
             'block_value': 'CASTLE_KEY',
             'alt_pathway': {
               'alt_description': [
-                'As you insert and twist your key into the slot, the earth rumbles\n',
-                'You step back as the bridge comes crashing down.\n',
+                'As you insert and twist your key into the slot, the earth rumbles.\n',
+                'You step back as the bridge comes crashing down!\n',
                 'You now have a way to cross the bridge!\n',
                 'What will you do?\n'],
               'description': ['You now have a way to cross the bridge! Where will you go?\n'],

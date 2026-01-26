@@ -31,7 +31,7 @@ def final_battle(player: Player):
 		# Have options for different descriptions based on health.
 		os.system('cls')
 		print('The dragon stands before you.\n')
-		print('What will you do?\n\n')
+		print('What will you do?\n')
 		agility = random.randint(1, player.agility_bonus)
 		defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
 		
@@ -80,13 +80,13 @@ def final_battle(player: Player):
 			time.sleep(1)
 
 			if random.randint(1, 100) <= player.agility - dragon.keen:
-				print('You dodged the attack!\n')
+				print('You dodged the attack!')
 				input(press_any_to_continue)
 				os.system('cls')
 			else:
 				if player.health - enemy_damage > 0:
 					player.health = player.health - enemy_damage
-					print('You stand strong \n')
+					print('You stand strong.\n')
 					input(press_any_to_continue)
 					# time.sleep(2)
 					os.system('cls')
@@ -107,7 +107,7 @@ def final_battle(player: Player):
 
 			# print(
             #     f'You:              {dragon.name}\n\nHealth: {player.health}       {dragon.max_enemy_health}')
-			input("\n\nClose?")
+			input(f"\n{press_any_to_continue}")
 			os.system('cls')
 		elif selection == 3:
 			os.system('cls')
@@ -117,7 +117,7 @@ def final_battle(player: Player):
 				print(f'{index + 1}. {key}: {len(value)}')
 			print(f'{len(key_list) + 1}. Nothing')
 
-			print('What will you do?')
+			print('What will you do?\n')
 			item_choice = None
 
 			while True:
@@ -156,7 +156,7 @@ def final_battle(player: Player):
 				
 				if player.health - enemy_damage > 0:
 					player.health = player.health - enemy_damage
-					print('You stand strong \n')
+					print('You stand strong.\n')
 					input(press_any_to_continue)
 					time.sleep(2)
 					os.system('cls')

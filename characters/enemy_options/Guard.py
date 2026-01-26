@@ -7,7 +7,7 @@ class Guard(Enemy):
     enemy_health = 400
     max_enemy_health = 400
     enemy_attack_damage = 85
-    attack_variable = 10
+    attack_variable = 15
     special_attack = "Lunges"
     base_experience_yield = 40
     exp_range = 3

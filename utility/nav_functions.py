@@ -69,6 +69,7 @@ def dragon_warning(player: Player):
     time.sleep(3)
     print('Are you ready for this?\n')
     time.sleep(1)
+    os.system('cls')
     
     # Armor check
     print('You check your armor.\n')
@@ -96,6 +97,7 @@ def dragon_warning(player: Player):
         time.sleep(1)
         print('Which is alright. But there\'s room for improvement.\n')
         time.sleep(2)
+    os.system('cls')
 
     # Weapon check
     print(f'You check your {player.gear["weapons"]["main"]["name"]}.\n')
@@ -106,6 +108,7 @@ def dragon_warning(player: Player):
         print('This weapon is as good as it gets!\n')
         maxed_out += 1
     time.sleep(2)
+    os.system('cls')
     
     # final message
     if maxed_out == 2:

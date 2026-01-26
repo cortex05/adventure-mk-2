@@ -106,8 +106,12 @@ level_two_grid = [
                 'display': False
             },
             'alt_pathway': {
-                'alt_description': '',
-                'description': 'The Chestplate pedestal is empty now. resting here.\nYou can head West towards a turn in the path.\nOr head North along the Eastern Hallway.',
+                'alt_description': [''],
+                'description': [
+                  'The Chestplate pedestal is empty now. resting here.\n',
+                  'You can head West towards a turn in the path.\n',
+                  'Or head North along the Eastern Hallway.'
+                ],
                 'random_battle': False,
                 'options': [0,1],
                 'first_unlock': 'LEVEL_TWO_CHEST_ARMOR',

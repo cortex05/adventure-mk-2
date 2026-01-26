@@ -99,13 +99,13 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
             time.sleep(1)
             
             if random.randint(1, 100) <= player.agility - enemy.keen:
-                print('You dodged the attack!\n')
+                print('You dodged the attack!')
                 input(press_any_to_continue)
                 os.system('cls')
             else:
                 if player.health - enemy_damage > 0:
                     player.health = player.health - enemy_damage
-                    print('You stand strong \n')
+                    print('You stand strong.\n')
                     input(press_any_to_continue)
                     os.system('cls')
                 else:
@@ -119,11 +119,12 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
 
             print(
                 f'          | You          | {enemy.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {enemy.enemy_health}/{enemy.max_enemy_health}')
-            input("\n\nClose?")
+            input(f"\n{press_any_to_continue}")
             os.system('cls')
         elif selection == 3:
             os.system('cls')
             print('You retreat!')
+            time.sleep(2)
             return "RETREAT", player
         elif selection == 4:
             os.system('cls')
@@ -177,11 +178,11 @@ def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
                 input(press_any_to_continue)
                 os.system('cls')
                 print(
-                    f'The {enemy.name} attacks for {enemy_damage} damage!\n\n')
+                    f'The {enemy.name} attacks for {enemy_damage} damage!\n')
 
                 if player.health - enemy_damage > 0:
                     player.health = player.health - enemy_damage
-                    print('You stand strong \n')
+                    print('You stand strong.\n')
                     input(press_any_to_continue)
                     time.sleep(2)
                     os.system('cls')
@@ -313,15 +314,20 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         unlocked_values.append('KEY_SHED')
         unlocked_values.append('CASTLE_KEY')
         time.sleep(1)
+        print(press_any_to_continue)
+        os.system('cls')
         # print(f'PLayer key items: {player.inventory['key_items'][0].name}')
     if unlock_dict['value'] is 'STAIR_KEY':
-        print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you see a pedestal. And on it sits a golden, bejeweled key.\n')
+        print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you look up and see a pedestal.\n')
+        print(f'On it sits a golden, bejeweled key.\n')
         time.sleep(1)
         print('This must be for getting upstairs!\n')
         player.inventory["key_items"].append(stairs_key)
         unlocked_values.append('STAIR_KEY')
         unlocked_values.append('SECOND_STAIR_KEY')
         time.sleep(1)
+        print(press_any_to_continue)
+        os.system('cls')
     if unlock_dict['value'] is 'NEW_WEAPON':
         old_weapon = player.gear['weapons']['main']['name']
         new_weapon = get_new_weapon(player)
@@ -329,9 +335,9 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         time.sleep(1)
         print(f'You open it and see a {new_weapon}!\n')
         time.sleep(1)
-        print(f'You ditch your {old_weapon} and equip the {new_weapon}\n')
+        print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
         time.sleep(1)
-        print('Now you\'re ready for the big games\n')
+        print('Now you\'re ready for the big games.\n')
         unlocked_values.append('NEW_WEAPON')
         time.sleep(1)
     if unlock_dict['value'] is 'MASTER_WEAPON':
@@ -344,6 +350,8 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
         unlocked_values.append('MASTER_WEAPON')
         time.sleep(1)
+        print(press_any_to_continue)
+        os.system('cls')
     if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
         print('The Duke was guarding Steel Leg armor!\n')
         time.sleep(1)
@@ -355,6 +363,8 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
         time.sleep(1)
+        print(press_any_to_continue)
+        os.system('cls')
     if unlock_dict['value'] is 'LEVEL_TWO_HELMET_ARMOR':
         print('The Guard was guarding Steel Helmet armor!\n')
         time.sleep(1)
@@ -366,6 +376,8 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
         time.sleep(1)
+        print(press_any_to_continue)
+        os.system('cls')
     if unlock_dict['value'] is 'LEVEL_TWO_CHEST_ARMOR':
         print('What luck?\n')
         time.sleep(1)
@@ -381,6 +393,8 @@ def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: Lis
         # print('You can now head back to the bridge.\n')
         unlocked_values.append('LEVEL_TWO_CHEST_ARMOR')
         time.sleep(1)
+        print(press_any_to_continue)
+        os.system('cls')
 
 
 
