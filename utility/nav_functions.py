@@ -192,6 +192,11 @@ def show_stats(player: Player):
     # Level
     print(f'Level: {player.level}\n')
 
+    #Weapon
+    print(f'Your Weapon:\n')
+    weapon = player.gear['weapons']['main']
+    print(f'-{weapon["name"]}\nAttack bonus: {weapon["attack_boost"]}\n')
+
     # Defense
     armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
     defense_drain = player.defense + armor_bonus + ((player.agility // 10) * player.agility)
