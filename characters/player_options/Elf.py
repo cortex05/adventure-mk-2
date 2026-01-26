@@ -19,7 +19,7 @@ class Elf(Player):
     defense = 18
     agility = 40
     agility_bonus = 3
-    attack_variable = 10
+    attack_variable = 8
 
     def __init__(self, name):
         self.name = name

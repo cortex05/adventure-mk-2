@@ -52,7 +52,7 @@ def final_battle(player: Player):
 			damage_dealt  = base_damage * 2 if critical else base_damage
 
 			os.system('cls')
-			print(f'{player.name} attacks for {damage_dealt}!\n\n')
+			print(f'{player.name} attacks for {damage_dealt}!\n')
 			time.sleep(1)
 
 			if random.randint(1, dragon.dodge_chance - player.agility_bonus) <= 1:
@@ -67,7 +67,7 @@ def final_battle(player: Player):
 				
 				if dragon.enemy_health - damage_dealt > 0:
 					dragon.enemy_health = dragon.enemy_health - damage_dealt
-					print(f'The {dragon.name} stands strong!\n\n')
+					print(f'The {dragon.name} stands strong!\n')
 					time.sleep(1)
 					os.system('cls')
 				else:
