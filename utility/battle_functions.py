@@ -226,7 +226,7 @@ def battle_launch(player, enemies):
         print(f'You gained {yielded_amount} experience points!')
 
         player = level_up(player, yielded_amount)
-        print(f'You need {player.to_next_level} more to level up\n')
+        print(f'You need {player.to_next_level} more to level up.\n')
 
         print(f'Your health is {player.health}/{player.base_health}')
 
