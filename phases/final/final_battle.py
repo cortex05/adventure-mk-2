@@ -39,7 +39,7 @@ def final_battle(player: Player):
 			enemy_damage = random.randint(1, dragon.attack_variable)
 		try:
 			selection = int(input(
-                '''1 - Attack!\n2 - Check stats\n3 - Item\n4 - Quit\n'''))
+				'''1 - Attack!\n2 - Check stats\n3 - Item\n4 - Quit\n'''))
 		except ValueError:
 			print("Please enter a number between 1 and 4.")
 			time.sleep(2)
@@ -99,8 +99,8 @@ def final_battle(player: Player):
 			empty_space = 12 - space_length
 			
 			print(
-                f'          | You          | {dragon.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {dragon.enemy_health}/{dragon.max_enemy_health}')
-            
+				f'          | You          | {dragon.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {dragon.enemy_health}/{dragon.max_enemy_health}')
+			
 			input(f"\n{press_any_to_continue}")
 			os.system('cls')
 		elif selection == 3:
@@ -146,7 +146,7 @@ def final_battle(player: Player):
 
 				time.sleep(2)
 				print(
-                    f'The Dragon attacks for {enemy_damage} damage!\n\n')
+					f'The Dragon attacks for {enemy_damage} damage!\n\n')
 				
 				if player.health - enemy_damage > 0:
 					player.health = player.health - enemy_damage

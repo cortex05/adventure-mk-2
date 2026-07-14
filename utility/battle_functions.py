@@ -16,399 +16,399 @@ from utility.texts import press_any_to_continue
 
 
 def random_enemy(options: List[int]):
-    enemy_selector = random.choice(options)
-    enemy = None
+	enemy_selector = random.choice(options)
+	enemy = None
 
-    if enemy_selector == 1:
-        enemy = Wharg.Wharg()
-    elif enemy_selector == 2:
-        enemy = Goblin.Goblin()
-    elif enemy_selector == 3:
-        enemy = Duke.Duke()
-    elif enemy_selector == 4:
-        enemy = Guard.Guard()
-    elif enemy_selector == 5:
-        enemy = Sorcerer.Sorcerer() 
-    elif enemy_selector == 6:
-        enemy = Warlock.Warlock()
-    elif enemy_selector == 7:
-        enemy = Dragon.Dragon()
-    #special cases
-    if enemy_selector == 11:
-        enemy = GiantWharg.GiantWharg()
+	if enemy_selector == 1:
+		enemy = Wharg.Wharg()
+	elif enemy_selector == 2:
+		enemy = Goblin.Goblin()
+	elif enemy_selector == 3:
+		enemy = Duke.Duke()
+	elif enemy_selector == 4:
+		enemy = Guard.Guard()
+	elif enemy_selector == 5:
+		enemy = Sorcerer.Sorcerer() 
+	elif enemy_selector == 6:
+		enemy = Warlock.Warlock()
+	elif enemy_selector == 7:
+		enemy = Dragon.Dragon()
+	#special cases
+	if enemy_selector == 11:
+		enemy = GiantWharg.GiantWharg()
 
-    return enemy
+	return enemy
 
 
 def battle_loop(player: Player, enemy: Enemy, armor_bonus: int):
-    buff_effect = {} 
-    agility = random.randint(1, player.agility_bonus)
-    defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
-    
-    while True:
-        os.system('cls')
-        enemy_damage = enemy.enemy_attack_damage - defense_drain + random.randint(1, enemy.attack_variable)
-        if enemy_damage <= 0:
-            enemy_damage = random.randint(1, enemy.attack_variable)
-        print(f'What will {player.name} do?\n')
-        # print(f'Coordinates: {swamp_coordinates.grid[0][0]}')
-        try:
-            selection = int(input(
-                '''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Item\n5 - Quit\n'''))
-        except ValueError:
-            print("Please enter a number between 1 and 5.")
-            time.sleep(2)
-            continue
+	buff_effect = {} 
+	agility = random.randint(1, player.agility_bonus)
+	defense_drain = player.defense + armor_bonus + ((player.agility // 10) * agility)
+	
+	while True:
+		os.system('cls')
+		enemy_damage = enemy.enemy_attack_damage - defense_drain + random.randint(1, enemy.attack_variable)
+		if enemy_damage <= 0:
+			enemy_damage = random.randint(1, enemy.attack_variable)
+		print(f'What will {player.name} do?\n')
+		# print(f'Coordinates: {swamp_coordinates.grid[0][0]}')
+		try:
+			selection = int(input(
+				'''1 - Attack!\n2 - Check stats\n3 - Go Back\n4 - Item\n5 - Quit\n'''))
+		except ValueError:
+			print("Please enter a number between 1 and 5.")
+			time.sleep(2)
+			continue
 
-        if selection == 1:
-            base_damage = player.strength + player.gear['weapons']['main']['attack_boost'] + random.randint(1, player.attack_variable)
-            critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
-            player_damage  = base_damage * 2 if critical else base_damage
+		if selection == 1:
+			base_damage = player.strength + player.gear['weapons']['main']['attack_boost'] + random.randint(1, player.attack_variable)
+			critical = True if random.randint(1, 100) <= player.agility + player.gear['weapons']['main']['critical_chance'] else False
+			player_damage  = base_damage * 2 if critical else base_damage
 
-            os.system('cls')
-            print(f'{player.name} attacks for {player_damage}!\n')
-            time.sleep(1)
+			os.system('cls')
+			print(f'{player.name} attacks for {player_damage}!\n')
+			time.sleep(1)
 
-            if random.randint(1, enemy.dodge_chance + player.agility_bonus) <= 1:
-                print(f'{enemy.name} dodged the attack!\n')
-                input(press_any_to_continue)
-                os.system('cls')
-            else:
-                if critical == True:
-                    print("Critical hit!\n")
-                    input(press_any_to_continue)
-                    os.system('cls')
-                
-                if enemy.enemy_health - player_damage > 0:
-                    enemy.enemy_health = enemy.enemy_health - player_damage
-                    time.sleep(1)
-                    input(
-                        f'The {enemy.name} stands strong!\n{press_any_to_continue}')
-            
-                    os.system('cls')
-                else:
-                    os.system('cls')
-                    print(f'The {enemy.name} is defeated!\n')
-                    input(press_any_to_continue)
-                    os.system('cls')
+			if random.randint(1, enemy.dodge_chance + player.agility_bonus) <= 1:
+				print(f'{enemy.name} dodged the attack!\n')
+				input(press_any_to_continue)
+				os.system('cls')
+			else:
+				if critical == True:
+					print("Critical hit!\n")
+					input(press_any_to_continue)
+					os.system('cls')
+				
+				if enemy.enemy_health - player_damage > 0:
+					enemy.enemy_health = enemy.enemy_health - player_damage
+					time.sleep(1)
+					input(
+						f'The {enemy.name} stands strong!\n{press_any_to_continue}')
+			
+					os.system('cls')
+				else:
+					os.system('cls')
+					print(f'The {enemy.name} is defeated!\n')
+					input(press_any_to_continue)
+					os.system('cls')
 
-                    return "WIN", player
-            print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
-            time.sleep(1)
-            
-            if random.randint(1, 100) <= player.agility - enemy.keen:
-                print('You dodged the attack!')
-                input(press_any_to_continue)
-                os.system('cls')
-            else:
-                if player.health - enemy_damage > 0:
-                    player.health = player.health - enemy_damage
-                    print('You stand strong.\n')
-                    input(press_any_to_continue)
-                    os.system('cls')
-                else:
-                    print('You are defeated!')
-                    return 'LOSE', player
-        elif selection == 2:
-            os.system('cls')
-            print('Here are the stats:\n\n')
-            space_length = len(str(player.health)) + len(str(player.base_health))
-            empty_space = 12 - space_length
+					return "WIN", player
+			print(f'The {enemy.name} attacks for {enemy_damage} damage!\n')
+			time.sleep(1)
+			
+			if random.randint(1, 100) <= player.agility - enemy.keen:
+				print('You dodged the attack!')
+				input(press_any_to_continue)
+				os.system('cls')
+			else:
+				if player.health - enemy_damage > 0:
+					player.health = player.health - enemy_damage
+					print('You stand strong.\n')
+					input(press_any_to_continue)
+					os.system('cls')
+				else:
+					print('You are defeated!')
+					return 'LOSE', player
+		elif selection == 2:
+			os.system('cls')
+			print('Here are the stats:\n\n')
+			space_length = len(str(player.health)) + len(str(player.base_health))
+			empty_space = 12 - space_length
 
-            print(
-                f'          | You          | {enemy.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {enemy.enemy_health}/{enemy.max_enemy_health}')
-            input(f"\n{press_any_to_continue}")
-            os.system('cls')
-        elif selection == 3:
-            os.system('cls')
-            print('You retreat!')
-            time.sleep(2)
-            return "RETREAT", player
-        elif selection == 4:
-            os.system('cls')
-            item_choice = None
-            
-            while True:
-                os.system('cls')
-                print('Here are your items:\n')
-                key_list = list(player.inventory['consumables'].keys())
-                for index, (key, value) in enumerate(player.inventory['consumables'].items()):
-                    print(f'{index + 1}. {key.capitalize()}: {len(value)}')
-                print(f'{len(key_list) + 1}. Nothing')
+			print(
+				f'          | You          | {enemy.name}\n\nHealth:   | {player.health}/{player.base_health}{" " * empty_space}| {enemy.enemy_health}/{enemy.max_enemy_health}')
+			input(f"\n{press_any_to_continue}")
+			os.system('cls')
+		elif selection == 3:
+			os.system('cls')
+			print('You retreat!')
+			time.sleep(2)
+			return "RETREAT", player
+		elif selection == 4:
+			os.system('cls')
+			item_choice = None
+			
+			while True:
+				os.system('cls')
+				print('Here are your items:\n')
+				key_list = list(player.inventory['consumables'].keys())
+				for index, (key, value) in enumerate(player.inventory['consumables'].items()):
+					print(f'{index + 1}. {key.capitalize()}: {len(value)}')
+				print(f'{len(key_list) + 1}. Nothing')
 
-                try:
-                    item_choice = int(input("\nEnter an integer: "))
-                    if item_choice > len(key_list) + 1:
-                        print("Please enter a valid choice.")
-                        time.sleep(2)
-                        continue
-                    break
-                except ValueError:
-                    print("Please enter an integer.")
-                    time.sleep(2)
-                    continue
+				try:
+					item_choice = int(input("\nEnter an integer: "))
+					if item_choice > len(key_list) + 1:
+						print("Please enter a valid choice.")
+						time.sleep(2)
+						continue
+					break
+				except ValueError:
+					print("Please enter an integer.")
+					time.sleep(2)
+					continue
 
-            if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
-                print('Use item')
-                target_key = key_list[item_choice - 1]
-                target = player.inventory['consumables'][target_key]
-                os.system('cls')
+			if item_choice - 1 < len(key_list) and item_choice - 1 >= 0:
+				print('Use item')
+				target_key = key_list[item_choice - 1]
+				target = player.inventory['consumables'][target_key]
+				os.system('cls')
 
-                print(f'You picked {target[0].item_name}\n')
-                print(f'It {target[0].description}\n')
-                answer = get_yes_no(f'Do you want to use it?')
-                if answer == 'y':
-                    use_item(player, target[0])
-                    player.inventory['consumables'][target_key].pop()
-                else:
-                    os.system('cls')
-                    continue
+				print(f'You picked {target[0].item_name}\n')
+				print(f'It {target[0].description}\n')
+				answer = get_yes_no(f'Do you want to use it?')
+				if answer == 'y':
+					use_item(player, target[0])
+					player.inventory['consumables'][target_key].pop()
+				else:
+					os.system('cls')
+					continue
 
-                if len(target) == 0:
-                    del player.inventory['consumables'][target_key]
-                    print(f'You have no {target_key} left\n')
-                else:
-                    print(f'You have {len(player.inventory["consumables"][target_key])} {target_key} left\n')
-                
-                time.sleep(2)
-                input(press_any_to_continue)
-                os.system('cls')
-                print(
-                    f'The {enemy.name} attacks for {enemy_damage} damage!\n')
+				if len(target) == 0:
+					del player.inventory['consumables'][target_key]
+					print(f'You have no {target_key} left\n')
+				else:
+					print(f'You have {len(player.inventory["consumables"][target_key])} {target_key} left\n')
+				
+				time.sleep(2)
+				input(press_any_to_continue)
+				os.system('cls')
+				print(
+					f'The {enemy.name} attacks for {enemy_damage} damage!\n')
 
-                if player.health - enemy_damage > 0:
-                    player.health = player.health - enemy_damage
-                    print('You stand strong.\n')
-                    input(press_any_to_continue)
-                    time.sleep(2)
-                    os.system('cls')
-                else:
-                    print('You are defeated!')
-                    return 'LOSE', player
+				if player.health - enemy_damage > 0:
+					player.health = player.health - enemy_damage
+					print('You stand strong.\n')
+					input(press_any_to_continue)
+					time.sleep(2)
+					os.system('cls')
+				else:
+					print('You are defeated!')
+					return 'LOSE', player
 
-                os.system('cls')
-                continue
-            elif item_choice == len(key_list) + 1:
-                os.system('cls')
-                continue
-            else:
-                print('Invalid choice')
-                input(press_any_to_continue)
-                os.system('cls')
-                continue
+				os.system('cls')
+				continue
+			elif item_choice == len(key_list) + 1:
+				os.system('cls')
+				continue
+			else:
+				print('Invalid choice')
+				input(press_any_to_continue)
+				os.system('cls')
+				continue
 
-        elif selection == 5:
-            print('Bye\n')
-            break
-        else:
-            print('')
+		elif selection == 5:
+			print('Bye\n')
+			break
+		else:
+			print('')
 
 
 def battle_launch(player, enemies):
-    enemy = random_enemy(enemies)
-    print(f'{enemy.name_tense} appeared!\n')
-    time.sleep(2)
+	enemy = random_enemy(enemies)
+	print(f'{enemy.name_tense} appeared!\n')
+	time.sleep(2)
 
-    armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
+	armor_bonus = player.gear['armor']['head'].defense_bonus + player.gear['armor']['chest'].defense_bonus + player.gear['armor']['legs'].defense_bonus
 
-    result, player = battle_loop(player, enemy, armor_bonus)
+	result, player = battle_loop(player, enemy, armor_bonus)
 
-    if result == 'WIN':
-        print('You won!\n\n')
+	if result == 'WIN':
+		print('You won!\n\n')
 
-        # Here we can add level up logic
-        range = [
-            enemy.base_experience_yield - enemy.exp_range,
-            enemy.base_experience_yield,
-            enemy.base_experience_yield + enemy.exp_range
-        ]
-        yielded_amount = range[random.randint(1,3) - 1]
-        print(f'You gained {yielded_amount} experience points!')
+		# Here we can add level up logic
+		range = [
+			enemy.base_experience_yield - enemy.exp_range,
+			enemy.base_experience_yield,
+			enemy.base_experience_yield + enemy.exp_range
+		]
+		yielded_amount = range[random.randint(1,3) - 1]
+		print(f'You gained {yielded_amount} experience points!')
 
-        player = level_up(player, yielded_amount)
-        print(f'You need {player.to_next_level} more to level up.\n')
+		player = level_up(player, yielded_amount)
+		print(f'You need {player.to_next_level} more to level up.\n')
 
-        print(f'Your health is {player.health}/{player.base_health}')
+		print(f'Your health is {player.health}/{player.base_health}')
 
-        input(press_any_to_continue)
-        os.system('cls')
-        return 'WIN'
-    elif result == 'RETREAT':
-        print("in the retreat")
-        return 'RETREAT'
-    elif result == 'LOSE':
-        return 'LOSE'
+		input(press_any_to_continue)
+		os.system('cls')
+		return 'WIN'
+	elif result == 'RETREAT':
+		print("in the retreat")
+		return 'RETREAT'
+	elif result == 'LOSE':
+		return 'LOSE'
 
 
 def level_up(player: Player, exp_yield: int):
-    spillover = player.to_next_level - exp_yield
+	spillover = player.to_next_level - exp_yield
 
-    if player.level == 15:
-        print('You have reached the maximum level!\n')
-        return player
+	if player.level == 15:
+		print('You have reached the maximum level!\n')
+		return player
 
-    if spillover > 0:
-        player.to_next_level = spillover
-        player.total_experience += exp_yield
+	if spillover > 0:
+		player.to_next_level = spillover
+		player.total_experience += exp_yield
 
-        return player
-    else:
-        print('You leveled up!\n')
-        # Adjust all attributes
-        player.level += 1
-        player = class_level_up(player)
+		return player
+	else:
+		print('You leveled up!\n')
+		# Adjust all attributes
+		player.level += 1
+		player = class_level_up(player)
 
-        player.total_experience += player.to_next_level
-        player.base_level += 10
-        player.to_next_level = player.base_level
+		player.total_experience += player.to_next_level
+		player.base_level += 10
+		player.to_next_level = player.base_level
 
-        if spillover == 0:
-            return player
-        else:
-            return level_up(player, abs(spillover))
+		if spillover == 0:
+			return player
+		else:
+			return level_up(player, abs(spillover))
 
 def class_level_up(player: Player):
-    # Elf
-    if player.player_class == 'Elf':
-        player.base_health = player.base_health + 20
-        if player.level % 3 == 0:
-            player.defense = player.defense + 5
-            player.agility = player.agility + 10
-        if player.level % 2 == 0:
-            player.strength = player.strength + 4
-        
-        # Swordsman
-    elif player.player_class == 'Swordsman':
-        player.base_health = player.base_health + 15
-        if player.level % 2 == 0:
-            player.defense = player.defense + 5
-            player.agility = player.agility + 3
-            player.strength = player.strength + 7
-        
-        #Dwarf
-    elif player.player_class == 'Dwarf':
-        player.base_health = player.base_health + 10
-        if player.level % 2 == 0:
-            player.defense = player.defense + 8
-            player.agility = player.agility + 3
-            player.strength = player.strength + 10
+	# Elf
+	if player.player_class == 'Elf':
+		player.base_health = player.base_health + 20
+		if player.level % 3 == 0:
+			player.defense = player.defense + 5
+			player.agility = player.agility + 10
+		if player.level % 2 == 0:
+			player.strength = player.strength + 4
+		
+		# Swordsman
+	elif player.player_class == 'Swordsman':
+		player.base_health = player.base_health + 15
+		if player.level % 2 == 0:
+			player.defense = player.defense + 5
+			player.agility = player.agility + 3
+			player.strength = player.strength + 7
+		
+		#Dwarf
+	elif player.player_class == 'Dwarf':
+		player.base_health = player.base_health + 10
+		if player.level % 2 == 0:
+			player.defense = player.defense + 8
+			player.agility = player.agility + 3
+			player.strength = player.strength + 10
 
-    player.health = player.base_health
-    return player
+	player.health = player.base_health
+	return player
 
 def handle_unlock(unlock_dict: UnlockValue, player: Player, unlocked_values: List[str]):
-    if unlock_dict['value'] is 'CASTLE_KEY':
-        print('The Goblin was the guard to the castle gate!\n')
-        time.sleep(1)
-        print('The goblin dropped a key to the drawbridge!\n')
-        player.inventory["key_items"].append(castle_key)
-        unlocked_values.append('KEY_SHED')
-        unlocked_values.append('CASTLE_KEY')
-        time.sleep(1)
-        print(press_any_to_continue)
-        os.system('cls')
-    if unlock_dict['value'] is 'STAIR_KEY':
-        print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you look up and see a pedestal.\n')
-        print(f'On it sits a golden, bejeweled key.\n')
-        time.sleep(1)
-        print('This must be for getting upstairs!\n')
-        player.inventory["key_items"].append(stairs_key)
-        unlocked_values.append('STAIR_KEY')
-        unlocked_values.append('SECOND_STAIR_KEY')
-        time.sleep(1)
-        print(press_any_to_continue)
-        os.system('cls')
-    if unlock_dict['value'] is 'NEW_WEAPON':
-        old_weapon = player.gear['weapons']['main']['name']
-        new_weapon = get_new_weapon(player)
-        print('You see a chest before you.\n')
-        time.sleep(1)
-        print(f'You open it and see a {new_weapon}!\n')
-        time.sleep(1)
-        print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
-        time.sleep(1)
-        print('Now you\'re ready for the big games.\n')
-        unlocked_values.append('NEW_WEAPON')
-        time.sleep(1)
-    if unlock_dict['value'] is 'MASTER_WEAPON':
-        old_weapon = player.gear['weapons']['main']['name']
-        new_weapon = get_master_weapon(player)
-        print('The blinding light is coming from a statue.\n')
-        time.sleep(1)
-        print(f'You see in its outstretched hands is a {new_weapon}!\n')
-        time.sleep(1)
-        print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
-        unlocked_values.append('MASTER_WEAPON')
-        time.sleep(1)
-        print(press_any_to_continue)
-        os.system('cls')
-    if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
-        print('The Duke was guarding Steel Leg armor!\n')
-        time.sleep(1)
-        print('You put it on and are ready for bigger baddies!\n')
+	if unlock_dict['value'] is 'CASTLE_KEY':
+		print('The Goblin was the guard to the castle gate!\n')
+		time.sleep(1)
+		print('The goblin dropped a key to the drawbridge!\n')
+		player.inventory["key_items"].append(castle_key)
+		unlocked_values.append('KEY_SHED')
+		unlocked_values.append('CASTLE_KEY')
+		time.sleep(1)
+		print(press_any_to_continue)
+		os.system('cls')
+	if unlock_dict['value'] is 'STAIR_KEY':
+		print(f'As you wipe the blood off your {player.gear['weapons']['main']['name']}, you look up and see a pedestal.\n')
+		print(f'On it sits a golden, bejeweled key.\n')
+		time.sleep(1)
+		print('This must be for getting upstairs!\n')
+		player.inventory["key_items"].append(stairs_key)
+		unlocked_values.append('STAIR_KEY')
+		unlocked_values.append('SECOND_STAIR_KEY')
+		time.sleep(1)
+		print(press_any_to_continue)
+		os.system('cls')
+	if unlock_dict['value'] is 'NEW_WEAPON':
+		old_weapon = player.gear['weapons']['main']['name']
+		new_weapon = get_new_weapon(player)
+		print('You see a chest before you.\n')
+		time.sleep(1)
+		print(f'You open it and see a {new_weapon}!\n')
+		time.sleep(1)
+		print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
+		time.sleep(1)
+		print('Now you\'re ready for the big games.\n')
+		unlocked_values.append('NEW_WEAPON')
+		time.sleep(1)
+	if unlock_dict['value'] is 'MASTER_WEAPON':
+		old_weapon = player.gear['weapons']['main']['name']
+		new_weapon = get_master_weapon(player)
+		print('The blinding light is coming from a statue.\n')
+		time.sleep(1)
+		print(f'You see in its outstretched hands is a {new_weapon}!\n')
+		time.sleep(1)
+		print(f'You ditch your {old_weapon} and equip the {new_weapon}.\n')
+		unlocked_values.append('MASTER_WEAPON')
+		time.sleep(1)
+		print(press_any_to_continue)
+		os.system('cls')
+	if unlock_dict['value'] is 'LEVEL_TWO_LEG_ARMOR':
+		print('The Duke was guarding Steel Leg armor!\n')
+		time.sleep(1)
+		print('You put it on and are ready for bigger baddies!\n')
 
-        player.gear['armor']['legs'] = leg_armor
-        unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
-        time.sleep(1)
-        print(press_any_to_continue)
-        os.system('cls')
-    if unlock_dict['value'] is 'LEVEL_TWO_HELMET_ARMOR':
-        print('The Guard was guarding Steel Helmet armor!\n')
-        time.sleep(1)
-        print('You dump your cheap helmet and put on the Steel one.\n')
-        player.gear['armor']['head'] = helmet_armor
-        
-        unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
-        time.sleep(1)
-        print(press_any_to_continue)
-        os.system('cls')
-    if unlock_dict['value'] is 'LEVEL_TWO_CHEST_ARMOR':
-        print('What luck?\n')
-        time.sleep(1)
-        print('You see an ornate Tempered Chestplate on a pedaestal before you.\n')
-        time.sleep(1)
-        print('No guards, no Whargs and no Sorcerers.\n')
-        time.sleep(1)
-        print('You dump your leather chestplate and strap on the tempered one.\n')
+		player.gear['armor']['legs'] = leg_armor
+		unlocked_values.append('LEVEL_TWO_LEG_ARMOR')
+		time.sleep(1)
+		print(press_any_to_continue)
+		os.system('cls')
+	if unlock_dict['value'] is 'LEVEL_TWO_HELMET_ARMOR':
+		print('The Guard was guarding Steel Helmet armor!\n')
+		time.sleep(1)
+		print('You dump your cheap helmet and put on the Steel one.\n')
+		player.gear['armor']['head'] = helmet_armor
+		
+		unlocked_values.append('LEVEL_TWO_HELMET_ARMOR')
+		time.sleep(1)
+		print(press_any_to_continue)
+		os.system('cls')
+	if unlock_dict['value'] is 'LEVEL_TWO_CHEST_ARMOR':
+		print('What luck?\n')
+		time.sleep(1)
+		print('You see an ornate Tempered Chestplate on a pedaestal before you.\n')
+		time.sleep(1)
+		print('No guards, no Whargs and no Sorcerers.\n')
+		time.sleep(1)
+		print('You dump your leather chestplate and strap on the tempered one.\n')
 
-        player.gear['armor']['chest'] = chest_armor
+		player.gear['armor']['chest'] = chest_armor
 
-        unlocked_values.append('LEVEL_TWO_CHEST_ARMOR')
-        time.sleep(1)
-        print(press_any_to_continue)
-        os.system('cls')
+		unlocked_values.append('LEVEL_TWO_CHEST_ARMOR')
+		time.sleep(1)
+		print(press_any_to_continue)
+		os.system('cls')
 
 
 
 def get_new_weapon(player: Player):
-    player_type = player.player_class
+	player_type = player.player_class
 
-    if player_type == 'Dwarf':
-        player.gear["weapons"]["main"] = dwarf_swamp_weapon
-    elif player_type == 'Elf':
-        player.gear["weapons"]["main"] = elf_swamp_weapon
-    elif player_type == 'Swordsman':
-        player.gear["weapons"]["main"] = swordsman_swamp_weapon
-    return player.gear["weapons"]["main"]['name']
+	if player_type == 'Dwarf':
+		player.gear["weapons"]["main"] = dwarf_swamp_weapon
+	elif player_type == 'Elf':
+		player.gear["weapons"]["main"] = elf_swamp_weapon
+	elif player_type == 'Swordsman':
+		player.gear["weapons"]["main"] = swordsman_swamp_weapon
+	return player.gear["weapons"]["main"]['name']
 
 def get_master_weapon(player: Player):
-    player_type = player.player_class
+	player_type = player.player_class
 
-    if player_type == 'Dwarf':
-        player.gear["weapons"]["main"] = dwarf_master_weapon
-    elif player_type == 'Elf':
-        player.gear["weapons"]["main"] = elf_master_weapon
-    elif player_type == 'Swordsman':
-        player.gear["weapons"]["main"] = swordsman_master_weapon
-    return player.gear["weapons"]["main"]['name']
+	if player_type == 'Dwarf':
+		player.gear["weapons"]["main"] = dwarf_master_weapon
+	elif player_type == 'Elf':
+		player.gear["weapons"]["main"] = elf_master_weapon
+	elif player_type == 'Swordsman':
+		player.gear["weapons"]["main"] = swordsman_master_weapon
+	return player.gear["weapons"]["main"]['name']
 
 def use_item(player: Player, item: Consumable):
-    if item.type == 'HEALTH':
-        health_difference = player.base_health - player.health
-        if item.heal_value > health_difference:
-            player.health = player.base_health
-            print(f'You healed for {health_difference} health!\nYour health is now {player.health}')
-        else:
-            player.health += item.heal_value
-            print(f'You healed for {item.heal_value} health!\nYour health is now {player.health}')
-        return
+	if item.type == 'HEALTH':
+		health_difference = player.base_health - player.health
+		if item.heal_value > health_difference:
+			player.health = player.base_health
+			print(f'You healed for {health_difference} health!\nYour health is now {player.health}')
+		else:
+			player.health += item.heal_value
+			print(f'You healed for {item.heal_value} health!\nYour health is now {player.health}')
+		return

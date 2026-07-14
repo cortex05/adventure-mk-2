@@ -5,33 +5,33 @@ from utility.texts import press_any_to_continue
 from items.weapons.starting_weapons import dwarf_start
 
 class Dwarf(Player):
-    player_class = "Dwarf"
-    standard_attack = "Slash"
-    special_attack = "Earth shaker"
-    heavy_attack = "Guillotine"
-    description = 'A Dwarf is a tank.\n\nNot very agile, but they can eat whatever hits they take and dish it out in kind.\nThey will crush enemies at first, but the tougher ones might be an issue...\n\n'
+	player_class = "Dwarf"
+	standard_attack = "Slash"
+	special_attack = "Earth shaker"
+	heavy_attack = "Guillotine"
+	description = 'A Dwarf is a tank.\n\nNot very agile, but they can eat whatever hits they take and dish it out in kind.\nThey will crush enemies at first, but the tougher ones might be an issue...\n\n'
 
-    health = 120
-    base_health = 120
-    strength = 50
-    defense = 30
-    agility = 15
-    agility_bonus = 1
-    attack_variable = 5
+	health = 120
+	base_health = 120
+	strength = 50
+	defense = 30
+	agility = 15
+	agility_bonus = 1
+	attack_variable = 5
 
-    def __init__(self, name):
-        self.name = name
-        os.system('cls')
+	def __init__(self, name):
+		self.name = name
+		os.system('cls')
 
-        self.gear["weapons"]["main"] = dwarf_start
-        i = 0
-        while i < 3:
-            new_potion = Potion()
-            if "potions" in self.inventory["consumables"]:
-                self.inventory["consumables"]["potions"].append(new_potion)
-            else:
-                self.inventory["consumables"]["potions"] = [new_potion]
-            i += 1
+		self.gear["weapons"]["main"] = dwarf_start
+		i = 0
+		while i < 3:
+			new_potion = Potion()
+			if "potions" in self.inventory["consumables"]:
+				self.inventory["consumables"]["potions"].append(new_potion)
+			else:
+				self.inventory["consumables"]["potions"] = [new_potion]
+			i += 1
 
-        input(
-            f"Dwarf Selected! Heavy hitter I see. Congrats {name}!\n{press_any_to_continue}")
+		input(
+			f"Dwarf Selected! Heavy hitter I see. Congrats {name}!\n{press_any_to_continue}")

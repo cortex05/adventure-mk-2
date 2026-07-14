@@ -6,12 +6,12 @@ running = True
 os.system('cls')
 
 while running:
-    launch = launcher()
+	launch = launcher()
 
-    if launch:
-        print('Starting game...')
-        # opening scroll
-        main()
-    else:
-        print('Goodbye!')
-        running = False
+	if launch:
+		print('Starting game...')
+		# opening scroll
+		main()
+	else:
+		print('Goodbye!')
+		running = False

@@ -6,32 +6,32 @@ from utility.texts import press_any_to_continue
 from items.weapons.starting_weapons import swordsman_start
 
 class Swordsman(Player):
-    player_class = "Swordsman"
-    standard_attack = "Slash"
-    special_attack = "Overhead Smash"
-    heavy_attack = "Thrust"
-    description = 'A well balanced class.\n\nA Swordsman has solid strength and modest agility.\nGood for beginners.\n\n'
+	player_class = "Swordsman"
+	standard_attack = "Slash"
+	special_attack = "Overhead Smash"
+	heavy_attack = "Thrust"
+	description = 'A well balanced class.\n\nA Swordsman has solid strength and modest agility.\nGood for beginners.\n\n'
 
-    health = 105
-    base_health = 105
-    strength = 30
-    defense = 25
-    agility = 20
-    agility_bonus = 2
-    attack_variable = 7
+	health = 105
+	base_health = 105
+	strength = 30
+	defense = 25
+	agility = 20
+	agility_bonus = 2
+	attack_variable = 7
 
-    def __init__(self, name):
-        self.name = name
-        os.system('cls')
+	def __init__(self, name):
+		self.name = name
+		os.system('cls')
 
-        self.gear["weapons"]["main"] = swordsman_start
-        i = 0
-        while i < 3:
-            new_potion = Potion()
-            if "potions" in self.inventory["consumables"]:
-                self.inventory["consumables"]["potions"].append(new_potion)
-            else:
-                self.inventory["consumables"]["potions"] = [new_potion]
-            i += 1
-        input(
-            f"Swordsman Selected! Hack and slash it is. Congrats {name}!\n{press_any_to_continue}")
+		self.gear["weapons"]["main"] = swordsman_start
+		i = 0
+		while i < 3:
+			new_potion = Potion()
+			if "potions" in self.inventory["consumables"]:
+				self.inventory["consumables"]["potions"].append(new_potion)
+			else:
+				self.inventory["consumables"]["potions"] = [new_potion]
+			i += 1
+		input(
+			f"Swordsman Selected! Hack and slash it is. Congrats {name}!\n{press_any_to_continue}")

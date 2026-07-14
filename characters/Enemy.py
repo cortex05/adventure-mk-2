@@ -1,2 +1,2 @@
 class Enemy():
-    name_tense = ''
+	name_tense = ''

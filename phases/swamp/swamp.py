@@ -71,7 +71,7 @@ def swamp_loop(player: Player, unlocked_values: list[int], location_coords: list
 					print(item)
 					time.sleep(1)
 
-		 	# Get the options to display
+			# Get the options to display
 			text_options = ''
 			choice_options = []
 			for option in location["options"]:
