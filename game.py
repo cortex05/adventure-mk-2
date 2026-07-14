@@ -3,7 +3,8 @@ from phases.castle.first.level_one import castle_loop
 from phases.final.final_battle import final_battle
 from phases.moat.moat import moat_loop
 from phases.start import  setPlayerName, introScroll, initialiationLoop
-from phases.swamp.swamp import swamp_loop
+from navigation.engine import explore
+from phases.swamp.swamp_graph import swamp_phase
 
 def main():
 	name = setPlayerName()
@@ -21,7 +22,7 @@ def main():
 
 	is_running = True
 
-	swamp_result = swamp_loop(player, swamp_unlocked_values, swamp_location_coords, is_running)
+	swamp_result = explore(player, swamp_phase, swamp_unlocked_values)
 	if swamp_result is False:
 		print('You have died in the swamp. Game over.')
 		time.sleep(2)
